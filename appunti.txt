@@ -1,0 +1,40 @@
+24 febbraio ------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione01/Lezione_1.html
+per avviare l'interprete dal terminalescrivo corso_lab_pythonèer capire se l'interprete è stato avviato
+al posto del $ devono apparire >>>
+ domada d'esame tipica: quanti errori esistono in python?
+ risposta 3: Syntax errors, semantic errors, runtime errors + descrizione
+ import istruzione per importare delle istruzione scritte altrove
+ l'assegnazione non può essere invertita
+ per controllare che due variabili dello stesso tipo non uso == ma uso istruzioneper chiudere e salvare:
+ nel terminle:
+    git status, per verificare se cisono modifiche non salvate
+    git add . per salvare le modifiche
+    git commit -am "nomefile", per salvare il file con nomefile
+    git push origin main, per spostare tutti i file nel main (che è il posto incui vogliamo tenere i nostri file)
+
+3 marzo ----------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione02/Lezione_2.html
+python linguaggio interpretato non compilato
+abbiamo creato il file turtle.py
+python costringe i programmatori a scrivere bene e utilizza la trutturaa blocchi
+essa èformata da dei rientri dopoche viene definito un blocco, più rientri=più blocchi
+ATTENZIONE se si utilizzano i rientri in modo errato ne risulta un erroredi tipo runtime
+nel while devo definire io la condizione di uscita
+lafunzione for con loop su numeri interi è così tanto usato che esistono dverse scorciatoie esempio: range (num) essa parte da0 arriva a num-1 e fa step di 1 unità 
+condizione if è una boolean expression, strutturata in modo tale che se condizione true esegue le istruzioni
+immediatamente successive, altrimenti se FALSE esegue l'else
+
+12 marzo--------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione03/Lezione_3.html
+le funzioni le posso dichiarare ovunque io vogliamo
+def draw_sqare(my_turtle, step):    #le funzioni le posso dichiarare dovunque io voglia nel codice
+    '''Disegno un quadrato con la tartaruga''' #il commento multi linea esattamente posto sotto definizione di funzione  diventa una stringa di documentazione, quindi non è più trasparente nel codice ma crea codice
+#qusto tipo di stringa è importante per comprensione e portabilità del codice, 
+#pass è una keeword che ci permette di definire funzione vuota senza che il codice dia errore
+ATTENZIONE: sono molto pignoli sulla presenza delle Doc string
+le funzioni possono essere chiamate solo dopo aveerle definite, per questo è buona procedura inizializzare tutte le funzioni all'inizio
+ESERCIZIO 1
+
+
+
