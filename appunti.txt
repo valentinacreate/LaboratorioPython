@@ -21,7 +21,8 @@ python costringe i programmatori a scrivere bene e utilizza la trutturaa blocchi
 essa èformata da dei rientri dopoche viene definito un blocco, più rientri=più blocchi
 ATTENZIONE se si utilizzano i rientri in modo errato ne risulta un erroredi tipo runtime
 nel while devo definire io la condizione di uscita
-lafunzione for con loop su numeri interi è così tanto usato che esistono dverse scorciatoie esempio: range (num) essa parte da0 arriva a num-1 e fa step di 1 unità 
+lafunzione for con loop su numeri interi è così tanto usato che esistono dverse scorciatoie esempio: range (num) essa p
+arte da0 arriva a num-1 e fa step di 1 unità 
 condizione if è una boolean expression, strutturata in modo tale che se condizione true esegue le istruzioni
 immediatamente successive, altrimenti se FALSE esegue l'else
 
@@ -29,12 +30,63 @@ immediatamente successive, altrimenti se FALSE esegue l'else
 http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione03/Lezione_3.html
 le funzioni le posso dichiarare ovunque io vogliamo
 def draw_sqare(my_turtle, step):    #le funzioni le posso dichiarare dovunque io voglia nel codice
-    '''Disegno un quadrato con la tartaruga''' #il commento multi linea esattamente posto sotto definizione di funzione  diventa una stringa di documentazione, quindi non è più trasparente nel codice ma crea codice
+    '''Disegno un quadrato con la tartaruga''' #il commento multi linea esattamente posto sotto definizione di funzione  diventa 
+    una stringa di documentazione, quindi non è più trasparente nel codice ma crea codice
 #qusto tipo di stringa è importante per comprensione e portabilità del codice, 
 #pass è una keeword che ci permette di definire funzione vuota senza che il codice dia errore
 ATTENZIONE: sono molto pignoli sulla presenza delle Doc string
-le funzioni possono essere chiamate solo dopo aveerle definite, per questo è buona procedura inizializzare tutte le funzioni all'inizio
+le funzioni possono essere chiamate solo dopo aveerle definite, per questo è buona procedura inizializzare tutte le funzioni 
+all'inizio
 ESERCIZIO 1
 
-
+17 marzo--------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione04/Lezione_4.html
+la striga va sempre con gli ''
+TypeError è un errore di runtime
+l'oggetto di tipo intero non ha lunghezza
+Stringa composta da più elementi, quindi posso gurdenrne uno alla volta mediante l'utilizzo dell'operatore di indicizzazione
+in python posso contare anche zero, quindi non solo posso scrivere String1[0], che mi da il primo valore da sinistra
+ma posso anche partire dal fondo, ovvero utilizzando String[-1] e quindi mi restituisce il primo valore da destra
+per avere il secondo elemento da destra basterà scrivere String[-2] e così variabili
+si possono fare azioni sulla stringa mediante la dot notation
+ogni volta che faccio modifiche a stringhe in realtà la sctringa non viene modificata ma viene fatta una copia, lasciando intatta
+l'originale
+questa nuova copia della stringa non vine assegnata a nessuna variabile, quindi se ci dimentichiamo di assegnarla verrà 
+considerata presenza quindi dobbiamo fare a=nome.upper()
+help utile per confermare ciò che ha detto IA 
+per scorrere ogni carattere della stringa e stamparlo non è necessario selezionare ogni elelemto, unio alla volta e poi stamparla,
+basta digitare :
+for lettera in nome:
+    print(lettera)
+per convertire un tipo primitivo in tipo stringa uso operatore di cart: str(variabile)
+la concatenazione è il metodo più semplice nel unire più stringhe ma sposta tutta la responsabilità
+sul programmatore, in quel caso è meglio usare l'operatore print e affidare tutta la responsabilità a linguaggio
+l'old-style ha ancora delle limitazioni: mi devo ricordare che tipo di variabile inserisco, e devo ricordarmi l'ordine delle 
+variabile che inserisco 
+dopo la stringa tra marente, perchè dev3e corrispondere all'ordine incui appaiono dentro la stringa
+nel new-style posso evitae i %tipovar inserendo {} e se all'interno delle paentesi graffe inserisco il nome della variabile
+posso dopo evitare di doverle inserire in ordine quando passo alla stringa le variabili, devo solo ricordarbi il nome presente 
+dentro le {} ed assegnarli il valore corretto
+le più recenti sono le fstring ed inizianon con f', in cui rimuovo tutto ciò che c'era sta a contorno inserisco soloe {} nel 
+punto in cui voglio inserire la variabile e all'interno delle {} inserisco il nome della variabile, o un qualunque tipo di espressione
+le liste sono oggetti modificabili
+le liste vuote si possono costruire in due modi:
+        usando le parentesi quadre: lista_vuota=[]
+        oppure con il casting a lista di niente: lista_vuota_2 = list( )
+nello slice (rimozione elemetni) delle liste ti prende l'elemento iniziale segnato fino all'elemento prima dell'elemento finale segnato 
+lista[0:3] da elemento 0 a elemtno 2
+nelle liste ci sono 2 operatori
+     + che è la concatenazione
+     * che è la replica
+tuple gruppi di elementi che non possono essere modificati una volta creati
+Tuple assignment: una tupla di valori, posso assegnare i valori a una tupla di variabili, mappando quindi valori,
+Ma il numero di variabili deve essere lo stesso del numero di valori
+DOAMANDA A TRABOCCHETTO:
+quando scrivo una funzione, ci ricordiamo che la funzione iniza con def nome (variabili che utilizza)
+e voglio creare una funzione che restituisce la somma e la differenza tra due numeri, MA le funzioni possono restituire un solo 
+elemento, quindi oer ritornare più di un elemnto di una funzione posso utilizzare una tupla ceh contine i due risultati e la ritorno
+e quando uso una funzione nel main gli metto davanti una tupla di due variabili in questo utilizzo il tuple assignment, quindi 
+LA FUNZIONE PUò RESTITUIRE UN VOLORE E BASTA, SE VOGLIO RESTITUIRE PIù VALORI DEVO UTILIZZARE UNA tupla
+python nasce con le tuple quindi le () sono opzionali
+1:09:06
 

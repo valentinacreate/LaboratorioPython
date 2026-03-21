@@ -56,9 +56,8 @@ def analizza_sequenza(lista):
     massimo=max(lista)                                          #utilizzo la funzione max per trovare il massimo numero della lista
     lunghezza=len(lista)                                        #utilizzo la funzione len per trovare la lunghezza della lista    
     somma=sum(lista)                                            #utilizzo la funzione sum per trovare la somma di tutti i numeri della lista    
-    print('Il massimo è: ', massimo)                            #restituisco il massimo numero della lista
-    print('La lunghezza della sequenza è: ', lunghezza)         #restituisco la lunghezza della lista
-    print('La somma di tutti i numeri è: ', somma)              #restituisco la somma di tutti i numeri della lista
+    tupla=(massimo, lunghezza, somma)                           #creo una tupla per salvare i tre valori da restituire
+    return tupla                                                #restituisco i dati con una tupla
 
 def ricerca(lista):
     '''scorre la lista e stampa solo i numeri della sequenza che sono divisibili per 5. Se non ce ne sono, stampa un messaggio dedicato'''
@@ -88,7 +87,10 @@ for i in range(n_test):                                     #mediante un ciclo f
     print('Il numero inserito è pari?: ', is_pari(n))       #controllo se il numero inserito è pari o dispari e stampo il risultato
     lista=genera_lista(n)                                   #utilizzando il numero inserito genero una lista usando la funzione genera_lista e la salvo in una variabile
     print('La lista generata è: ', lista)                   #stampo la lista generata
-    analizza_sequenza(lista)                                #analizzo la lista generata e stampo il massimo, la lunghezza della sequenza e la somma di tutti i numeri
+    (massimo, lunghezza, somma)=analizza_sequenza(lista)    #analizzo la lista generata e restituisco il massimo, la lunghezza della sequenza e la somma di tutti i numeri
+    print('Il massimo è: ', massimo)                        #restituisco il massimo numero della lista
+    print('La lunghezza della sequenza è: ', lunghezza)     #restituisco la lunghezza della lista
+    print('La somma di tutti i numeri è: ', somma)          #restituisco la somma di tutti i numeri della lista                      
     ricerca(lista)                                          #scorro la lista e stampo solo i numeri della sequenza che sono divisibili per 5, se non ce ne sono stampo un messaggio dedicato
     if(len(lista)>len_max):                                 #se la lunghezza della lista generata è maggiore della lunghezza massima finora registrata, aggiorno la lunghezza massima e il numero che ha generato la lista più lunga
         len_max=len(lista)
