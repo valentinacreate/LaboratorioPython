@@ -88,5 +88,43 @@ elemento, quindi oer ritornare più di un elemnto di una funzione posso utilizza
 e quando uso una funzione nel main gli metto davanti una tupla di due variabili in questo utilizzo il tuple assignment, quindi 
 LA FUNZIONE PUò RESTITUIRE UN VOLORE E BASTA, SE VOGLIO RESTITUIRE PIù VALORI DEVO UTILIZZARE UNA tupla
 python nasce con le tuple quindi le () sono opzionali
-1:09:06
+nei set l'ordine in cui sono posti gli elementi viene deciso da pyton a seconda della memoeria che ha a disposizione
+i set non sono modificabili 
+ELEMENTI NON MODIFICABILI NON POSSONO CONTENERE AL LORO INTERNO ELEMENRTI MODIFICABILI 
+nei set non essendo ordinati per accedere agli elemneti non posso accedere con gli indici ma devo nutilizzare dei loop o prendere 
+gli elementi uno alla volta
 
+RIASSUNTO/RECAP DI QUELLO CHE ABBIAMO VISTO:
+abbiamo visto
+tipi semplici: interi, float, etc
+tipi composti: compound data Type,  sono più o meno uguali, ma con delle piccole differenze
+    si parte dal tipo più largo, le liste: sono modificabili, possono contenere qualunque altro elemento, anche altre liste
+    si restringe il campo, le tuple: possono contenere qualunque elemento, ma NON sono modificabili
+            se poi imponiamo che nella tupla tutti gli elementi siano uguali allora abbiamo una stringa 
+    i set sono un mondo un po' a parte: non modificabili e vengono utilizzati per fare cose particolare, es. operazioni di insiemistica
+
+i dizionari: sono un tipo composto particolare perchè sono una mappa, sono coppie di oggetti (chiave:valore, chiave:valore, etc...)
+per accedere al valore utilizziamo [chiave], se chiave non c'è si ha un errore di RUNTIME 
+si possono fare loop sia sulle chiavi che sui valori, di default si fanno sulle chiavi ma per farlo sui valori bisogna dirlo 
+in modo esplicito ovvero:
+sulle chiavi: 
+for el in inventario.keys():
+    print(el)
+
+che equivale ad 
+for el in inventario:
+    print(el)
+
+sui valori:
+for el in inventario.values():
+    print(el)
+
+la chiave può essere qualunque cosa purchè sia un oggetto non modificabile, i valori possono essere qualunque cosa
+quando modifico il valore associato ad una chiave esso piò essere un elemento anche diverso dal valore iniziale
+COMPREHENSION: sonon il modo in cui si generano e scorrono questo tipo di dati (list,set dict) in python
+                OSSERVA:le tuple sono le uniche che NON hanno una comprehension 
+modo più efficente e voleco per creare una list comprehension è utilizzando un cotruttore [ ] che sfrutta il concetto di loop for, che è scritto
+all'interno di python e NON dall'utente
+per creare un set comprehension utilizzo al posto delle [ ] le { }
+per creare una dir comprehension utilizzo {} utilizzando le coppie di elementi quindi ad esempio {i:i*i  for i in range(10)}
+che però si può scrivere anche str(i):i*i  for i in range(10)
