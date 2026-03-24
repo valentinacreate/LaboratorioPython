@@ -128,3 +128,21 @@ all'interno di python e NON dall'utente
 per creare un set comprehension utilizzo al posto delle [ ] le { }
 per creare una dir comprehension utilizzo {} utilizzando le coppie di elementi quindi ad esempio {i:i*i  for i in range(10)}
 che però si può scrivere anche str(i):i*i  for i in range(10)
+
+24 marzo ----------------------------------------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione05/Lezione_5.html
+chiedono sempre all'esame cos'è import: è un'istruzone  che carica moduli o librerie esterne in memoria, permettendo di riutilizzare codice 
+preesistente e organizzare il codice in modo strutturato
+esempio sys mi permette di fornire il dato da terminale e passargli informazione mantendo il programma generale
+mediante la seguente struttura $ python3 programma.py  argomento1  argomento2 
+è importante ricordarsi l'ordine esatto, altrimenti vengono utilizzate in modo errato nel programma, 
+soprattutto se dobbiamo passare mote informazioni
+parser =  argparse.ArgumentParser() si occupa di analizzare l'input che forniamo, lo si può utilizzare importando la 
+libreria import argparse
+per far si che funzione bisogna registrare gli argomenti che forniremo uno a unogli argomenti li aggancio a parser e per farlo devo dare un 
+nome ad ogni argomento
+ad esempioparser.add_argument('-n','--nome_esteso', help='Descrizione del parametro')
+parser.add_argument('-b','--boolean_value', action='store_true', help="imposta il valore 'True' se trova il parametro")
+parser.add_argument('-d','--con_default',  default='riferimento', help="Parametro che ha già un valore di default se non viene fornito l'argomento")
+per leggere gli argomenti devo chiamare la funzione: args = parser.parse_args() # fa il parsing degli argomenti da linea di comando
+per poi accedere agli argomenti forniti da terminale utilizzo la dot notation
