@@ -146,3 +146,15 @@ parser.add_argument('-b','--boolean_value', action='store_true', help="imposta i
 parser.add_argument('-d','--con_default',  default='riferimento', help="Parametro che ha già un valore di default se non viene fornito l'argomento")
 per leggere gli argomenti devo chiamare la funzione: args = parser.parse_args() # fa il parsing degli argomenti da linea di comando
 per poi accedere agli argomenti forniti da terminale utilizzo la dot notation
+
+31 marzo ----------------------------------------------------------------------------------
+readline legge solo una riga
+readlines legge tutto il file dividendole per righe e leggendole una alla volta come stringhe, per poi inserendole in una lista
+read legge tutto in un'unica enorme stringa
+FileNotFoundError: Errore di runtime, hanno molto nomi oer far capire in che categoria rientrano
+if len(linea) == 0:                          
+        break
+potrebbe andar storto nel momento non vi è nemmeno il carattere a capo, quindi una riga completamente vuota,
+fortunatamente readline legge anche i caratteri speciali, quindi se c'è il carattere \n if non viene eseguito
+iport jeson carica tutto dentro la libreria 
+crea struttura del dizionario annidato con associazione chiave valore
