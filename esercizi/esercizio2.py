@@ -13,7 +13,7 @@
 #       -Sostituite tutte le parole day, water e about con la parola PYTHON in tutti i versi
 #       -Riscrivete il testo in modo che tutte le parole in posizione dispari siano scritte in maiuscolo
 #       -Riscrivere il testo invertendo l’ordine delle frasi dal basso all’alto.
-#       Riscrivete il testo in modo che il secondo verso di ogni strofa sia scritto a specchio (cioè al contrario carattere per carattere: Ad esempio, questa frase’ –> ‘esarf atseuq ,oipmese dA’)
+#       -Riscrivete il testo in modo che il secondo verso di ogni strofa sia scritto a specchio (cioè al contrario carattere per carattere: Ad esempio, questa frase’ –> ‘esarf atseuq ,oipmese dA’)
 #       Trovate eventuali parole che compaiono in tutte le strofe
 #       Create la lista univoca di tutte le parole che compaiono nel testo, ordinatela per lunghezza delle parole e visualizzatela
 #       Create un dizionario che mappi OGNI carattere (chiave) con la sua occorrenza nel testo (valore) e visualizzatelo
@@ -91,21 +91,26 @@ def Inverti_frasi(frasi):
 def Specchio(frasi):
     '''Riscrivete il testo in modo che il secondo verso di ogni strofa sia scritto a specchio (cioè al contrario carattere per carattere)'''
     testo_specchiato=[]
-    frase_specchiata=[]
     for i in range(len(frasi)):
-        if i== 2:  # Il secondo verso di ogni strofa è l'indice 1, 5, 9,...
-            #dividi per carattere
+        if i == 2 or i == 7 or i == 11:  # Il secondo verso di ogni strofa è l'indice 1, 5, 9,...
             caratteri = list(frasi[i])
+            frase_specchiata=[]
             #inverti j caratteri dalla fine all'inizio
             #assemblo la frase invertita
             #appendo la frase invertita alla lista del testo specchiato
             for j in range(len(caratteri)-1,-1,-1):
                 frase_specchiata.append(caratteri[j])
             testo_specchiato.append(frase_specchiata)
+
         else:
             testo_specchiato.append(frasi[i])
+        
     print('\nIl testo con il secondo verso di ogni strofa scritto a specchio è: ')
     print(testo_specchiato)
+
+def Parole_comuni(frasi):
+    '''Trovate eventuali parole che compaiono in tutte le strofe'''
+    pass
 
 #main program
 testo = '''
