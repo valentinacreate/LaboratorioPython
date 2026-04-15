@@ -190,3 +190,8 @@ eprdela lista oriinaria
 
 NOTA: ogni volta che trovo una soluzione valida delle 8 regine, mi basta ruotare di 90°, 180°, 270° per trovare altre 3 soluzioni 
 ammissibili. Quindi con 1 soluzione in realtà ne trovo 4 per rotazione
+
+DOMANDA D'ESAME:'quanti tipi di comando si possono dare a python?'
+2 tipi di comando: gli statement ele espressioni
+    - gli statement: NON RITORNA RISULTATO (es. def shuffle, i def, import dono statement)
+    - le espressioni: RITORNA RISULTATO (chiamate a funzione sono espressioni, quindi è una riga di effettivo comando)
