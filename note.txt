@@ -148,7 +148,6 @@ per leggere gli argomenti devo chiamare la funzione: args = parser.parse_args() 
 per poi accedere agli argomenti forniti da terminale utilizzo la dot notation
 
 31 marzo ----------------------------------------------------------------------------------
-http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione06/Lezione_6.html
 readline legge solo una riga
 readlines legge tutto il file dividendole per righe e leggendole una alla volta come stringhe, per poi inserendole in una lista
 read legge tutto in un'unica enorme stringa
@@ -176,32 +175,6 @@ quindi le soluzioni non sono altro che delle permutazioni di quei 8 numeri, che 
 tempo
 èda verificare che la ermutazione non capiti sulla stessa diagonale, quindi non devono avere lo stesso coefficente angolare
 ECCEZIONI PARTCOLARI: le scecchiere 1x1 e 2x2 non hanno soluzione
-per tutte le altre scacchiere si riescono a trovare delle soluzioni, per una scacchiera 8x8 ci sono solo 92 combinazioni possibili e il computer deve svolgere in media 438 tentativi per trovare una soluzione ammissibile 
-
-DOMANDA TIPICA D'ESAME: 'cosa succede quando faccio import random?'
-random è un modulo
-python va a cercare una libreria che si chiama random all'intern delle sue librerie, importa tutto quanto il codice scrittonella libreria dentro ad un namespace a cui da il nome random, quindi er usare tutto ciò che rigurda random devo usare la dotnotation
-randomè un modulo che devo inizializzare, quindi creo l'oggetto:
-# oggetto Random
-random_generator = random.Random()
-shuffle, non restituisce una nuova lista con gli elementi rimascolai, ma mescola direttamente gli elementi della lista e si eprdela lista oriinaria
-
-14 aprile ----------------------------------------------------------------------------------
-http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione07/Lezione_7.html
-uso una lista di liste annidate percreare la mia scacchiera
-r + c == riga + colonna and scacchiera[r][c] == 1:  è il coefficente angolare tra 2 rette 
-per conrolare l'altra diagonele cambio segno:  if r - c == riga - colonna and scacchiera[r][c] == 1: 
-tanti casi possibili
-nella matrice 8x8 ci sono tanti zeri (nessuna informazione) e pochi 1 (ciò che contiene l'informazione)
-quindi posso passare da una matrice 8x8 a una lista di 8 coordinate che indicano le posizione delle regine, le coordinate sono 
-le informazoni riga,colonna
-usando una rappresentazione per riga
-si può osservare che le righe vanno da 0 a 8 in modo ordinato mentre le colonne non saranno niente altro che una lista 
-dei punti diversi da 0 per ogni riga,diventa quindi una lista diposizioni
-quindi le soluzioni non sono altro che delle permutazioni di quei 8 numeri, che sono calcoli fattibili per un computer in poco 
-tempo
-èda verificare che la ermutazione non capiti sulla stessa diagonale, quindi non devono avere lo stesso coefficente angolare
-ECCEZIONI PARTCOLARI: le scecchiere 1x1 e 2x2 non hanno soluzione
 per tutte le altre scacchiere si riescono a trovare delle soluzioni, per una scacchiera 8x8 ci sono solo 92 combinazioni possibili 
 e il computer deve svolgere in media 438 tentativi per trovare una soluzione ammissibile 
 
@@ -209,6 +182,19 @@ DOMANDA TIPICA D'ESAME: 'cosa succede quando faccio import random?'
 random è un modulo
 python va a cercare una libreria che si chiama random all'intern delle sue librerie, importa tutto quanto il codice scrittonella 
 libreria dentro ad un namespace a cui da il nome random, quindi er usare tutto ciò che rigurda random devo usare la dotnotation
+randomè un modulo che devo inizializzare, quindi creo l'oggetto:
+# oggetto Random
+random_generator = random.Random()
+shuffle, non restituisce una nuova lista con gli elementi rimascolai, ma mescola direttamente gli elementi della lista e si 
+eprdela lista oriinaria
+
+NOTA: ogni volta che trovo una soluzione valida delle 8 regine, mi basta ruotare di 90°, 180°, 270° per trovare altre 3 soluzioni 
+ammissibili. Quindi con 1 soluzione in realtà ne trovo 4 per rotazione
+
+DOMANDA D'ESAME:'quanti tipi di comando si possono dare a python?'
+2 tipi di comando: gli statement ele espressioni
+    - gli statement: NON RITORNA RISULTATO (es. def shuffle, i def, import dono statement)
+    - le espressioni: RITORNA RISULTATO (chiamate a funzione sono espressioni, quindi è una riga di effettivo comando)libreria dentro ad un namespace a cui da il nome random, quindi er usare tutto ciò che rigurda random devo usare la dotnotation
 randomè un modulo che devo inizializzare, quindi creo l'oggetto:
 # oggetto Random
 random_generator = random.Random()
