@@ -17,7 +17,7 @@
 #       - Trovate eventuali parole che compaiono in tutte le strofe
 #       - Create la lista univoca di tutte le parole che compaiono nel testo, ordinatela per lunghezza delle parole e visualizzatela
 #       - Create un dizionario che mappi OGNI carattere (chiave) con la sua occorrenza nel testo (valore) e visualizzatelo
-#       Create un dizionario come il precedente per i soli caratteri alfanumerici (no caratteri speciali), ignorando maiuscole e minuscole
+#       - Create un dizionario come il precedente per i soli caratteri alfanumerici (no caratteri speciali), ignorando maiuscole e minuscole
 
 
 def conta_righe_non_vuote(testo): 
@@ -150,26 +150,22 @@ def dizionario_caratteri(caratteri):
 def dizionario_caratteri_alfanumerici(caratteri):
     '''Crea un dizionario che mappi i soli caratteri alfanumerici (chiave) con la sua occorrenza nel testo (valore), 
     ignorando maiuscole e minuscole'''
-    pass
+    dizionario={}
+    caratteri=[i.lower() for i in caratteri] #converto tutti i caratteri in minuscolo per ignorare la differenza tra maiuscole e minuscole
+    for i in caratteri: 
+        if i in dizionario:
+            dizionario[i]+=1
+        else:
+            dizionario[i]=1
+    for i in list(dizionario.keys()):
+        if i not in 'abcdefghijklmnopqrstuvwxyz1234567890':
+            del dizionario[i]
+
+    print(dizionario)
+
 #main program
 def main():
-
-    (righe, righe_non_vuote)=conta_righe_non_vuote(testo)
-    print('Le righe non vuote sono: ', righe_non_vuote)
-    (parole_testo, num_parole)=parole(testo)
-    print('Le parole sono: ', num_parole)
-    (caratteri_testo, num_caratteri)=caratteri(testo)
-    print('I caratteri alfanumerici sono: ', num_caratteri)
-    conta_lettera(caratteri_testo)
-    print('Il testo con le parole sostituite è: ', sostituisci_parole(parole_testo))
-    maiuscolo_dispari(parole_testo)
-    inverti_frasi(righe)
-    specchio(righe)
-    parole_comuni(testo)
-    lista_univoca_parole(parole_testo)
-    dizionario_caratteri(caratteri_testo)
-
-testo = '''
+    testo = '''
     Day after day, day after day,
     We stuck, nor breath nor motion;
     As idle as a painted ship
@@ -191,8 +187,24 @@ testo = '''
     Burnt green, and blue and white.
     '''
 
+    (righe, righe_non_vuote)=conta_righe_non_vuote(testo)
+    print('Le righe non vuote sono: ', righe_non_vuote)
+    (parole_testo, num_parole)=parole(testo)
+    print('Le parole sono: ', num_parole)
+    (caratteri_testo, num_caratteri)=caratteri(testo)
+    print('I caratteri alfanumerici sono: ', num_caratteri)
+    conta_lettera(caratteri_testo)
+    print('Il testo con le parole sostituite è: ', sostituisci_parole(parole_testo))
+    maiuscolo_dispari(parole_testo)
+    inverti_frasi(righe)
+    specchio(righe)
+    parole_comuni(testo)
+    lista_univoca_parole(parole_testo)
+    dizionario_caratteri(caratteri_testo)
+    dizionario_caratteri_alfanumerici(caratteri_testo)
 
 
+main()
 
 
 
