@@ -41,6 +41,9 @@ def genera_lista(n):
     '''utilizzando il valore inserito genero una lista'''
   
     lista= []                                     #creo una lista vuota
+    if (n==1):                                  #se il numero inserito è 1, aggiungo 1 alla lista e restituisco la lista
+        lista.append(n)
+        return lista
     while (n>1 and len(lista)<100):               #continuo a generare numeri finchè n è maggiore di 1 e la lista ha meno di 100 numeri 
         if(n%2 == 0):                             #se n è pari, lo divido per 2    
             n=n/2
@@ -73,28 +76,29 @@ def ricerca(lista):
         
 
 #inizio del main
-#inizializzo due variabili per tenere traccia del numero che ha generato la lista più lunga (n_max) e della lunghezza massima della lista (len_max)
-n_max=0
-len_max=0
-print('Quanti numeri vuoi testare? ')                       #chiedo all'utente quanti numeri vuole testare
-n_test=int(input())                                         #leggo il numero di test che l'utente vuole fare
-while(n_test<=0):                                           #controllo che il numero di test inserito sia positivo
-    print('Errore: il valore inserito è < o = a 0')         #stampo un messaggio di errore
-    n_test=int(input('Quanti numeri vuoi testare?   '))     #chiedo nuovamente all'utente di inserire un numero di test positivo
+def main():
+    #inizializzo due variabili per tenere traccia del numero che ha generato la lista più lunga (n_max) e della lunghezza massima della lista (len_max)
+    n_max=0
+    len_max=0
+    print('Quanti numeri vuoi testare? ')                       #chiedo all'utente quanti numeri vuole testare
+    n_test=int(input())                                         #leggo il numero di test che l'utente vuole fare
+    while(n_test<=0):                                           #controllo che il numero di test inserito sia positivo
+        print('Errore: il valore inserito è < o = a 0')         #stampo un messaggio di errore
+        n_test=int(input('Quanti numeri vuoi testare?   '))     #chiedo nuovamente all'utente di inserire un numero di test positivo
 
-for i in range(n_test):                                     #mediante un ciclo for eseguo le funzioni per ogni numero che l'utente vuole testare    
-    n=inserisci_numero()                                    #chiedo all'utente di inserire un numero intero positivo e lo leggo 
-    print('Il numero inserito è pari?: ', is_pari(n))       #controllo se il numero inserito è pari o dispari e stampo il risultato
-    lista=genera_lista(n)                                   #utilizzando il numero inserito genero una lista usando la funzione genera_lista e la salvo in una variabile
-    print('La lista generata è: ', lista)                   #stampo la lista generata
-    (massimo, lunghezza, somma)=analizza_sequenza(lista)    #analizzo la lista generata e restituisco il massimo, la lunghezza della sequenza e la somma di tutti i numeri
-    print('Il massimo è: ', massimo)                        #restituisco il massimo numero della lista
-    print('La lunghezza della sequenza è: ', lunghezza)     #restituisco la lunghezza della lista
-    print('La somma di tutti i numeri è: ', somma)          #restituisco la somma di tutti i numeri della lista                      
-    ricerca(lista)                                          #scorro la lista e stampo solo i numeri della sequenza che sono divisibili per 5, se non ce ne sono stampo un messaggio dedicato
-    if(len(lista)>len_max):                                 #se la lunghezza della lista generata è maggiore della lunghezza massima finora registrata, aggiorno la lunghezza massima e il numero che ha generato la lista più lunga
-        len_max=len(lista)
-        n_max=n
-print('il numero che ha generato lista di più lunga è: ', n_max)        #stampo il numero che ha generato la lista più lunga
+    for i in range(n_test):                                     #mediante un ciclo for eseguo le funzioni per ogni numero che l'utente vuole testare    
+        n=inserisci_numero()                                    #chiedo all'utente di inserire un numero intero positivo e lo leggo 
+        print('Il numero inserito è pari?: ', is_pari(n))       #controllo se il numero inserito è pari o dispari e stampo il risultato
+        lista=genera_lista(n)                                   #utilizzando il numero inserito genero una lista usando la funzione genera_lista e la salvo in una variabile
+        print('La lista generata è: ', lista)                   #stampo la lista generata
+        (massimo, lunghezza, somma)=analizza_sequenza(lista)    #analizzo la lista generata e restituisco il massimo, la lunghezza della sequenza e la somma di tutti i numeri
+        print('Il massimo è: ', massimo)                        #restituisco il massimo numero della lista
+        print('La lunghezza della sequenza è: ', lunghezza)     #restituisco la lunghezza della lista
+        print('La somma di tutti i numeri è: ', somma)          #restituisco la somma di tutti i numeri della lista                      
+        ricerca(lista)                                          #scorro la lista e stampo solo i numeri della sequenza che sono divisibili per 5, se non ce ne sono stampo un messaggio dedicato
+        if(len(lista)>len_max):                                 #se la lunghezza della lista generata è maggiore della lunghezza massima finora registrata, aggiorno la lunghezza massima e il numero che ha generato la lista più lunga
+            len_max=len(lista)
+            n_max=n
+    print('il numero che ha generato lista di più lunga è: ', n_max)        #stampo il numero che ha generato la lista più lunga
 
-
+main()
