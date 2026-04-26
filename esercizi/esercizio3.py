@@ -5,7 +5,7 @@
 #
 #Descrizione codice
 #Partendo dal dizionario annidato rubrica
-#   - visualizzate il contenuto del dizionario stampando a schermo delle stringhe formattate che contengano la chiave ed il valor di ognuno degli elementi(Esempio: ‘Paolino Paperino’, ‘giorno’ 9, ‘mese’ ‘giugno’, …)
+#   - Visualizzate il contenuto del dizionario stampando a schermo delle stringhe formattate che contengano la chiave ed il valor di ognuno degli elementi(Esempio: ‘Paolino Paperino’, ‘giorno’ 9, ‘mese’ ‘giugno’, …)
 #   - A partire dalla rubrica, costruire la lista delle età, ordinata in ordine crescente e visualizzate i nomi in ordine crescente di età
 #   - Invertire l’ordine della lista precedentemente costruita e visualizzatela
 #   - Utilizzare la rubrica e scrivere su schermo per OGNI membro della rubrica, il seguente messaggio:
@@ -15,7 +15,9 @@
 #Utilizzando args passate in input al vostro programma una chiave [giorno, mese, anno, età, sesso, mail] e visualizzate tutto il contenuto della rubrica (valori) che corrispondono a questa chiave
 #Utilizzando argparse visualizzate la stringa al punto 4 SOLO per il nome fornito come opzione al vostro programma (esempio: python esercizio_3.py –nome ‘Madoka Ayukawa’ –> esegue punto 4 solo per il nome indicato)
 #Utilizzando argparse introducede delle opzioni al vostro programma per eseguire i punti 1, 2, 3, 4, 5 dell’esercizio (esempio: python esercizio_3.py –lista_ordinata –> esegue il punto 2 dell’esercizio)
+
 import argparse
+
 rubrica = {
     'Paolino Paperino': {'giorno': 9,
                       'mese': 'giugno',
@@ -47,23 +49,33 @@ def stampa_contenuto(rubrica):
     '''Visualizza il contenuto del dizionario stampando a schermo delle stringhe formattate che contengano la chiave ed il valor di ognuno degli elementi(Esempio: ‘Paolino Paperino’, ‘giorno’ 9, ‘mese’ ‘giugno’, …)'''
     print('Contenuto della rubrica:')
     for nome, info in rubrica.items():
-        print(f'{nome}: {info} '+ '\n')
-
-def get_eta(nome):
-        return rubrica[nome]['età']
+        print(f'{nome}:')
+        for chiave,valore in info.items():
+            print(f'    {chiave}:{valore}')
+        print('\n')
 
 def ordinamento_eta_crescente(rubrica):
     '''A partire dalla rubrica, costruisce la lista delle età, ordinata in ordine crescente e visualizza
        i nomi in ordine crescente di età'''
-    nomi_ordinati = sorted(rubrica, key=get_eta)
-    for nome in nomi_ordinati:
-        print(f'{nome}: anni {rubrica[nome]["età"]}')
+    lista_eta = []
+    for nome,info in rubrica.items():
+        lista_eta.append([info['età'], nome])
+        lista_eta.sort()
+    print('\nNomi in ordine crescente di età:\n')
+    for eta , nome in lista_eta:
+        print(f'{nome}: {eta} anni' + '\n')
+
 
 def ordinamento_eta_decrescente(rubrica):
-    '''Invertola lista dei nomi in ordine decrescente'''
-    nomi_ordinati = sorted(rubrica, key=get_eta, reverse=True)
-    for nome in nomi_ordinati:
-        print(f'{nome}: anni {rubrica[nome]["età"]}')
+    '''Inverto la lista dei nomi in ordine decrescente'''
+    lista_eta = []
+    for nome,info in rubrica.items():
+        lista_eta.append([info['età'], nome])
+        lista_eta.sort()
+    print('\nNomi in ordine decrescente di età:\n')
+    for i in range(len(lista_eta)-1,-1,-1):
+        eta , nome = lista_eta[i]
+        print(f'{nome}: {eta} anni' + '\n')
 
 def stampa_messaggio(rubrica):
     '''Per OGNI membro della rubrica, stampa il seguente messaggio:'''
@@ -73,4 +85,30 @@ def stampa_messaggio(rubrica):
         else:
             x='a'
         print(f'Car{x} {nome}, \nsei nat{x} il {info["giorno"]} di {info["mese"]} del {info["anno"]} e quindi a breve compirai {info["età"]} anni.\nTi manderemo gli auguri a {info["mail"]}')
- 
+
+'''visualizzare tutto il contenuto della rubrica
+    (valori) che corrispondono a questa chiave'''
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-k', 
+                    '--chiave', 
+                    help='Chiave per filtrare i dati della rubrica')
+args = parser.parse_args()
+def visualizza_contenuto_chiave():
+    k=args.chiave
+    p=True
+    while(p==True):
+        if args.chiave:
+            if k in ['giorno', 'mese', 'anno', 'età', 'sesso', 'mail']:
+                print(f'Contenuto della rubrica per la chiave "{k}":')
+                for nome, info in rubrica.items():
+                    print(info[k])
+                    p=False
+            else:
+                print(f'La chiave "{k}" non è valida. Scegli tra "giorno", "mese", "anno", "età", "sesso", "mail".')
+                p=True
+    
+def main():
+    visualizza_contenuto_chiave()
+
+main()

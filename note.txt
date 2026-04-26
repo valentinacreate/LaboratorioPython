@@ -148,6 +148,7 @@ per leggere gli argomenti devo chiamare la funzione: args = parser.parse_args() 
 per poi accedere agli argomenti forniti da terminale utilizzo la dot notation
 
 31 marzo ----------------------------------------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione06/Lezione_6.html
 readline legge solo una riga
 readlines legge tutto il file dividendole per righe e leggendole una alla volta come stringhe, per poi inserendole in una lista
 read legge tutto in un'unica enorme stringa
