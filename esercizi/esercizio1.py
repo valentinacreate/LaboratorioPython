@@ -1,5 +1,5 @@
 #
-#Esercizio 1.py
+#esercizio1.py
 #
 #Creato da Valentina Furlanis IN0501333
 #Data:12 marzo 2026
