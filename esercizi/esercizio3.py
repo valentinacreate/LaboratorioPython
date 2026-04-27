@@ -77,7 +77,7 @@ def ordinamento_eta_decrescente(rubrica):
         
         print(f'{nome}: {eta} anni' + '\n')             #stampo il nome e l'età del membro della rubrica in ordine decrescente di età
 
-def stampa_messaggio(rubrica):
+def stampa_messaggi(rubrica):
     '''Per OGNI membro della rubrica, stampa il seguente messaggio:'''
     for nome, info in rubrica.items():                  #itero su ogni elemento del dizionario rubrica
         if info['sesso']=='M':                          #se il sesso è maschile
@@ -90,66 +90,72 @@ def stampa_messaggio(rubrica):
 
 parser = argparse.ArgumentParser()                                          #creo un oggetto parser per gestire gli argomenti da linea di comando
 #aggiungo gli argomenti al parser per eseguire le diverse funzionalità del programma in base agli argomenti forniti da linea di comando
-parser.add_argument('--chiave', 
-                    help='Chiave per filtrare i dati della rubrica')
-parser.add_argument('--stampa_contenuto',
+parser.add_argument('--stampa_contenuto', action='store_true',
                     help='Stampa il contenuto della rubrica')
-parser.add_argument('--lista_eta_crescente',
+parser.add_argument('--lista_eta_crescente', action='store_true',
                     help='Visualizza i nomi in ordine crescente di età')
-parser.add_argument('--lista_eta_decrescente',
+parser.add_argument('--lista_eta_decrescente', action='store_true',
                     help='Visualizza i nomi in ordine decrescente di età')
+parser.add_argument('--messaggi', action='store_true',
+                    help='Visualizza i messaggi per tutti i membri della rubrica')
+parser.add_argument('--chiave',
+                    help='Chiave per filtrare i dati della rubrica')
 parser.add_argument('--nome_esteso', nargs='+',
-                    help='Nome specifico per visualizzare il messaggio personalizzato')
-
+                    help='Permette di visualizzare il messaggio per un nome specifico nella rubrica')
 args = parser.parse_args()                          #passo gli argomenti da linea di comando al parser e li memorizzo nella variabile args
 
 def visualizza_contenuto_chiave():
     '''Visualizza tutto il contenuto della rubrica (valori) che corrispondono a questa chiave'''
     key=args.chiave                                                             #assegno alla variabile key il valore dell'argomento chiave fornito da linea di comando
     if args.chiave:                                                         #se è stata fornita una chiave da linea di comando
-        if key in ['giorno', 'mese', 'anno', 'età', 'sesso', 'mail']:       #
-            print(f'Contenuto della rubrica per la chiave "{key}":')
-            for nome, info in rubrica.items():
-                print(info[key])
-            controllo=False
-        else:
+        if key in ['giorno', 'mese', 'anno', 'età', 'sesso', 'mail']:       #se key corrisponde ad una delle chiavi valide
+            print(f'Contenuto della rubrica per la chiave "{key}":')        #stampo un messaggio che indica la chiave per cui sto visualizzando il contenuto della rubrica
+            for nome, info in rubrica.items():                              #itero su ogni elemento del dizionario rubrica
+                print(info[key])                                            #stampo il valore corrispondente alla chiave key per ogni membro della rubrica
+        else:                                                               #se key non corrisponde ad una delle chiavi valide, stampo un messaggio di errore indicando le chiavi valide
             print(f'La chiave "{key}" non è valida. Scegli tra "giorno", "mese", "anno", "età", "sesso", "mail".')
     else:
-        print('Nessuna chiave fornita. Utilizza l\'opzione -k o --chiave per specificare una chiave.')                                                         #se non è stata fornita una chiave da linea di comando, stampo un messaggio di errore e termino il ciclo
+        print('Nessuna chiave fornita. Utilizza l\'opzione -k o --chiave per specificare una chiave.')                #se non è stata fornita una chiave da linea di comando, stampo un messaggio di errore e termino il ciclo
 
 def visualizza_messaggio_nome_specifico():
     '''Visualizza il messaggio per un nome specifico nella rubrica'''
-    nome =' '.join(args.nome_esteso)
-    controllo=True
-    while(controllo==True):
-        if args.nome_esteso:
-            if nome in rubrica:
-                info = rubrica[nome]
-                if info['sesso']=='M':
-                    desinenza='o'
-                else:
-                    desinenza='a'
-                print(f'Car{desinenza} {nome}, \nsei nat{desinenza} il {info["giorno"]} di {info["mese"]} del {info["anno"]} e quindi a breve compirai {info["età"]} anni.\nTi manderemo gli auguri a {info["mail"]}')
-                controllo=False
+    nome =' '.join(args.nome_esteso)                            #assegno alla variabile nome il valore dell'argomento nome_esteso fornito da linea di comando, unendo le parole in caso di nomi composti
+    if args.nome_esteso:                                        #se è stato fornito un nome da linea di comando
+        if nome in rubrica:                                     #se il nome fornito da linea di comando è presente nella rubrica
+            info = rubrica[nome]                                #assegno alla variabile info il dizionario annidato corrispondente al nome fornito da linea di comando  
+            if info['sesso']=='M':                              #se il sesso è maschile
+                    desinenza='o'                               #la desinenza è 'o'
             else:
-                print(f'Il nome "{nome}" non è valido. Scegli tra i nomi presenti nella rubrica.')
-                controllo=False
+                desinenza='a'                                   #altrimenti la desinenza è 'a'
+            #stampo il messaggio formattato con le informazioni del membro della rubrica, adattando la desinenza in base al sesso, solo per il nome specifico fornito da linea di comando
+            print(f'Car{desinenza} {nome}, \nsei nat{desinenza} il {info["giorno"]} di {info["mese"]} del {info["anno"]} e quindi a breve compirai {info["età"]} anni.\nTi manderemo gli auguri a {info["mail"]}')
         else:
-            print('Nessuna chiave fornita. Utilizza l\'opzione -k o --chiave per specificare una chiave.')
-            controllo=False
+            #se il nome fornito da linea di comando non è presente nella rubrica, stampo un messaggio di errore indicando che il nome non è valido e suggerendo di scegliere tra i nomi presenti nella rubrica
+            print(f'Il nome "{nome}" non è valido. Scegli tra i nomi presenti nella rubrica.')
+    else:
+        #se non è stato fornito un nome da linea di comando, stampo un messaggio di errore indicando che nessun nome è stato fornito e suggerendo di utilizzare l'opzione --nome_esteso per specificare un nome
+        print('Nessun nome fornito. Utilizza l\'opzione --nome_esteso per specificare un nome.')
 
-def main():
+def main():                                 
+    '''Funzione che esegue i punti 1,2,3,4,5 dell'esercizio in base agli argomenti forniti da linea di comando'''
+
     if args.stampa_contenuto:
         stampa_contenuto(rubrica)
+
     if args.lista_eta_crescente:
         ordinamento_eta_crescente(rubrica)
+        
     if args.lista_eta_decrescente:
         ordinamento_eta_decrescente(rubrica)
-    if args.nome_esteso:
-        visualizza_messaggio_nome_specifico()
+        
+    if args.messaggi:
+        stampa_messaggi(rubrica)
+        
     if args.chiave:
         visualizza_contenuto_chiave()
+    
     else:
-        print('ERRORE. Utilizza --help per vedere le opzioni disponibili.')
+        print('ERRORE. Nessuna opzione valida selezionata.')
+        print('Utilizza --help per vedere le opzioni disponibili.')
 
 main()
