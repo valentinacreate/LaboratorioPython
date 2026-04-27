@@ -3,7 +3,7 @@
 #Creato da Valentina Furlanis IN0501333
 #Data:19 aprile 2026
 #
-#Descrizione codice
+#Descrizione di cosa fa il programma esercizio3.py:
 #Partendo dal dizionario annidato rubrica
 #   - Visualizzate il contenuto del dizionario stampando a schermo delle stringhe formattate che contengano la chiave ed il valor di ognuno degli elementi(Esempio: ‘Paolino Paperino’, ‘giorno’ 9, ‘mese’ ‘giugno’, …)
 #   - A partire dalla rubrica, costruire la lista delle età, ordinata in ordine crescente e visualizzate i nomi in ordine crescente di età
@@ -16,7 +16,7 @@
 #   - Utilizzando argparse visualizzate la stringa al punto 4 SOLO per il nome fornito come opzione al vostro programma (esempio: python esercizio_3.py –nome ‘Madoka Ayukawa’ –> esegue punto 4 solo per il nome indicato)
 #   - Utilizzando argparse introducede delle opzioni al vostro programma per eseguire i punti 1, 2, 3, 4, 5 dell’esercizio (esempio: python esercizio_3.py –lista_ordinata –> esegue il punto 2 dell’esercizio)
 
-import argparse
+import argparse                         #importo la libreria argparse per gestire gli argomenti da linea di comando
 
 rubrica = {
     'Paolino Paperino': {'giorno': 9,
@@ -51,7 +51,7 @@ def stampa_contenuto(rubrica):
     for nome, info in rubrica.items():
         print(f'{nome}:')
         for chiave,valore in info.items():
-            print(f'    {chiave}:{valore}')
+            print(f'{chiave}: {valore}')
         print('\n')
 
 def ordinamento_eta_crescente(rubrica):
