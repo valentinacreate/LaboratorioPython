@@ -13,7 +13,7 @@
 #Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
 #Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
-posizioni = [3, 6, 2, 7, 1, 4, 0, 5]
+posizioni = []
 
 def stessa_diagonale(x0, y0, x1, y1):
     '''Ritorna Vero se posizioni (x0, y0) e (x1, y1) sono sulla stessa "diagonale"
@@ -54,6 +54,6 @@ for i in range(n):
     # permutazione casuale della lista soluzione
     random_generator.shuffle(lista_soluzione)
     # controllo se la soluzione è valida, se no, ne cerco un'altra
-    while incrocia_colonne(lista_soluzione, 7):
+    while incrocia_colonne(lista_soluzione, 7)==True:
         random_generator.shuffle(lista_soluzione)
     print(lista_soluzione)
