@@ -175,7 +175,7 @@ dei punti diversi da 0 per ogni riga,diventa quindi una lista diposizioni
 quindi le soluzioni non sono altro che delle permutazioni di quei 8 numeri, che sono calcoli fattibili per un computer in poco 
 tempo
 èda verificare che la ermutazione non capiti sulla stessa diagonale, quindi non devono avere lo stesso coefficente angolare
-ECCEZIONI PARTCOLARI: le scecchiere 1x1 e 2x2 non hanno soluzione
+ECCEZIONI PARTCOLARI: le scecchiere 2x2 non hanno soluzione
 per tutte le altre scacchiere si riescono a trovare delle soluzioni, per una scacchiera 8x8 ci sono solo 92 combinazioni possibili 
 e il computer deve svolgere in media 438 tentativi per trovare una soluzione ammissibile 
 
