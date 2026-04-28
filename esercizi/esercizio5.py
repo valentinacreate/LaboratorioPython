@@ -25,7 +25,10 @@ def stessa_diagonale(x0, y0, x1, y1):
     dx = abs(x1 - x0)   
     
     # se dx == dy , dx/dy == 1 e sono sulla stessa diagonale, boolean expression
-    return dx == dy
+    if dx==dy:
+        return True
+    else:
+        return False
 
 def incrocia_colonne(posizioni, col):
     '''Ritorna Vero se la colonna 'col', che indica la posizione della regina
@@ -36,7 +39,7 @@ def incrocia_colonne(posizioni, col):
     for c in range(col):     
         # la coordinata X (la riga) è indice (c) 
         # la coordinata Y,(la colonna) è valore lista nell'indice (c)
-        if stessa_diagonale(c, posizioni[c], col, posizioni[col]):
+        if stessa_diagonale(c, posizioni[c], col, posizioni[col])==True:
             # stop se trovo problemi
             return True  
     # nessun incrocio, la posizione va bene e NON incrocia altre colonne        
