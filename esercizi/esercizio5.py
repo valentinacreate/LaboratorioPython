@@ -42,12 +42,18 @@ def incrocia_colonne(posizioni, col):
     # nessun incrocio, la posizione va bene e NON incrocia altre colonne        
     return False   
 
-incrocia_colonne(posizioni, 7)
 # modulo
 import random
 # oggetto Random
 random_generator = random.Random()
+print('inserire il numero di soluzioni desiderate:')
+n = int(input())
 # lista da mescolare
 lista_soluzione = list(range(8))
-# permutazione casuale della lista soluzione
-random_generator.shuffle(lista_soluzione)
+for i in range(n):
+    # permutazione casuale della lista soluzione
+    random_generator.shuffle(lista_soluzione)
+    # controllo se la soluzione è valida, se no, ne cerco un'altra
+    while incrocia_colonne(lista_soluzione, 7):
+        random_generator.shuffle(lista_soluzione)
+    print(lista_soluzione)
