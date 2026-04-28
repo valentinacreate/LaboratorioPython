@@ -1,8 +1,9 @@
-#
+
 #esercizio3.py
 #Creato da Valentina Furlanis IN0501333
+
 #Data:19 aprile 2026
-#
+
 #Descrizione di cosa fa il programma esercizio3.py:
 #Partendo dal dizionario annidato rubrica
 #   - Visualizzate il contenuto del dizionario stampando a schermo delle stringhe formattate che contengano la chiave ed il valor di ognuno degli elementi(Esempio: ‘Paolino Paperino’, ‘giorno’ 9, ‘mese’ ‘giugno’, …)
@@ -100,8 +101,9 @@ parser.add_argument('--messaggi', action='store_true',
                     help='Visualizza i messaggi per tutti i membri della rubrica')
 parser.add_argument('--chiave',
                     help='Chiave per filtrare i dati della rubrica')
-parser.add_argument('--nome_esteso', nargs='+',
+parser.add_argument('--nome_esteso', nargs='+', 
                     help='Permette di visualizzare il messaggio per un nome specifico nella rubrica')
+
 args = parser.parse_args()                          #passo gli argomenti da linea di comando al parser e li memorizzo nella variabile args
 
 def visualizza_contenuto_chiave():
@@ -142,18 +144,21 @@ def main():
     if args.stampa_contenuto:
         stampa_contenuto(rubrica)
 
-    if args.lista_eta_crescente:
+    elif args.lista_eta_crescente:
         ordinamento_eta_crescente(rubrica)
         
-    if args.lista_eta_decrescente:
+    elif args.lista_eta_decrescente:
         ordinamento_eta_decrescente(rubrica)
         
-    if args.messaggi:
+    elif args.messaggi:
         stampa_messaggi(rubrica)
-        
-    if args.chiave:
+
+    elif args.nome_esteso:
+        visualizza_messaggio_nome_specifico()
+
+    elif args.chiave:
         visualizza_contenuto_chiave()
-    
+        
     else:
         print('ERRORE. Nessuna opzione valida selezionata.')
         print('Utilizza --help per vedere le opzioni disponibili.')

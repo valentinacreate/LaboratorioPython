@@ -1,9 +1,9 @@
-#
+
 #esercizio1.py
-#
+
 #Creato da Valentina Furlanis IN0501333
 #Data:12 marzo 2026
-#
+
 #Descrizione di cosa fa il programma Esercizio 1.py:
 #   L'utente inserisce un intero positivo
 #   Viene verificato se esso è pari o dispari

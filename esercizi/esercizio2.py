@@ -1,9 +1,9 @@
-#
+
 #esercizio2.py
-#
+
 #Creato da Valentina Furlanis IN0501333
 #Data:21 marzo 2026
-#
+
 #Descrizione di cosa fa il programma esercizio2.py:
 #   Il programma analizza un testo (in questo caso, una poesia) e restituisce:
 #       - Contate le righe non vuote che compongono l’estratto
