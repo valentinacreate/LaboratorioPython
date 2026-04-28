@@ -1,11 +1,10 @@
-
 #esercizio5.py
 #Creato da Valentina Furlanis IN0501333
 
 #Data:28 aprile 2026
 
 #Descrizione dell’esercizio5.py:
-#Trovate 10 soluzioni per il gioco delle regine con il metodo delle permutazioni: quanto è il tempo medio necessario a trovare una soluzione?
+#   - Trovate 10 soluzioni per il gioco delle regine con il metodo delle permutazioni: quanto è il tempo medio necessario a trovare una soluzione?
 #Contate quanti tentativi fa il programma per trovare ogni soluzione del problema 8 regine
 #Alcune soluzioni possono essere ripetute: fate in modo che le soluzioni siano “uniche”
 #Se ci sono soluzioni ripetute, contate quante volte ogni soluzione è ripetuta
@@ -13,50 +12,50 @@
 #Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
 #Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
-posizioni = []
+
 
 def stessa_diagonale(x0, y0, x1, y1):
     '''Ritorna Vero se posizioni (x0, y0) e (x1, y1) sono sulla stessa "diagonale"
     '''
-    # distanza lungo y
     dy = abs(y1 - y0) 
 
-    # distanza lungo x
     dx = abs(x1 - x0)   
     
-    # se dx == dy , dx/dy == 1 e sono sulla stessa diagonale, boolean expression
     if dx==dy:
         return True
     else:
         return False
 
-def incrocia_colonne(posizioni, col):
+def incrocia_colonne(posizioni):
     '''Ritorna Vero se la colonna 'col', che indica la posizione della regina
       (col, posizioni[col]) incrocia la diagonale di qualcuna 
       delle posizioni delle regine precedenti 
     '''
-    # controllo tutte le precedenti fino a questa 'col'
-    for c in range(col):     
-        # la coordinata X (la riga) è indice (c) 
-        # la coordinata Y,(la colonna) è valore lista nell'indice (c)
-        if stessa_diagonale(c, posizioni[c], col, posizioni[col])==True:
-            # stop se trovo problemi
-            return True  
-    # nessun incrocio, la posizione va bene e NON incrocia altre colonne        
+    
+    for c in range(len(posizioni)):  
+        for j in range(c+1, len(posizioni)):   
+            if stessa_diagonale(c, posizioni[c], j, posizioni[j]):
+                return True 
     return False   
 
-# modulo
 import random
-# oggetto Random
+import time
 random_generator = random.Random()
+
 print('inserire il numero di soluzioni desiderate:')
 n = int(input())
-# lista da mescolare
+
 lista_soluzione = list(range(8))
-for i in range(n):
-    # permutazione casuale della lista soluzione
+tentativi = 0
+
+start = time.perf_counter()
+
+random_generator.shuffle(lista_soluzione)
+while incrocia_colonne(lista_soluzione):
     random_generator.shuffle(lista_soluzione)
-    # controllo se la soluzione è valida, se no, ne cerco un'altra
-    while incrocia_colonne(lista_soluzione, 7)==True:
-        random_generator.shuffle(lista_soluzione)
+
     print(lista_soluzione)
+
+end = time.perf_counter()
+print(f"Tempo totale: {end - start:.4f} secondi")
+
