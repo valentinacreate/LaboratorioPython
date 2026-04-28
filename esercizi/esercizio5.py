@@ -5,7 +5,7 @@
 
 #Descrizione dell’esercizio5.py:
 #   - Trovate 10 soluzioni per il gioco delle regine con il metodo delle permutazioni: quanto è il tempo medio necessario a trovare una soluzione?
-#Contate quanti tentativi fa il programma per trovare ogni soluzione del problema 8 regine
+#   - Contate quanti tentativi fa il programma per trovare ogni soluzione del problema 8 regine
 #Alcune soluzioni possono essere ripetute: fate in modo che le soluzioni siano “uniche”
 #Se ci sono soluzioni ripetute, contate quante volte ogni soluzione è ripetuta
 #Generalizzate il programma per risolvere una scacchiera di qualunque dimensione NxN
@@ -46,16 +46,23 @@ print('inserire il numero di soluzioni desiderate:')
 n = int(input())
 
 lista_soluzione = list(range(8))
+soluzioni_trovate = 0
 tentativi = 0
 
 start = time.perf_counter()
 
-random_generator.shuffle(lista_soluzione)
-while incrocia_colonne(lista_soluzione):
+while soluzioni_trovate < n:
     random_generator.shuffle(lista_soluzione)
+    tentativi += 1
+    while incrocia_colonne(lista_soluzione):
+        random_generator.shuffle(lista_soluzione)
+        tentativi += 1
 
+    soluzioni_trovate += 1
     print(lista_soluzione)
 
 end = time.perf_counter()
 print(f"Tempo totale: {end - start:.4f} secondi")
+print(f"Tentativi totali: {tentativi}")
+print(f"Tempo medio per soluzione: {(end - start) / n:.4f} secondi")
 
