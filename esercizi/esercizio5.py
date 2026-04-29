@@ -9,16 +9,16 @@
 #   - Alcune soluzioni possono essere ripetute: fate in modo che le soluzioni siano “uniche”
 #   - Se ci sono soluzioni ripetute, contate quante volte ogni soluzione è ripetuta
 #   - Generalizzate il programma per risolvere una scacchiera di qualunque dimensione NxN
-#Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
+#   - Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
 #Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
-
+import random
+import time
+random_generator = random.Random()
 
 def stessa_diagonale(x0, y0, x1, y1):
-    '''Ritorna Vero se posizioni (x0, y0) e (x1, y1) sono sulla stessa "diagonale"
-    '''
+    '''Ritorna Vero se posizioni (x0, y0) e (x1, y1) sono sulla stessa "diagonale"'''
     dy = abs(y1 - y0) 
-
     dx = abs(x1 - x0)   
     
     if dx==dy:
@@ -29,8 +29,7 @@ def stessa_diagonale(x0, y0, x1, y1):
 def incrocia_colonne(posizioni):
     '''Ritorna Vero se la colonna 'col', che indica la posizione della regina
       (col, posizioni[col]) incrocia la diagonale di qualcuna 
-      delle posizioni delle regine precedenti 
-    '''
+      delle posizioni delle regine precedenti '''
     
     for c in range(len(posizioni)):  
         for j in range(c+1, len(posizioni)):   
@@ -38,21 +37,7 @@ def incrocia_colonne(posizioni):
                 return True 
     return False   
 
-import random
-import time
-random_generator = random.Random()
-
-print('Indicare la dimensione della scacchiera (NxN):')
-dimensionescacchiera= int(input())
-while dimensionescacchiera==2 or dimensionescacchiera==3:
-    print('Non esistono soluzioni per una scacchiera di dimensione 2 o 3.')
-    print('Inserire nuovamente la dimensione della scacchiera (NxN):')
-    dimensionescacchiera= int(input())
-
-print('inserire il numero di soluzioni desiderate:')
-numerosoluzioni = int(input())
-
-def soluzioni_da_dati(dimensionescacchiera, numerosoluzioni):
+def soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni):
     lista_soluzione = list(range(dimensionescacchiera))
     soluzioni_uniche = set()
     soluzioni_trovate = 0
@@ -79,22 +64,55 @@ def soluzioni_da_dati(dimensionescacchiera, numerosoluzioni):
         
     end = time.perf_counter()
 
-    print(f"Tentativi totali: {tentativi}")
+    print(f"\nTentativi totali: {tentativi}")
     print(f"Numero soluzioni che potevano essere ripetute: {soluzioni_ripetute}")
+    print(f"Tempo totale: {end - start:.4f} secondi")
     print(f"Tempo medio per soluzione: {(end - start) / numerosoluzioni:.4f} secondi")
 
 def dimensione_massima_per_tempo_limite():
     tempo_limite = 15  # Secondi:
-    N = 1
+    N = 4  # Partiamo da 4, poiché per N=2 e N=3 non esistono soluzioni
     start = time.perf_counter()
-    soluzioni_da_dati(N, 1)  # Trova una soluzione per una scacchiera 1x1
-    end = time.perf_counter()
-    while (end - start) < tempo_limite:
-            start = time.perf_counter()
-            soluzioni_da_dati(N+1, 1)  # Trova una soluzione per una scacchiera NxN
-            end = time.perf_counter()       
-    print(f"Tempo impiegato per dimensione {N+1}: {end - start:.4f} secondi")
-    return N - 1  # Restituisce l'ultima dimensione che ha rispettato il limite di tempo
+    lista_soluzione = list(range(N))
 
-soluzioni_da_dati(dimensionescacchiera, numerosoluzioni)
-print(f"La dimensione massima della scacchiera per trovare una soluzione in meno di 15 secondi è: {dimensione_massima_per_tempo_limite()}")
+    while incrocia_colonne(lista_soluzione):
+        random_generator.shuffle(lista_soluzione)
+    end = time.perf_counter()
+    print(f"\nTempo impiegato per dimensione {N}:{end - start:.4f} secondi")
+
+    while (end - start) < tempo_limite:
+        start = time.perf_counter()
+        N += 1
+        lista_soluzione = list(range(N))
+        while incrocia_colonne(lista_soluzione):
+            random_generator.shuffle(lista_soluzione)
+        end = time.perf_counter()       
+        print(f"Tempo impiegato per dimensione {N}:{end - start:.4f} secondi")
+        if (end - start) >= tempo_limite:
+            print(f"\nIl tempo ha superato il limite di {tempo_limite} secondi per dimensione {N}.")
+            print(f"La dimensione massima della scacchiera per trovare una soluzione in meno di {tempo_limite} secondi è: {N - 1}")
+            break
+
+def rotazione_90_gradi(soluzione):
+    pass
+
+def rotazione_180_gradi(soluzione):
+    pass
+
+def rotazione_270_gradi(soluzione):
+    pass
+
+print('Indicare la dimensione della scacchiera (NxN):')
+dimensionescacchiera= int(input())
+
+while dimensionescacchiera==2 or dimensionescacchiera==3:
+    print('Non esistono soluzioni per una scacchiera di dimensione 2 o 3.')
+    print('Inserire nuovamente la dimensione della scacchiera (NxN):')
+    dimensionescacchiera = int(input())
+
+print('inserire il numero di soluzioni desiderate:')
+numerosoluzioni = int(input())
+
+soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni)
+dimensione_massima_per_tempo_limite()
+
