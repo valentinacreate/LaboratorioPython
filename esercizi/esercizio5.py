@@ -11,7 +11,8 @@
 #   - Se ci sono soluzioni ripetute, contate quante volte ogni soluzione è ripetuta
 #   - Generalizzate il programma per risolvere una scacchiera di qualunque dimensione NxN
 #   - Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
-#Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
+#Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. 
+#Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
 import random
 import time
@@ -101,20 +102,26 @@ def dimensione_massima_per_tempo_limite():
 
 def rotazione_90_gradi(soluzione):
     print('Rotazione di 90 gradi: ')
-
-    print(soluzione)
+    soluzione90=[0]*len(soluzione)
+    for r,c in enumerate(soluzione):
+        soluzione90[c] = (len(soluzione)-1)-r
+    print(soluzione90)
     pass
 
 def rotazione_180_gradi(soluzione):
     print('Rotazione di 180 gradi: ')
-
-    print(soluzione)
+    n=len(soluzione)
+    for c in range(len(soluzione)-1,-1,-1)
+        soluzione180=[(n-1)-c]
+    print(soluzione180)
     pass
 
 def rotazione_270_gradi(soluzione):
     print('Rotazione di 270 gradi: ')
-
-    print(soluzione)
+    soluzione270=[0]*len(soluzione)
+    for r,c in enumerate(soluzione):
+        soluzione270[(len(soluzione)-1)-c]=r
+    print(soluzione270)
     pass
 
 print('Indicare la dimensione della scacchiera (NxN):')
