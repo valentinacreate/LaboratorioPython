@@ -67,7 +67,6 @@ def soluzioni_da_dati(dimensionescacchiera, numerosoluzioni):
             random_generator.shuffle(lista_soluzione)
             tentativi += 1
 
-
         if tuple(lista_soluzione) not in soluzioni_uniche:
             soluzioni_uniche.add(tuple(lista_soluzione))
             soluzioni_trovate += 1
@@ -84,17 +83,18 @@ def soluzioni_da_dati(dimensionescacchiera, numerosoluzioni):
     print(f"Numero soluzioni che potevano essere ripetute: {soluzioni_ripetute}")
     print(f"Tempo medio per soluzione: {(end - start) / numerosoluzioni:.4f} secondi")
 
-def dimensione_massima_per_tempo_limite(tempo_limite=15):
+def dimensione_massima_per_tempo_limite():
+    tempo_limite = 15  # Secondi:
     N = 1
-    while True:
-        
-        while True:
+    start = time.perf_counter()
+    soluzioni_da_dati(N, 1)  # Trova una soluzione per una scacchiera 1x1
+    end = time.perf_counter()
+    while (end - start) < tempo_limite:
             start = time.perf_counter()
             soluzioni_da_dati(N+1, 1)  # Trova una soluzione per una scacchiera NxN
             end = time.perf_counter()       
-        if (end - start) > tempo_limite:
-            print(f"Tempo impiegato per dimensione {N+1}: {end - start:.4f} secondi")
-            return N - 1  # Restituisce l'ultima dimensione che ha rispettato il limite di tempo
-        N += 1
+    print(f"Tempo impiegato per dimensione {N+1}: {end - start:.4f} secondi")
+    return N - 1  # Restituisce l'ultima dimensione che ha rispettato il limite di tempo
+
 soluzioni_da_dati(dimensionescacchiera, numerosoluzioni)
 print(f"La dimensione massima della scacchiera per trovare una soluzione in meno di 15 secondi è: {dimensione_massima_per_tempo_limite()}")
