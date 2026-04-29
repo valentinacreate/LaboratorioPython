@@ -11,8 +11,8 @@
 #   - Se ci sono soluzioni ripetute, contate quante volte ogni soluzione è ripetuta
 #   - Generalizzate il programma per risolvere una scacchiera di qualunque dimensione NxN
 #   - Trovate quale è la scacchiera con lato N più grande possibile per cui si riesce a trovare 1 soluzione in meno di 15s
-#Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. 
-#Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
+#   - Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. 
+#   - Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
 import random
 import time
@@ -77,6 +77,7 @@ def soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni):
     print(f"Tempo medio per soluzione: {(end - start) / numerosoluzioni:.4f} secondi")
 
 def dimensione_massima_per_tempo_limite():
+    '''Trova la dimensione massima della scacchiera per cui si riesce a trovare una soluzione in meno di 15 secondi'''
     tempo_limite = 15  # Secondi:
     N = 4  # Partiamo da 4, poiché per N=2 e N=3 non esistono soluzioni
     start = time.perf_counter()
@@ -101,6 +102,7 @@ def dimensione_massima_per_tempo_limite():
             break
 
 def rotazione_90_gradi(soluzione):
+    '''Ritorna la soluzione ruotata di 90 gradi in senso orario'''
     print('Rotazione di 90 gradi: ')
     soluzione90=[0]*len(soluzione)
     for r,c in enumerate(soluzione):
@@ -108,6 +110,7 @@ def rotazione_90_gradi(soluzione):
     print(soluzione90)
 
 def rotazione_180_gradi(soluzione):
+    '''Ritorna la soluzione ruotata di 180 gradi in senso orario'''
     print('Rotazione di 180 gradi: ')
     n=len(soluzione)
     soluzione180 = [0] * n
@@ -116,6 +119,7 @@ def rotazione_180_gradi(soluzione):
     print(soluzione180)
 
 def rotazione_270_gradi(soluzione):
+    '''Ritorna la soluzione ruotata di 270 gradi in senso orario'''
     print('Rotazione di 270 gradi: ')
     soluzione270=[0]*len(soluzione)
     for r,c in enumerate(soluzione):
