@@ -57,6 +57,11 @@ def soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni):
             soluzioni_uniche.add(tuple(lista_soluzione))
             soluzioni_trovate += 1
             print(lista_soluzione)
+            print(f"Soluzioni per rotazione della scacchiera con la soluzione {soluzioni_trovate}:\n")
+            rotazione_90_gradi(lista_soluzione)
+            rotazione_180_gradi(lista_soluzione)
+            rotazione_270_gradi(lista_soluzione)
+
         else:
             soluzioni_ripetute += 1
             if soluzioni_ripetute > numerosoluzioni * 10:  # Se ci sono troppe soluzioni ripetute, interrompiamo per evitare un loop infinito
@@ -95,12 +100,21 @@ def dimensione_massima_per_tempo_limite():
             break
 
 def rotazione_90_gradi(soluzione):
+    print('Rotazione di 90 gradi: ')
+
+    print(soluzione)
     pass
 
 def rotazione_180_gradi(soluzione):
+    print('Rotazione di 180 gradi: ')
+
+    print(soluzione)
     pass
 
 def rotazione_270_gradi(soluzione):
+    print('Rotazione di 270 gradi: ')
+
+    print(soluzione)
     pass
 
 print('Indicare la dimensione della scacchiera (NxN):')
