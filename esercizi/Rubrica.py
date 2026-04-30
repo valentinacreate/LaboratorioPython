@@ -6,23 +6,54 @@
 #   - stampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
 import json
 import datetime
+
 giorno_oggi = datetime.datetime.now().day
 mese_oggi = datetime.datetime.now().month
 anno_oggi = datetime.datetime.now().year
 
 class Rubrica:
     def __init__(self):
-        self.info= {}   
+        self.info = {}           # inizializzazione del dizionario
+
+    @classmethod
+    def from_json(cls, filename):
+        instance = cls()
+        with open(filename, 'r', encoding='utf-8') as in_file:
+            instance.info = json.load(in_file)
+        return instance
+
+    @classmethod
+    def from_txt(cls, filename):
+        instance = cls()
+        with open(filename, 'r', encoding='utf-8') as in_file:
+            for line in in_file:
+                nome, giorno, mese, anno, eta, sesso, mail = line.strip().split(', ')
+                instance.info[nome] = {
+                    'giorno': int(giorno),
+                    'mese': mese,
+                    'anno': int(anno),
+                    'età': int(eta),
+                    'sesso': sesso,
+                    'mail': mail
+                }
+        return instance
 
     def apri(self, rubrica):
         if rubrica.endswith('.json'):
-            with open(rubrica, 'r', encoding='utf-8') as in_file:       # encoding='utf-8' serve a gestire correttamente lettere accentate e caratteri speciali nei file di testo
-                self.info = json.load(in_file)                                # caricamento del contenuto del file JSON nel dizionario rubrica
+            with open(rubrica, 'r', encoding='utf-8') as in_file:
+                self.info = json.load(in_file)
         elif rubrica.endswith('.txt'):
-            with open(rubrica, 'r', encoding='utf-8') as in_file:                      # apertura del file in modalità lettura
-                for line in in_file:                                      # iterazione su ogni riga del file di testo
-                    nome, giorno, mese, anno, eta, sesso, mail = line.strip().split(', ')  # separazione delle informazioni della riga usando la virgola come delimitatore
-                    self.info[nome] = {'giorno': int(giorno), 'mese': mese, 'anno': int(anno), 'eta': int(eta), 'sesso': sesso, 'mail': mail}  # creazione di un nuovo elemento nel dizionario rubrica con le informazioni estratte dalla riga del file di testo
+            with open(rubrica, 'r', encoding='utf-8') as in_file:
+                for line in in_file:
+                    nome, giorno, mese, anno, eta, sesso, mail = line.strip().split(', ')
+                    self.info[nome] = {
+                        'giorno': int(giorno),
+                        'mese': mese,
+                        'anno': int(anno),
+                        'età': int(eta),
+                        'sesso': sesso,
+                        'mail': mail
+                    }
         else:
             print("Il file deve terminare con .json o .txt")
         return self.info
@@ -30,86 +61,103 @@ class Rubrica:
     def aggiungi(self):
         if not self.info:
             print("\nPrima apri una rubrica")
-        else:
-            print("\nDati del nuovo contatto:")
-            while True:  # ciclo per assicurarsi che l'utente inserisca un nome completo valido
-                print("\nInserire il nome completo da aggiungere:")
-                nome = input().strip()
-                if nome:
-                    nome = " ".join([parte.capitalize() for parte in nome.split()])
-                    break
-                else:
-                    print("\nNome non valido. Inserire almeno un nome.")
+            return
 
-            while True:  # ciclo per assicurarsi che l'utente inserisca un giorno di nascita valido
-                print('\nInserire il giorno di nascita:')
+        print("\nDati del nuovo contatto:")
+        while True:
+            print("\nInserire il nome completo da aggiungere:")
+            nome = input().strip()
+            if nome:
+                nome = " ".join([parte.capitalize() for parte in nome.split()])
+                break
+            else:
+                print("\nNome non valido. Inserire almeno un nome.")
+
+        while True:
+            print('\nInserire il giorno di nascita:')
+            try:
                 giorno = int(input())
-                if 1 <= giorno <= 31:
-                    break
-                else:
-                    print("Valore non valido. Inserire un giorno compreso tra 1 e 31.")
-                    giorno = int(input())
-            while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per il mese
-                print('\nInserire il mese di nascita:')
-                mese = input()
-                if mese.capitalize() in ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']:
-                    mese = mese.capitalize()
-                    break
-                else:
-                    print("Valore non valido. Inserire un mese valido (es. Gennaio, Febbraio, etc.).")
-            while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per l'anno
-                print('\nInserire l\'anno di nascita:')
+            except ValueError:
+                print("Valore non valido. Inserire un numero tra 1 e 31.")
+                continue
+            if 1 <= giorno <= 31:
+                break
+            print("Valore non valido. Inserire un giorno compreso tra 1 e 31.")
+
+        while True:
+            print('\nInserire il mese di nascita:')
+            mese = input().strip()
+            if mese.capitalize() in ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']:
+                mese = mese.capitalize()
+                break
+            print("Valore non valido. Inserire un mese valido (es. Gennaio, Febbraio, etc.).")
+
+        while True:
+            print('\nInserire l\'anno di nascita:')
+            try:
                 anno = int(input())
-                if anno <= anno_oggi:
-                    break            
-            eta = anno_oggi - anno
-            print("\nInserimento automatico dell'età:", eta)
+            except ValueError:
+                print("Valore non valido. Inserire un anno corretto.")
+                continue
+            if anno <= anno_oggi:
+                break
+            print("Valore non valido. L'anno non può essere nel futuro.")
 
-            while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per il sesso
-                print("\nInserire il sesso:")
-                sesso = input()
-                if sesso.upper() in ['M', 'F']:
-                    sesso = sesso.upper()
-                    break
-                else:
-                    print("Valore non valido. Inserire 'M' o 'F'.")
+        eta = anno_oggi - anno
+        print("\nInserimento automatico dell'età:", eta)
 
-            print("\nInserire la mail:")
-            mail = input()
+        while True:
+            print("\nInserire il sesso:")
+            sesso = input().strip()
+            if sesso.upper() in ['M', 'F']:
+                sesso = sesso.upper()
+                break
+            print("Valore non valido. Inserire 'M' o 'F'.")
 
-            self.info[nome] = {'giorno': giorno, 'mese': mese, 'anno': anno, 'eta': eta, 'sesso': sesso, 'mail': mail}  # creazione di un nuovo elemento nel dizionario rubrica con le informazioni inserite dall'utente
-            with open("rubrica.json", "w") as write_file:                   #apertura del file in modalità scrittura
-               json.dump(self.info, write_file, indent=4)                    #scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+        print("\nInserire la mail:")
+        mail = input().strip()
+
+        self.info[nome] = {
+            'giorno': giorno,
+            'mese': mese,
+            'anno': anno,
+            'età': eta,
+            'sesso': sesso,
+            'mail': mail
+        }
 
     def rimuovi(self, nome):
         nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
             print("\nLa rubrica è vuota")
+            return
+
         while nome not in self.info:
             print(f"\nIl contatto {nome} non esiste in rubrica")
             print('Se hai sbagliato sezione digita NONE')
             print('\nInserire un nome valido:')
-            nome = input()
+            nome = input().strip()
             if nome.upper() == 'NONE':
                 return
             nome = " ".join([parte.capitalize() for parte in nome.split()])
-        del self.info[nome]  # rimozione dell'elemento dal dizionario rubrica
-        with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
-            json.dump(self.info, write_file, indent=4)  # scrittura del dizionario rubrica aggiornato nel file JSON con indentazione di 4 spazi per una migliore leggibilità
-            print(f"Contatto {nome} rimosso dalla rubrica.")
-    
+
+        del self.info[nome]
+        print(f"Contatto {nome} rimosso dalla rubrica.")
+
     def salva(self, nome_file):
         if not self.info:
             print("\nLa rubrica è vuota")
-        elif nome_file.endswith('.json'):
-            with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
-                json.dump(self.info, out_file, indent=4)  # scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+            return
+
+        if nome_file.endswith('.json'):
+            with open(nome_file, 'w', encoding='utf-8') as out_file:
+                json.dump(self.info, out_file, indent=4)
             print('\nRubrica salvata con successo.')
         elif nome_file.endswith('.txt'):
-            with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
-                for nome, contatto in self.info.items():  # iterazione su ogni elemento del dizionario rubrica
-                    line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['età']}, {contatto['sesso']}, {contatto['mail']}\n"  # creazione di una stringa formattata con le informazioni del contatto
-                    out_file.write(line)  # scrittura della stringa nel file di testo
+            with open(nome_file, 'w', encoding='utf-8') as out_file:
+                for nome, contatto in self.info.items():
+                    line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['età']}, {contatto['sesso']}, {contatto['mail']}\n"
+                    out_file.write(line)
             print('\nRubrica salvata con successo.')
         else:
             print("\nEstensione del file non valida. Scegliere .json o .txt.")
@@ -118,16 +166,18 @@ class Rubrica:
         nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
             print("\nLa rubrica è vuota")
+            return
+
         while nome not in self.info:
             print(f"\nIl contatto {nome} non esiste in rubrica")
             print('Se hai sbagliato sezione digita NONE')
             print('\nInserire un nome valido:')
-            nome = input()
+            nome = input().strip()
             if nome.upper() == 'NONE':
                 return
             nome = " ".join([parte.capitalize() for parte in nome.split()])
 
-        contatto = self.info[nome]  # recupero delle informazioni del contatto dal dizionario rubrica
+        contatto = self.info[nome]
         print(f"\nNome: {nome}")
         print(f"Giorno di nascita: {contatto['giorno']}")
         print(f"Mese di nascita: {contatto['mese']}")
