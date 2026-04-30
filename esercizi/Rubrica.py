@@ -9,15 +9,16 @@ import datetime
 giorno_oggi = datetime.datetime.now().day
 mese_oggi = datetime.datetime.now().month
 anno_oggi = datetime.datetime.now().year
+
 class Rubrica:
     def __init__(self):
         self.info= {}   
 
     def apri(self, rubrica):
         if rubrica.endswith('.json'):
-            with open(rubrica, 'r', encoding='utf-8') as in_file:       #endcoding='utf-8'serve a gestire correttamente lettere accentate e caratteri speciali nei file di testo
+            with open(rubrica, 'r', encoding='utf-8') as in_file:       # encoding='utf-8' serve a gestire correttamente lettere accentate e caratteri speciali nei file di testo
                 self.info = json.load(in_file)                                # caricamento del contenuto del file JSON nel dizionario rubrica
-        elif rubrica.endswith('.txt'):    
+        elif rubrica.endswith('.txt'):
             with open(rubrica, 'r', encoding='utf-8') as in_file:                      # apertura del file in modalità lettura
                 for line in in_file:                                      # iterazione su ogni riga del file di testo
                     nome, giorno, mese, anno, eta, sesso, mail = line.strip().split(', ')  # separazione delle informazioni della riga usando la virgola come delimitatore
@@ -134,46 +135,3 @@ class Rubrica:
         print(f"Età: {contatto['età']}")
         print(f"Sesso: {contatto['sesso']}")
         print(f"Mail: {contatto['mail']}")
-
-if __name__ == '__main__':
-    rubrica = Rubrica()
-    print('\nInserire il nome della rubrica da aprire incluso di estensione (.json o .txt):')
-    nome_file = input()
-    dati = rubrica.apri(nome_file)
-    print('\nFile aperto:', bool(dati))
-    azione = 'EXIT'
-    loop = False
-    while loop == False:
-        print('\nScegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, SALVA, STAMPA \n per uscire digitare EXIT\n')
-        azione = input()
-        azione = azione.upper()
-        if azione == 'AGGIUNGI':
-            rubrica.aggiungi()
-            print('\nContatto aggiunto:', bool(rubrica.info))
-            print(rubrica.info)
-            loop = False
-        elif azione == 'RIMUOVI':
-            print('\nContatti attuali nella rubrica sono:')
-            print([nome for nome in rubrica.info])
-            print('\nInserire il nome del contatto da rimuovere:')
-            nome_da_rimuovere = input()
-            rubrica.rimuovi(nome_da_rimuovere)
-            loop = False
-        elif azione == 'SALVA':
-            print('\nInserire il nome del file in cui salvare la rubrica (con estensione .json o .txt):')
-            nome_file = input()
-            rubrica.salva(nome_file)
-            loop = False
-        elif azione == 'STAMPA':
-            print('\nContatti attuali nella rubrica sono:')
-            print([nome for nome in rubrica.info])
-            print('\nInserire il nome del contatto da stampare:')
-            nome_da_stampare = input()
-            rubrica.stampa(nome_da_stampare)
-            loop = False
-        elif azione == 'EXIT':
-            print('\nUscita dal programma.')
-            loop = True
-        else:
-            print('\nAzione non valida.\n')
-            loop = False
