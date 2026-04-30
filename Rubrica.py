@@ -32,15 +32,15 @@ class Rubrica:
         else:
             print("Dati del nuovo contatto:")
             while True:  # ciclo per assicurarsi che l'utente inserisca un nome completo valido
-                print(f"inserire il nome completo da aggiungere:")
-                nome = input()
-                nome = nome.split(" ")
-                for i in range(len(nome)):
-                    nome[i] = nome[i].capitalize()
-                    nome = " ".join(nome)
+                print("inserire il nome completo da aggiungere:")
+                nome = input().strip()
+                if nome:
+                    nome = " ".join([parte.capitalize() for parte in nome.split()])
+                    break
+                print("Nome non valido. Inserire almeno un nome.")
 
             while True:  # ciclo per assicurarsi che l'utente inserisca un giorno di nascita valido
-                print(f"inserire il giorno di nascita:")
+                print('inserire il giorno di nascita:')
                 giorno = int(input())
                 if 1 <= giorno <= 31:
                     break
@@ -48,7 +48,7 @@ class Rubrica:
                     print("Valore non valido. Inserire un giorno compreso tra 1 e 31.")
                     giorno = int(input())
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per il mese
-                print(f"inserire il mese di nascita:")
+                print("inserire il mese di nascita:")
                 mese = input()
                 if mese.capitalize() in ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']:
                     mese = mese.capitalize()
@@ -56,22 +56,18 @@ class Rubrica:
                 else:
                     print("Valore non valido. Inserire un mese valido (es. Gennaio, Febbraio, etc.).")
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per l'anno
-                print(f"inserire l'anno di nascita:")
+                print("inserire l'anno di nascita:")
                 anno = int(input())
-                if 1900 <= anno <= anno_oggi:
+                if anno <= anno_oggi:
                     break
                 else:
                     print("Valore non valido. Inserire un anno compreso tra 1900 e " + str(anno_oggi) + ".")
-            while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per l'età
-                print(f"inserire l'età:")
-                eta = int(input())
-                if eta == anno_oggi - anno:
-                    break
-                else:
-                    print("Valore non valido. Inserire un'età compresa tra 0 e " + str(anno_oggi - anno) + ".")
             
+            eta = anno_oggi - anno
+            print("inserimento automatico dell'età:", eta)
+
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per il sesso
-                print(f"inserire il sesso:")
+                print("inserire il sesso:")
                 sesso = input()
                 if sesso.upper() in ['M', 'F']:
                     sesso = sesso.upper()
@@ -79,7 +75,7 @@ class Rubrica:
                 else:
                     print("Valore non valido. Inserire 'M' o 'F'.")
 
-            print(f"inserire la mail:")
+            print("inserire la mail:")
             mail = input()
 
             self.info[nome] = {'giorno': giorno, 'mese': mese, 'anno': anno, 'eta': eta, 'sesso': sesso, 'mail': mail}  # creazione di un nuovo elemento nel dizionario rubrica con le informazioni inserite dall'utente
@@ -96,6 +92,7 @@ class Rubrica:
             with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
                 json.dump(self.info, write_file, indent=4)  # scrittura del dizionario rubrica aggiornato nel file JSON con indentazione di 4 spazi per una migliore leggibilità
                 print(f"Contatto {nome} rimosso dalla rubrica.")
+    
     def salva(self, nome_file):
         if not self.info:
             raise ValueError("La rubrica è vuota")
@@ -128,7 +125,8 @@ if __name__ == '__main__':
     dati = rubrica.apri('rubrica.json')
     print('File aperto:', bool(dati))
     azione = 'EXIT'
-    while azione == 'EXIT':
+    loop = False
+    while loop == False:
         print('Scegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, SALVA, STAMPA \n per uscire digitare EXIT')
         azione = input()
         azione = azione.upper()
@@ -136,17 +134,27 @@ if __name__ == '__main__':
             rubrica.aggiungi()
             print('Contatto aggiunto:', bool(rubrica.info))
             print(rubrica.info)
+            loop = False
         elif azione == 'RIMUOVI':
             print('Contatti attuali nella rubrica sono:')
-            
+            print([nome for nome in rubrica.info])
             print('Inserire il nome del contatto da rimuovere:')
             nome_da_rimuovere = input()
             rubrica.rimuovi(nome_da_rimuovere)
+            loop = False
         elif azione == 'SALVA':
             print('Inserire il nome del file in cui salvare la rubrica (con estensione .json o .txt):')
             nome_file = input()
             rubrica.salva(nome_file)
+            loop = False
         elif azione == 'STAMPA':
             print('Inserire il nome del contatto da stampare:')
             nome_da_stampare = input()
             rubrica.stampa(nome_da_stampare)
+            loop = False
+        elif azione == 'EXIT':
+            print('Uscita dal programma.')
+            loop = True
+        else:
+            print('Azione non valida. Scegliere AGGIUNGI, RIMUOVI, SALVA, STAMPA o EXIT.')
+            loop = False
