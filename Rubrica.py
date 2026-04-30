@@ -1,7 +1,7 @@
 #la classe rubrica deve fare 5 azioni:
-#aprire una rubrica leggendola da un file (JSON oppure testo) - APRI
-#aggiungere un elemento alla rubrica - AGGIUNGI
-#rimuovere un elemento dalla rubrica (dato il nome) - RIMUOVI
+#   - aprire una rubrica leggendola da un file (JSON oppure testo) - APRI
+#   - aggiungere un elemento alla rubrica - AGGIUNGI
+#   - rimuovere un elemento dalla rubrica (dato il nome) - RIMUOVI
 #salvare la rubrica su un file (JSON o testo) - SALVA
 #stampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
 import json
@@ -11,8 +11,7 @@ mese_oggi = datetime.datetime.now().month
 anno_oggi = datetime.datetime.now().year
 class Rubrica:
     def __init__(self):
-        self.info= {}
-    
+        self.info= {}   
 
     def apri(self, rubrica):
         if rubrica.endswith('.json'):
@@ -31,14 +30,15 @@ class Rubrica:
         if not self.info:
             raise ValueError("Prima apri una rubrica")
         else:
+            print("Dati del nuovo contatto:")
             while True:  # ciclo per assicurarsi che l'utente inserisca un nome completo valido
                 print(f"inserire il nome completo da aggiungere:")
                 nome = input()
-                nome = nome.capitalize()
-                if len(nome.split()) >= 2:  # verifica che il nome completo contenga almeno due parole (nome e cognome)
-                    break
-                else:
-                    print("Valore non valido. Inserire un nome completo (es. Mario Rossi).")
+                nome = nome.split(" ")
+                for i in range(len(nome)):
+                    nome[i] = nome[i].capitalize()
+                    nome = " ".join(nome)
+
             while True:  # ciclo per assicurarsi che l'utente inserisca un giorno di nascita valido
                 print(f"inserire il giorno di nascita:")
                 giorno = int(input())
@@ -65,7 +65,7 @@ class Rubrica:
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per l'età
                 print(f"inserire l'età:")
                 eta = int(input())
-                if 0 <= eta <= anno_oggi - anno:
+                if eta == anno_oggi - anno:
                     break
                 else:
                     print("Valore non valido. Inserire un'età compresa tra 0 e " + str(anno_oggi - anno) + ".")
@@ -86,11 +86,37 @@ class Rubrica:
             with open("rubrica.json", "w") as write_file:                   #apertura del file in modalità scrittura
                json.dump(self.info, write_file, indent=4)                    #scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
 
+def rimuovi(self, nome):
+        if not self.info:
+            raise ValueError("La rubrica è vuota")
+        elif nome not in self.info:
+            raise ValueError(f"Il contatto {nome} non esiste in rubrica")
+        else:
+            del self.info[nome]  # rimozione dell'elemento dal dizionario rubrica
+            with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
+                json.dump(self.info, write_file, indent=4)  # scrittura del dizionario rubrica aggiornato nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+
+def salva(self, nome_file):
+        if not self.info:
+            raise ValueError("La rubrica è vuota")
+        elif nome_file.endswith('.json'):
+            with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
+                json.dump(self.info, out_file, indent=4)  # scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+
 if __name__ == '__main__':
     rubrica = Rubrica()
     dati = rubrica.apri('rubrica.json')
     print('File aperto:', bool(dati))
     print(dati)
-    rubrica.aggiungi()
-    print('Contatto aggiunto:', bool(rubrica.info))
-    print(rubrica.info)
+    azione = 'EXIT'
+    while azione == 'EXIT':
+        print('Scegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, EXIT')
+        azione = input()
+        if azione == 'AGGIUNGI':
+            rubrica.aggiungi()
+            print('Contatto aggiunto:', bool(rubrica.info))
+            print(rubrica.info)
+        elif azione == 'RIMUOVI':
+            print('Inserire il nome del contatto da rimuovere:')
+            nome_da_rimuovere = input()
+            rubrica.rimuovi(nome_da_rimuovere)
