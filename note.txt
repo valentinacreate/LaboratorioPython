@@ -262,3 +262,6 @@ Il metodo privato in python non so puo mettere, ma per indicarlo ad altri utiliz
 
 self e cls non sono obbligatori come nomi, ci devono essere come prime variabili di un metodo ma possono chiamarsi differentemente 
 Per convenzione si usa self e cls
+
+28 aprile --------------------------------------------------------------------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione09/Lezione_9.html

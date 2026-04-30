@@ -22,3 +22,6 @@
 #In un file separato importate la classe rubrica appena creata e scrivete un programma che in modo interattivo chieda all’utente di quale delle 5 operazioni della classe rubrica svolgere. Se l’azione richiesta non esiste, il programma continua a chiedere l’azione da svolgere finchè non viene indicata la stringa “EXIT”
 
 
+
+
+
