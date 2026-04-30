@@ -28,19 +28,20 @@ class Rubrica:
 
     def aggiungi(self):
         if not self.info:
-            print("Prima apri una rubrica")
+            print("\nPrima apri una rubrica")
         else:
-            print("Dati del nuovo contatto:")
+            print("\nDati del nuovo contatto:")
             while True:  # ciclo per assicurarsi che l'utente inserisca un nome completo valido
-                print("inserire il nome completo da aggiungere:")
+                print("\nInserire il nome completo da aggiungere:")
                 nome = input().strip()
                 if nome:
                     nome = " ".join([parte.capitalize() for parte in nome.split()])
                     break
-                print("Nome non valido. Inserire almeno un nome.")
+                else:
+                    print("\nNome non valido. Inserire almeno un nome.")
 
             while True:  # ciclo per assicurarsi che l'utente inserisca un giorno di nascita valido
-                print('inserire il giorno di nascita:')
+                print('\nInserire il giorno di nascita:')
                 giorno = int(input())
                 if 1 <= giorno <= 31:
                     break
@@ -48,7 +49,7 @@ class Rubrica:
                     print("Valore non valido. Inserire un giorno compreso tra 1 e 31.")
                     giorno = int(input())
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per il mese
-                print("inserire il mese di nascita:")
+                print('\nInserire il mese di nascita:')
                 mese = input()
                 if mese.capitalize() in ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']:
                     mese = mese.capitalize()
@@ -56,18 +57,15 @@ class Rubrica:
                 else:
                     print("Valore non valido. Inserire un mese valido (es. Gennaio, Febbraio, etc.).")
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per l'anno
-                print("inserire l'anno di nascita:")
+                print('\nInserire l\'anno di nascita:')
                 anno = int(input())
                 if anno <= anno_oggi:
-                    break
-                else:
-                    print("Valore non valido. Inserire un anno compreso tra 1900 e " + str(anno_oggi) + ".")
-            
+                    break            
             eta = anno_oggi - anno
-            print("inserimento automatico dell'età:", eta)
+            print("\nInserimento automatico dell'età:", eta)
 
             while True:  # ciclo per assicurarsi che l'utente inserisca un valore valido per il sesso
-                print("inserire il sesso:")
+                print("\nInserire il sesso:")
                 sesso = input()
                 if sesso.upper() in ['M', 'F']:
                     sesso = sesso.upper()
@@ -75,7 +73,7 @@ class Rubrica:
                 else:
                     print("Valore non valido. Inserire 'M' o 'F'.")
 
-            print("inserire la mail:")
+            print("\nInserire la mail:")
             mail = input()
 
             self.info[nome] = {'giorno': giorno, 'mese': mese, 'anno': anno, 'eta': eta, 'sesso': sesso, 'mail': mail}  # creazione di un nuovo elemento nel dizionario rubrica con le informazioni inserite dall'utente
@@ -85,86 +83,97 @@ class Rubrica:
     def rimuovi(self, nome):
         nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
-            print("La rubrica è vuota")
+            print("\nLa rubrica è vuota")
         while nome not in self.info:
-            print(f"Il contatto {nome} non esiste in rubrica")
-            print('Inserire un nome valido:')
+            print(f"\nIl contatto {nome} non esiste in rubrica")
+            print('Se hai sbagliato sezione digita NONE')
+            print('\nInserire un nome valido:')
             nome = input()
+            if nome.upper() == 'NONE':
+                return
             nome = " ".join([parte.capitalize() for parte in nome.split()])
-
-        else:
-            del self.info[nome]  # rimozione dell'elemento dal dizionario rubrica
-            with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
-                json.dump(self.info, write_file, indent=4)  # scrittura del dizionario rubrica aggiornato nel file JSON con indentazione di 4 spazi per una migliore leggibilità
-                print(f"Contatto {nome} rimosso dalla rubrica.")
+        del self.info[nome]  # rimozione dell'elemento dal dizionario rubrica
+        with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
+            json.dump(self.info, write_file, indent=4)  # scrittura del dizionario rubrica aggiornato nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+            print(f"Contatto {nome} rimosso dalla rubrica.")
     
     def salva(self, nome_file):
         if not self.info:
-            print("La rubrica è vuota")
+            print("\nLa rubrica è vuota")
         elif nome_file.endswith('.json'):
             with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
                 json.dump(self.info, out_file, indent=4)  # scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+            print('\nRubrica salvata con successo.')
         elif nome_file.endswith('.txt'):
             with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
                 for nome, contatto in self.info.items():  # iterazione su ogni elemento del dizionario rubrica
                     line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['età']}, {contatto['sesso']}, {contatto['mail']}\n"  # creazione di una stringa formattata con le informazioni del contatto
                     out_file.write(line)  # scrittura della stringa nel file di testo
+            print('\nRubrica salvata con successo.')
         else:
-            print("Estensione del file non valida. Scegliere .json o .txt.")
+            print("\nEstensione del file non valida. Scegliere .json o .txt.")
 
     def stampa(self, nome):
         nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
-            print("La rubrica è vuota")
-        elif nome not in self.info:
-            print(f"Il contatto {nome} non esiste in rubrica")
-        else:
-            contatto = self.info[nome]  # recupero delle informazioni del contatto dal dizionario rubrica
-            print(f"Nome: {nome}")
-            print(f"Giorno di nascita: {contatto['giorno']}")
-            print(f"Mese di nascita: {contatto['mese']}")
-            print(f"Anno di nascita: {contatto['anno']}")
-            print(f"Età: {contatto['eta']}")
-            print(f"Sesso: {contatto['sesso']}")
-            print(f"Mail: {contatto['mail']}")
+            print("\nLa rubrica è vuota")
+        while nome not in self.info:
+            print(f"\nIl contatto {nome} non esiste in rubrica")
+            print('Se hai sbagliato sezione digita NONE')
+            print('\nInserire un nome valido:')
+            nome = input()
+            if nome.upper() == 'NONE':
+                return
+            nome = " ".join([parte.capitalize() for parte in nome.split()])
+
+        contatto = self.info[nome]  # recupero delle informazioni del contatto dal dizionario rubrica
+        print(f"\nNome: {nome}")
+        print(f"Giorno di nascita: {contatto['giorno']}")
+        print(f"Mese di nascita: {contatto['mese']}")
+        print(f"Anno di nascita: {contatto['anno']}")
+        print(f"Età: {contatto['età']}")
+        print(f"Sesso: {contatto['sesso']}")
+        print(f"Mail: {contatto['mail']}")
 
 if __name__ == '__main__':
     rubrica = Rubrica()
-    dati = rubrica.apri('rubrica.json')
-    print('File aperto:', bool(dati))
+    print('\nInserire il nome della rubrica da aprire incluso di estensione (.json o .txt):')
+    nome_file = input()
+    dati = rubrica.apri(nome_file)
+    print('\nFile aperto:', bool(dati))
     azione = 'EXIT'
     loop = False
     while loop == False:
-        print('Scegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, SALVA, STAMPA \n per uscire digitare EXIT')
+        print('\nScegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, SALVA, STAMPA \n per uscire digitare EXIT\n')
         azione = input()
         azione = azione.upper()
         if azione == 'AGGIUNGI':
             rubrica.aggiungi()
-            print('Contatto aggiunto:', bool(rubrica.info))
+            print('\nContatto aggiunto:', bool(rubrica.info))
             print(rubrica.info)
             loop = False
         elif azione == 'RIMUOVI':
-            print('Contatti attuali nella rubrica sono:')
+            print('\nContatti attuali nella rubrica sono:')
             print([nome for nome in rubrica.info])
-            print('Inserire il nome del contatto da rimuovere:')
+            print('\nInserire il nome del contatto da rimuovere:')
             nome_da_rimuovere = input()
             rubrica.rimuovi(nome_da_rimuovere)
             loop = False
         elif azione == 'SALVA':
-            print('Inserire il nome del file in cui salvare la rubrica (con estensione .json o .txt):')
+            print('\nInserire il nome del file in cui salvare la rubrica (con estensione .json o .txt):')
             nome_file = input()
             rubrica.salva(nome_file)
             loop = False
         elif azione == 'STAMPA':
-            print('Contatti attuali nella rubrica sono:')
+            print('\nContatti attuali nella rubrica sono:')
             print([nome for nome in rubrica.info])
-            print('Inserire il nome del contatto da stampare:')
+            print('\nInserire il nome del contatto da stampare:')
             nome_da_stampare = input()
             rubrica.stampa(nome_da_stampare)
             loop = False
         elif azione == 'EXIT':
-            print('Uscita dal programma.')
+            print('\nUscita dal programma.')
             loop = True
         else:
-            print('Azione non valida. Scegliere AGGIUNGI, RIMUOVI, SALVA, STAMPA o EXIT.')
+            print('\nAzione non valida.\n')
             loop = False
