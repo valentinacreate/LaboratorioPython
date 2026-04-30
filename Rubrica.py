@@ -86,7 +86,7 @@ class Rubrica:
             with open("rubrica.json", "w") as write_file:                   #apertura del file in modalità scrittura
                json.dump(self.info, write_file, indent=4)                    #scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
 
-def rimuovi(self, nome):
+    def rimuovi(self, nome):
         if not self.info:
             raise ValueError("La rubrica è vuota")
         elif nome not in self.info:
@@ -95,28 +95,58 @@ def rimuovi(self, nome):
             del self.info[nome]  # rimozione dell'elemento dal dizionario rubrica
             with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
                 json.dump(self.info, write_file, indent=4)  # scrittura del dizionario rubrica aggiornato nel file JSON con indentazione di 4 spazi per una migliore leggibilità
-
-def salva(self, nome_file):
+                print(f"Contatto {nome} rimosso dalla rubrica.")
+    def salva(self, nome_file):
         if not self.info:
             raise ValueError("La rubrica è vuota")
         elif nome_file.endswith('.json'):
             with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
                 json.dump(self.info, out_file, indent=4)  # scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
+        elif nome_file.endswith('.txt'):
+            with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
+                for nome, contatto in self.info.items():  # iterazione su ogni elemento del dizionario rubrica
+                    line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['eta']}, {contatto['sesso']}, {contatto['mail']}\n"  # creazione di una stringa formattata con le informazioni del contatto
+                    out_file.write(line)  # scrittura della stringa nel file di testo
+    
+    def stampa(self, nome):
+        if not self.info:
+            raise ValueError("La rubrica è vuota")
+        elif nome not in self.info:
+            raise ValueError(f"Il contatto {nome} non esiste in rubrica")
+        else:
+            contatto = self.info[nome]  # recupero delle informazioni del contatto dal dizionario rubrica
+            print(f"Nome: {nome}")
+            print(f"Giorno di nascita: {contatto['giorno']}")
+            print(f"Mese di nascita: {contatto['mese']}")
+            print(f"Anno di nascita: {contatto['anno']}")
+            print(f"Età: {contatto['eta']}")
+            print(f"Sesso: {contatto['sesso']}")
+            print(f"Mail: {contatto['mail']}")
 
 if __name__ == '__main__':
     rubrica = Rubrica()
     dati = rubrica.apri('rubrica.json')
     print('File aperto:', bool(dati))
-    print(dati)
     azione = 'EXIT'
     while azione == 'EXIT':
-        print('Scegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, EXIT')
+        print('Scegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, SALVA, STAMPA \n per uscire digitare EXIT')
         azione = input()
+        azione = azione.upper()
         if azione == 'AGGIUNGI':
             rubrica.aggiungi()
             print('Contatto aggiunto:', bool(rubrica.info))
             print(rubrica.info)
         elif azione == 'RIMUOVI':
+            print('Contatti attuali nella rubrica sono:')
+            
             print('Inserire il nome del contatto da rimuovere:')
             nome_da_rimuovere = input()
             rubrica.rimuovi(nome_da_rimuovere)
+        elif azione == 'SALVA':
+            print('Inserire il nome del file in cui salvare la rubrica (con estensione .json o .txt):')
+            nome_file = input()
+            rubrica.salva(nome_file)
+        elif azione == 'STAMPA':
+            print('Inserire il nome del contatto da stampare:')
+            nome_da_stampare = input()
+            rubrica.stampa(nome_da_stampare)
