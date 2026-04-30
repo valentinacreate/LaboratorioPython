@@ -23,12 +23,12 @@ class Rubrica:
                     nome, giorno, mese, anno, eta, sesso, mail = line.strip().split(', ')  # separazione delle informazioni della riga usando la virgola come delimitatore
                     self.info[nome] = {'giorno': int(giorno), 'mese': mese, 'anno': int(anno), 'eta': int(eta), 'sesso': sesso, 'mail': mail}  # creazione di un nuovo elemento nel dizionario rubrica con le informazioni estratte dalla riga del file di testo
         else:
-            raise ValueError("Il file deve terminare con .json o .txt")
+            print("Il file deve terminare con .json o .txt")
         return self.info
 
     def aggiungi(self):
         if not self.info:
-            raise ValueError("Prima apri una rubrica")
+            print("Prima apri una rubrica")
         else:
             print("Dati del nuovo contatto:")
             while True:  # ciclo per assicurarsi che l'utente inserisca un nome completo valido
@@ -85,9 +85,13 @@ class Rubrica:
     def rimuovi(self, nome):
         nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
-            raise ValueError("La rubrica è vuota")
-        elif nome not in self.info:
-            raise ValueError(f"Il contatto {nome} non esiste in rubrica")
+            print("La rubrica è vuota")
+        while nome not in self.info:
+            print(f"Il contatto {nome} non esiste in rubrica")
+            print('Inserire un nome valido:')
+            nome = input()
+            nome = " ".join([parte.capitalize() for parte in nome.split()])
+
         else:
             del self.info[nome]  # rimozione dell'elemento dal dizionario rubrica
             with open("rubrica.json", "w") as write_file:  # apertura del file in modalità scrittura
@@ -96,7 +100,7 @@ class Rubrica:
     
     def salva(self, nome_file):
         if not self.info:
-            raise ValueError("La rubrica è vuota")
+            print("La rubrica è vuota")
         elif nome_file.endswith('.json'):
             with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
                 json.dump(self.info, out_file, indent=4)  # scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
@@ -105,13 +109,15 @@ class Rubrica:
                 for nome, contatto in self.info.items():  # iterazione su ogni elemento del dizionario rubrica
                     line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['età']}, {contatto['sesso']}, {contatto['mail']}\n"  # creazione di una stringa formattata con le informazioni del contatto
                     out_file.write(line)  # scrittura della stringa nel file di testo
-    
+        else:
+            print("Estensione del file non valida. Scegliere .json o .txt.")
+
     def stampa(self, nome):
         nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
-            raise ValueError("La rubrica è vuota")
+            print("La rubrica è vuota")
         elif nome not in self.info:
-            raise ValueError(f"Il contatto {nome} non esiste in rubrica")
+            print(f"Il contatto {nome} non esiste in rubrica")
         else:
             contatto = self.info[nome]  # recupero delle informazioni del contatto dal dizionario rubrica
             print(f"Nome: {nome}")
