@@ -5,13 +5,13 @@
 #Data:29 aprile 2026
 
 #Descrizione dell’esercizio6.py:
-#Riscrivete l’esercizio 3 della rubrica sotto forma di “classe”:
-#in un file separato, create una classe rubrica la classe rubrica deve fare 5 azioni:
-#aprire una rubrica leggendola da un file (JSON oppure testo) - APRI
-#aggiungere un elemento alla rubrica - AGGIUNGI
-#rimuovere un elemento dalla rubrica (dato il nome) - RIMUOVI
-#salvare la rubrica su un file (JSON o testo) - SALVA
-#tampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
+#   - Riscrivete l’esercizio 3 della rubrica sotto forma di “classe”:
+#       - in un file separato, create una classe rubrica la classe rubrica deve fare 5 azioni:
+#       - aprire una rubrica leggendola da un file (JSON oppure testo) - APRI
+#       - aggiungere un elemento alla rubrica - AGGIUNGI
+#       - rimuovere un elemento dalla rubrica (dato il nome) - RIMUOVI
+#       - salvare la rubrica su un file (JSON o testo) - SALVA
+#       - stampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
 #la classe rubrica deve inizializzarsi con un dizionario (come nell’esercizio 3)
 #la classe rubrica deve avere un classmethod per inizializzarla con un file JSON
 #la classe rubrica deve avere un classmethod per inizializzarla con un file testo

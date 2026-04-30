@@ -3,7 +3,7 @@
 #   - aggiungere un elemento alla rubrica - AGGIUNGI
 #   - rimuovere un elemento dalla rubrica (dato il nome) - RIMUOVI
 #   - salvare la rubrica su un file (JSON o testo) - SALVA
-#stampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
+#   - stampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
 import json
 import datetime
 giorno_oggi = datetime.datetime.now().day
