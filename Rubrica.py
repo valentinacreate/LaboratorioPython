@@ -83,6 +83,7 @@ class Rubrica:
                json.dump(self.info, write_file, indent=4)                    #scrittura del dizionario rubrica nel file JSON con indentazione di 4 spazi per una migliore leggibilità
 
     def rimuovi(self, nome):
+        nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
             raise ValueError("La rubrica è vuota")
         elif nome not in self.info:
@@ -102,10 +103,11 @@ class Rubrica:
         elif nome_file.endswith('.txt'):
             with open(nome_file, 'w', encoding='utf-8') as out_file:  # apertura del file in modalità scrittura
                 for nome, contatto in self.info.items():  # iterazione su ogni elemento del dizionario rubrica
-                    line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['eta']}, {contatto['sesso']}, {contatto['mail']}\n"  # creazione di una stringa formattata con le informazioni del contatto
+                    line = f"{nome}, {contatto['giorno']}, {contatto['mese']}, {contatto['anno']}, {contatto['età']}, {contatto['sesso']}, {contatto['mail']}\n"  # creazione di una stringa formattata con le informazioni del contatto
                     out_file.write(line)  # scrittura della stringa nel file di testo
     
     def stampa(self, nome):
+        nome = " ".join([parte.capitalize() for parte in nome.split()])
         if not self.info:
             raise ValueError("La rubrica è vuota")
         elif nome not in self.info:
@@ -148,6 +150,8 @@ if __name__ == '__main__':
             rubrica.salva(nome_file)
             loop = False
         elif azione == 'STAMPA':
+            print('Contatti attuali nella rubrica sono:')
+            print([nome for nome in rubrica.info])
             print('Inserire il nome del contatto da stampare:')
             nome_da_stampare = input()
             rubrica.stampa(nome_da_stampare)
