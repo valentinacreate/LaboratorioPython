@@ -25,20 +25,22 @@ import Rubrica
 
 def main():
     rubrica = Rubrica.Rubrica()
-    print('\nInserire il nome della rubrica da aprire incluso di estensione (.json o .txt):')
-    nome_file = input()
-    dati = rubrica.apri(nome_file)
-    print('\nFile aperto:', bool(dati))
+    
 
     while True:
-        print('\nScegliere un\'azione da svolgere: AGGIUNGI, RIMUOVI, SALVA, STAMPA')
+        print('\nScegliere un\'azione da svolgere: APRI, AGGIUNGI, RIMUOVI, SALVA, STAMPA')
         print('Per uscire digitare EXIT')
         azione = input().strip().upper()
 
-        if azione == 'AGGIUNGI':
+        if azione == 'APRI':
+            print('\nInserire il nome della rubrica da aprire, inclusa la sua estensione (.json o .txt):')
+            nome_file = input()
+            dati = rubrica.apri(nome_file)
+            print('\nFile aperto:', bool(dati))
+        elif azione == 'AGGIUNGI':
             rubrica.aggiungi()
             print('\nContatto aggiunto:', bool(rubrica.info))
-            print(rubrica.info)
+            print
         elif azione == 'RIMUOVI':
             print('\nContatti attuali nella rubrica sono:')
             print([nome for nome in rubrica.info])

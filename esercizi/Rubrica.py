@@ -1,14 +1,21 @@
-#la classe rubrica deve fare 5 azioni:
+
+#Rubrica.py
+#Creato da: Valentina Furlanis IN0501333
+#Data: 29 aprile 2026
+
+#La classe rubrica deve fare 5 azioni:
 #   - aprire una rubrica leggendola da un file (JSON oppure testo) - APRI
 #   - aggiungere un elemento alla rubrica - AGGIUNGI
 #   - rimuovere un elemento dalla rubrica (dato il nome) - RIMUOVI
 #   - salvare la rubrica su un file (JSON o testo) - SALVA
 #   - stampare tutte le informazioni di un contatto (data il nome), come nell’eserczio 3 - STAMPA
+
 import json
 import datetime
 
 giorno_oggi = datetime.datetime.now().day
 mese_oggi = datetime.datetime.now().month
+
 anno_oggi = datetime.datetime.now().year
 
 class Rubrica:
@@ -70,44 +77,62 @@ class Rubrica:
             if nome:
                 nome = " ".join([parte.capitalize() for parte in nome.split()])
                 break
-            else:
-                print("\nNome non valido. Inserire almeno un nome.")
+            print("\nNome non valido. Inserire almeno un nome.")
 
         while True:
             print('\nInserire il giorno di nascita:')
-            try:
-                giorno = int(input())
-            except ValueError:
-                print("Valore non valido. Inserire un numero tra 1 e 31.")
-                continue
+            giorno = int(input())
             if 1 <= giorno <= 31:
                 break
             print("Valore non valido. Inserire un giorno compreso tra 1 e 31.")
 
         while True:
-            print('\nInserire il mese di nascita:')
+            print('\nInserire il nome del mese di nascita:')
             mese = input().strip()
             if mese.capitalize() in ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']:
                 mese = mese.capitalize()
                 break
             print("Valore non valido. Inserire un mese valido (es. Gennaio, Febbraio, etc.).")
+        if mese=='Gennaio':
+            mese_num = 1
+        elif mese=='Febbraio':
+            mese_num = 2
+        elif mese=='Marzo':     
+            mese_num = 3
+        elif mese=='Aprile':
+            mese_num = 4
+        elif mese=='Maggio':
+            mese_num = 5
+        elif mese=='Giugno':
+            mese_num = 6
+        elif mese=='Luglio':
+            mese_num = 7
+        elif mese=='Agosto':
+            mese_num = 8
+        elif mese=='Settembre':
+            mese_num = 9
+        elif mese=='Ottobre':
+            mese_num = 10
+        elif mese=='Novembre':      
+            mese_num = 11
+        else:
+            mese_num = 12
 
         while True:
             print('\nInserire l\'anno di nascita:')
-            try:
-                anno = int(input())
-            except ValueError:
-                print("Valore non valido. Inserire un anno corretto.")
-                continue
+            anno = int(input())
             if anno <= anno_oggi:
                 break
-            print("Valore non valido. L'anno non può essere nel futuro.")
+            else:
+                print("Valore non valido. L'anno non può essere nel futuro.")
 
         eta = anno_oggi - anno
+        if (mese_oggi < mese_num) or (mese_oggi == mese_num and giorno_oggi < giorno):
+            eta -= 1
         print("\nInserimento automatico dell'età:", eta)
 
         while True:
-            print("\nInserire il sesso:")
+            print("\nInserire il sesso, M o F:")
             sesso = input().strip()
             if sesso.upper() in ['M', 'F']:
                 sesso = sesso.upper()

@@ -14,38 +14,44 @@
 #   - Ogni soluzione è ‘simmetrica’ per rotazioni della scacchiera 8x8 di 90, 180 e 270 gradi. Scrivete delle funzioni che, una volta trovata una soluzione alla scacchiera, costruiscano le 4 soluzioni simmetriche per rotazione. 
 #   - Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
-import random
-import time
-random_generator = random.Random()
 
-def stessa_diagonale(x0, y0, x1, y1):
+import random                                                   #importo la libreria random per generare permutazioni casuali
+import time                                                     #importo la libreria time per misurare il tempo impiegato a trovare le soluzioni
+random_generator = random.Random()                              #creo un'istanza di random.Random() per generare numeri casuali
+
+def stessa_diagonale(x0, y0, x1, y1):                           
     '''Ritorna Vero se posizioni (x0, y0) e (x1, y1) sono sulla stessa "diagonale"'''
-    dy = abs(y1 - y0) 
-    dx = abs(x1 - x0)   
+    dy = abs(y1 - y0)                                           #calcolo la differenza assoluta tra le coordinate y
+    dx = abs(x1 - x0)                                           #calcolo la differenza assoluta tra le coordinate x               
     
-    if dx==dy:
-        return True
+    if dx==dy:                                                  #se la differenza tra le coordinate x è uguale alla differenza tra le coordinate y
+        return True                                             #allora le posizioni sono sulla stessa diagonale, quindi ritorno True
     else:
-        return False
+        return False                                            #altrimenti non sono sulla stessa diagonale, quindi ritorno False   
 
 def incrocia_colonne(posizioni):
-    '''Ritorna Vero se la colonna 'col', che indica la posizione della regina
-      (col, posizioni[col]) incrocia la diagonale di qualcuna 
-      delle posizioni delle regine precedenti '''
+    '''Ritorna Vero se due regine si trovano sulla stessa colonna o sulla stessa diagonale'''
     
-    for c in range(len(posizioni)):  
-        for j in range(c+1, len(posizioni)):   
-            if stessa_diagonale(c, posizioni[c], j, posizioni[j]):
-                return True 
-    return False   
+    for c in range(len(posizioni)):                                             #itero su ogni regina della lista posizioni, dove c rappresenta la colonna e posizioni[c] rappresenta la riga
+        for j in range(c+1, len(posizioni)):                                    #itero su ogni regina successiva alla regina c, dove j rappresenta la colonna, che parte da c+1 e posizioni[j] rappresenta la riga
+            if stessa_diagonale(c, posizioni[c], j, posizioni[j]):              #chiamo la funzione stessa_diagonale per verificare se le regine si trovano sulla stessa diagonale
+                return True                                                     #se due regine si trovano sulla stessa diagonale, allora ritorno True
+    return False                                                                #se nessuna coppia di regine si trova sulla stessa colonna o sulla stessa diagonale, allora ritorno False
 
 def soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni):
-    lista_soluzione = list(range(dimensionescacchiera))
-    soluzioni_uniche = set()
-    soluzioni_trovate = 0
-    tentativi = 0
-    soluzioni_ripetute = 0
-    start = time.perf_counter()
+    '''Dati i dati inseriti dall'utente, trovo le soluzioni ammissibili per il problema delle regine e stampo a video:
+        - le soluzioni uniche trovate
+        - il numero di tentativi totali per trovare le soluzioni
+        - il numero di soluzioni che potevano essere ripetute
+        - il tempo totale impiegato per trovare le soluzioni
+        - il tempo medio per soluzione'''
+    
+    lista_soluzione = list(range(dimensionescacchiera))                     #creo una lista che rappresenta la soluzione, dove l'ordine in cui appaiono i valori rappresenta la riga e il valore rappresenta la colonna in cui si trova la regina
+    soluzioni_uniche = set()                                                #creo un set per memorizzare le soluzioni uniche trovate, in modo da evitare di contare soluzioni duplicate
+    soluzioni_trovate = 0                                                   #creo una variabile che funge da contatore per il numero di soluzioni uniche trovate
+    tentativi = 0                                                           #creo una variabile che funge da contatore per il numero di tentativi totali per trovare le soluzioni
+    soluzioni_ripetute = 0                                                  #creo una variabile che funge da contatore per il numero di soluzioni che potevano essere ripetute, ovvero quelle soluzioni che sono state generate ma erano già presenti nel set delle soluzioni uniche
+    start = time.perf_counter()                                             #registro il tempo di inizio della ricerca delle soluzioni, in modo da poter calcolare il tempo totale impiegato alla fine della ricerca
 
     while soluzioni_trovate < numerosoluzioni:
         random_generator.shuffle(lista_soluzione)

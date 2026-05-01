@@ -41,7 +41,7 @@ def genera_lista(n):
     '''utilizzando il valore inserito genero una lista'''
   
     lista= []                                     #creo una lista vuota
-    if (n==1):                                  #se il numero inserito è 1, aggiungo 1 alla lista e restituisco la lista
+    if (n==1):                                    #se il numero inserito è 1, aggiungo 1 alla lista e restituisco la lista
         lista.append(n)
         return lista
     while (n>1 and len(lista)<100):               #continuo a generare numeri finchè n è maggiore di 1 e la lista ha meno di 100 numeri 
