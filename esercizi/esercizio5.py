@@ -115,8 +115,10 @@ def rotazione_90_gradi(soluzione):
     '''Ritorna la soluzione ruotata di 90 gradi in senso orario'''
     print('Rotazione di 90 gradi: ')                                           #avviso che successivamente verrà stampata la soluzione ruotata di 90 gradi in senso orario
     soluzione90=[0]*len(soluzione)                                             #inizializzo una lista vuota per memorizzare la soluzione 
-    for r, c in enumerate(soluzione):                                          #itero su ogni elemento della soluzione, dove r rappresenta la riga e c rappresenta la colonna in cui si trova la regina
-        soluzione90[c] = (len(soluzione)-1)-r                                  # 
+    for r, c in enumerate(soluzione):                                          #itero su ogni elemento della soluzione, dove r rappresenta la riga e c rappresenta la colonna in cui si trova la regina, la funzione enumerate mi permette di ottenere sia l'indice r che il valore c per ogni elemento della soluzione
+        soluzione90[c] = (len(soluzione)-1)-r                                  
+        #con una rotazione di 90 gradi in senso orario, colonne e righe si scambiano, 
+        #   quindi la regina che era alla riga r e colonna c, dopo la rotazione sarà alla riga c e colonna n-1-r, dove n è la dimensione della scacchiera
     print(soluzione90)                                                         #stampo a video la soluzione 
 
 def rotazione_180_gradi(soluzione):
@@ -125,7 +127,12 @@ def rotazione_180_gradi(soluzione):
     n=len(soluzione)                                                        #calcolo la dimensione della scacchiera
     soluzione180 = [0] * n                                                  #inizializzo una lista vuota per memorizzare la soluzione             
     for col in range(n):                                                    #itero su ogni colonna della soluzione, dove col rappresenta la colonna in cui si trova la regina
-        soluzione180[(n-1) - col] = (n-1) - soluzione[col]                  #
+        soluzione180[(n-1) - col] = (n-1) - soluzione[col]                  
+        #soluzione180[(n-1) - col]: Assegna la regina alla nuova colonna 
+        #   (se era in colonna col, dopo una rotazione di 180 gradi sarà in colonna n-1-col)
+        #soluzione[col]: Recupera il valore della riga dove si trova la regina nella colonna col
+        #(n-1) - soluzione[col]: Calcola la nuova riga dopo la rotazione,
+        #   (se la regina era alla riga r, dopo una rotazione di 180 gradi sarà alla riga n-1-r)
     print(soluzione180)                                                     #stampo a video la soluzione ruotata di 180 gradi in senso orario
 
 def rotazione_270_gradi(soluzione):
@@ -133,7 +140,9 @@ def rotazione_270_gradi(soluzione):
     print('Rotazione di 270 gradi: ')                                       #avviso che successivamente verrà stampata la soluzione ruotata di 270 gradi in senso orario
     soluzione270=[0]*len(soluzione)                                         #inizializzo una lista vuota per memorizzare la soluzione
     for r,c in enumerate(soluzione):                                        #itero su ogni elemento della soluzione, dove r rappresenta la riga e c rappresenta la colonna in cui si trova la regina
-        soluzione270[(len(soluzione)-1)-c]=r                                #
+        soluzione270[(len(soluzione)-1)-c]=r                                
+        #con una rotazione di 270 gradi in senso orario, colonne e righe si scambiano, come se la scacchiera venisse ruotata di 90 gradi in senso antiorario,
+        #   quindi la regina che era alla riga r e colonna c, dopo la rotazione sarà alla riga n-1-c e colonna r, dove n è la dimensione della scacchiera
     print(soluzione270)                                                     #stampo a video la soluzione ruotata di 270 gradi in senso orario
 
 def main():
