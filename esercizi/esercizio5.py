@@ -53,98 +53,106 @@ def soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni):
     soluzioni_ripetute = 0                                                  #creo una variabile che funge da contatore per il numero di soluzioni che potevano essere ripetute, ovvero quelle soluzioni che sono state generate ma erano già presenti nel set delle soluzioni uniche
     start = time.perf_counter()                                             #registro il tempo di inizio della ricerca delle soluzioni, in modo da poter calcolare il tempo totale impiegato alla fine della ricerca
 
-    while soluzioni_trovate < numerosoluzioni:
-        random_generator.shuffle(lista_soluzione)
-        tentativi += 1
-        while incrocia_colonne(lista_soluzione):
-            random_generator.shuffle(lista_soluzione)
-            tentativi += 1
+    while soluzioni_trovate < numerosoluzioni:                              #continuo a cercare soluzioni finché il numero di soluzioni uniche trovate è inferiore al numero di soluzioni desiderate inserito dall'utente
+        random_generator.shuffle(lista_soluzione)                           #genero una permutazione casuale della lista_soluzione, che rappresenta una possibile disposizione delle regine sulla scacchiera, e incremento il contatore dei tanativi totali
+        tentativi += 1                                                      #incremento il contatore dei tentativi totali, per tenere traccia di quante permutazioni sono state generate 
+        while incrocia_colonne(lista_soluzione):                            #verifico se la permutazione generata è una soluzione valida per l'algoritmo delle n regine
+            random_generator.shuffle(lista_soluzione)                       #se la permutazione non è una soluzione valida, genero una nuova permutazione casuale 
+            tentativi += 1                                                  #incremento il contatore dei tentativi totali
 
-        if tuple(lista_soluzione) not in soluzioni_uniche:
-            soluzioni_uniche.add(tuple(lista_soluzione))
-            soluzioni_trovate += 1
-            print(f"\nSoluzione {soluzioni_trovate}:\n{lista_soluzione}")
-            print(f"\nSoluzioni per rotazione della scacchiera con la soluzione {soluzioni_trovate}:")
-            rotazione_90_gradi(lista_soluzione)
-            rotazione_180_gradi(lista_soluzione)
-            rotazione_270_gradi(lista_soluzione)
+        if tuple(lista_soluzione) not in soluzioni_uniche:                                  #se la permutazione generata è una soluzione valida e non è già presente nel set delle soluzioni uniche
+            soluzioni_uniche.add(tuple(lista_soluzione))                                    #aggiungo la soluzione al set delle soluzioni uniche, convertendo la lista in una tupla per poterla memorizzare nel set
+            soluzioni_trovate += 1                                                          #incremento il contatore delle soluzioni uniche trovate, per tenere traccia di quante soluzioni uniche sono state generate
+            print(f"\nSoluzione {soluzioni_trovate}:\n{lista_soluzione}")                   #stampo a video la soluzione trovata, indicando il numero della soluzione trovata 
+            print(f"\nSoluzioni per rotazione della scacchiera con la soluzione {soluzioni_trovate}:")          
+            rotazione_90_gradi(lista_soluzione)                                             #chiamo la funzione rotazione_90_gradi per stampare la soluzione ruotata di 90 gradi in senso orario
+            rotazione_180_gradi(lista_soluzione)                                            #chiamo la funzione rotazione_180_gradi per stampare la soluzione ruotata di 180 gradi in senso orario
+            rotazione_270_gradi(lista_soluzione)                                            #chiamo la funzione rotazione_270_gradi per stampare la soluzione ruotata di 270 gradi in senso orario
 
         else:
-            soluzioni_ripetute += 1
-            if soluzioni_ripetute > numerosoluzioni * 10:  # Se ci sono troppe soluzioni ripetute, interrompiamo per evitare un loop infinito
-                print("Troppe soluzioni ripetute, interrompo la ricerca.")
+            soluzioni_ripetute += 1                                                         #se la permutazione generata è una soluzione valida ma è già presente nel set delle soluzioni uniche, incremento il contatore delle soluzioni che potevano essere ripetute, per tenere traccia di quante soluzioni duplicate sono state generate
+            if soluzioni_ripetute > numerosoluzioni * 10:                                   #se ci sono troppe soluzioni ripetute, interrompiamo per evitare un loop infinito
+                print("Troppe soluzioni ripetute, interrompo la ricerca.")                  #avviso l'utente che ci sono troppe soluzioni ripetute e interrompo la ricerca, per evitare un loop infinito in cui vengono generate solo soluzioni duplicate senza trovare nuove soluzioni uniche
                 break
         
-    end = time.perf_counter()
+    end = time.perf_counter()                                                               #registro il tempo di fine della ricerca delle soluzioni, in modo da poter calcolare il tempo totale impiegato alla fine della ricerca
 
-    print(f"\nTentativi totali: {tentativi}")
-    print(f"Numero soluzioni che potevano essere ripetute: {soluzioni_ripetute}")
-    print(f"Tempo totale: {end - start:.4f} secondi")
-    print(f"Tempo medio per soluzione: {(end - start) / numerosoluzioni:.4f} secondi")
+    print(f"\nTentativi totali: {tentativi}")                                               #stampo il numero di tentativi totali per trovare le soluzioni, che corrisponde al numero di permutazioni generate durante la ricerca
+    print(f"Numero soluzioni che potevano essere ripetute: {soluzioni_ripetute}")           #stampo il numero di soluzioni che potevano essere ripetute
+    print(f"Tempo totale: {end - start:.4f} secondi")                                       #stampo il tempo totale impiegato per trovare le soluzioni, cioè la differenza tra il tempo di fine e il tempo di inizio della ricerca
+    print(f"Tempo medio per soluzione: {(end - start) / numerosoluzioni:.4f} secondi")      #stampo il tempo medio per soluzione, calcolato come il tempo totale diviso per il numero di soluzioni uniche trovate, 
+                                                                                            #così da avere un'indicazione del tempo medio per trovare una soluzione unica
 
 def dimensione_massima_per_tempo_limite():
     '''Trova la dimensione massima della scacchiera per cui si riesce a trovare una soluzione in meno di 15 secondi'''
-    tempo_limite = 15  # Secondi:
-    N = 4  # Partiamo da 4, poiché per N=2 e N=3 non esistono soluzioni
-    start = time.perf_counter()
-    lista_soluzione = list(range(N))
+    tempo_limite = 15                                                                       #definisco il tempo limite in secondi, che rappresenta il tempo massimo che vogliamo impiegare per trovare una soluzione
+    N = 4                                                                                   #partiamo da 4, poiché per N=2 e N=3 non esistono soluzioni
+    start = time.perf_counter()                                                             #registro il tempo di inizio della ricerca della soluzione               
+    lista_soluzione = list(range(N))                                                        #creo una lista che rappresenta la soluzione, dove l'ordine degli elementi rappresenta la riga e il valore rappresenta la colonna in cui si trova la regina
 
-    while incrocia_colonne(lista_soluzione):
-        random_generator.shuffle(lista_soluzione)
-    end = time.perf_counter()
-    print(f"\nTempo impiegato per dimensione {N}:{end - start:.4f} secondi")
-
-    while (end - start) < tempo_limite:
-        start = time.perf_counter()
-        N += 1
-        lista_soluzione = list(range(N))
-        while incrocia_colonne(lista_soluzione):
-            random_generator.shuffle(lista_soluzione)
-        end = time.perf_counter()       
-        print(f"Tempo impiegato per dimensione {N}:{end - start:.4f} secondi")
-        if (end - start) >= tempo_limite:
-            print(f"\nIl tempo ha superato il limite di {tempo_limite} secondi per dimensione {N}.")
-            print(f"La dimensione massima della scacchiera per trovare una soluzione in meno di {tempo_limite} secondi è: {N - 1}")
-            break
+    while incrocia_colonne(lista_soluzione):                                                #verifico se la soluzione iniziale è valida 
+        random_generator.shuffle(lista_soluzione)                                           #se non lo è genero permutazioni casuali finché non trovo una soluzione valida
+    end = time.perf_counter()                                                               #registro il tempo di fine della ricerca della soluzione, in modo da poter calcolare il tempo impiegato per trovare la soluzione    
+    print(f"\nTempo impiegato per dimensione {N}:{end - start:.4f} secondi")                #stampo il tempo impiegato per trovare una soluzione valida
+    #la stampa a video è utile per avvisare l'utente che la ricerca sta procedendo, soprattutto per dimensioni più grandi della scacchiera, dove la ricerca potrebbe richiedere più tempo, così da evitare che l'utente pensi che il programma si sia bloccato
+    
+    while (end - start) < tempo_limite:                                                     #se il tempo impiegato è < di 15s
+        start = time.perf_counter()                                                         #registro il tempo di inizio della ricerca della soluzione per la dimensione successiva      
+        N += 1                                                                              #incremento la dimensione della scacchiera di 1
+        lista_soluzione = list(range(N))                                                    #creo una nuova lista per la scacchiera con la nuova dimensione
+        while incrocia_colonne(lista_soluzione):                                            #verifico se la soluzione iniziale è valida per la nuova dimensione della scacchiera
+            random_generator.shuffle(lista_soluzione)                                       #se non lo è genero permutazioni casuali finché non trovo una soluzione valida per la nuova dimensione della scacchiera
+        end = time.perf_counter()                                                           #registro il tempo di fine della ricerca della soluzione per la nuova dimensione
+        print(f"Tempo impiegato per dimensione {N}:{end - start:.4f} secondi")              #stampo il tempo impiegato per trovare una soluzione valida per la nuova dimensione della scacchiera
+        if (end - start) >= tempo_limite:                                                   #se il tempo impiegato per trovare una soluzione valida per la nuova dimensione è >= al tempo limite
+            #avviso l'utente che il tempo ha superato il limite per la nuova dimensione della scacchiera
+            print(f"\nIl tempo ha superato il limite di {tempo_limite} secondi per dimensione {N}.") 
+            #stampo la dimensione massima della scacchiera con cui è stata trovata una soluzione in meno di 15 secondi                                       
+            print(f"La dimensione massima della scacchiera per trovare una soluzione in meno di {tempo_limite} secondi è: {N - 1}")         
+            break                                                                           #interrompo la ricerca, poiché abbiamo trovato la risposta alla domanda
 
 def rotazione_90_gradi(soluzione):
     '''Ritorna la soluzione ruotata di 90 gradi in senso orario'''
-    print('Rotazione di 90 gradi: ')
-    soluzione90=[0]*len(soluzione)
-    for r,c in enumerate(soluzione):
-        soluzione90[c] = (len(soluzione)-1)-r
-    print(soluzione90)
+    print('Rotazione di 90 gradi: ')                                           #avviso che successivamente verrà stampata la soluzione ruotata di 90 gradi in senso orario
+    soluzione90=[0]*len(soluzione)                                             #inizializzo una lista vuota per memorizzare la soluzione 
+    for r, c in enumerate(soluzione):                                          #itero su ogni elemento della soluzione, dove r rappresenta la riga e c rappresenta la colonna in cui si trova la regina
+        soluzione90[c] = (len(soluzione)-1)-r                                  # 
+    print(soluzione90)                                                         #stampo a video la soluzione 
 
 def rotazione_180_gradi(soluzione):
     '''Ritorna la soluzione ruotata di 180 gradi in senso orario'''
-    print('Rotazione di 180 gradi: ')
-    n=len(soluzione)
-    soluzione180 = [0] * n
-    for col in range(n):
-        soluzione180[(n-1) - col] = (n-1) - soluzione[col]
-    print(soluzione180)
+    print('Rotazione di 180 gradi: ')                                       #avviso che successivamente verrà stampata la soluzione ruotata di 180 gradi in senso orario
+    n=len(soluzione)                                                        #calcolo la dimensione della scacchiera
+    soluzione180 = [0] * n                                                  #inizializzo una lista vuota per memorizzare la soluzione             
+    for col in range(n):                                                    #itero su ogni colonna della soluzione, dove col rappresenta la colonna in cui si trova la regina
+        soluzione180[(n-1) - col] = (n-1) - soluzione[col]                  #
+    print(soluzione180)                                                     #stampo a video la soluzione ruotata di 180 gradi in senso orario
 
 def rotazione_270_gradi(soluzione):
     '''Ritorna la soluzione ruotata di 270 gradi in senso orario'''
-    print('Rotazione di 270 gradi: ')
-    soluzione270=[0]*len(soluzione)
-    for r,c in enumerate(soluzione):
-        soluzione270[(len(soluzione)-1)-c]=r
-    print(soluzione270)
+    print('Rotazione di 270 gradi: ')                                       #avviso che successivamente verrà stampata la soluzione ruotata di 270 gradi in senso orario
+    soluzione270=[0]*len(soluzione)                                         #inizializzo una lista vuota per memorizzare la soluzione
+    for r,c in enumerate(soluzione):                                        #itero su ogni elemento della soluzione, dove r rappresenta la riga e c rappresenta la colonna in cui si trova la regina
+        soluzione270[(len(soluzione)-1)-c]=r                                #
+    print(soluzione270)                                                     #stampo a video la soluzione ruotata di 270 gradi in senso orario
 
-print('Indicare la dimensione della scacchiera (NxN):')
-dimensionescacchiera= int(input())
+def main():
+    '''Funzione principale main'''
 
-while dimensionescacchiera==2 or dimensionescacchiera==3:
-    print('Non esistono soluzioni per una scacchiera di dimensione 2 o 3.')
-    print('Inserire nuovamente la dimensione della scacchiera (NxN):')
-    dimensionescacchiera = int(input())
+    print('Indicare la dimensione della scacchiera (NxN):')                         #chiedo all'utente di inserire la dimensione della scacchiera
+    dimensionescacchiera= int(input())                                              #memorizzo la dimensione della scacchiera inserita dall'utente in una variabile di tipo intero
 
-print('inserire il numero di soluzioni desiderate:')
-numerosoluzioni = int(input())
+    while dimensionescacchiera==2 or dimensionescacchiera==3:                       #se la dimensione della scacchiera è 2 o 3
+        print('Non esistono soluzioni per una scacchiera di dimensione 2 o 3.')     #avviso l'utente che non esistono soluzioni per una scacchiera di dimensione 2 o 3
+        print('Inserire nuovamente la dimensione della scacchiera (NxN):')          #chiedo nuovamente all'utente di inserire la dimensione della scacchiera, finché non viene inserita una dimensione valida (diversa da 2 e 3)
+        dimensionescacchiera = int(input())                                         #memorizzo la dimensione della scacchiera inserita dall'utente in una variabile di tipo intero
 
-soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni)
-dimensione_massima_per_tempo_limite()
-print("\nSoluzioni uniche e rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8:\n")
-soluzioni_da_dati_utente(8, 5)
+    print('inserire il numero di soluzioni desiderate:')                            #chiedo all'utente di inserire il numero di soluzioni desiderate
+    numerosoluzioni = int(input())                                                  #memorizzo il numero di soluzioni desiderate inserito dall'utente in una variabile di tipo intero
 
+    soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni)                 #chiamo la funzione soluzioni_da_dati_utente, passando come argomenti i dati inseriti dall'utente
+    dimensione_massima_per_tempo_limite()                                           #chiamo la funzione dimensione_massima_per_tempo_limite per trovare la dimensione massima della scacchiera per cui si riesce a trovare una soluzione in meno di 15 secondi
+    print("\nSoluzioni uniche e rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8:\n")
+    soluzioni_da_dati_utente(8, 5)                                                  #chiamo la funzione soluzioni_da_dati_utente, passando come argomenti la dimensione della scacchiera (8) e il numero di soluzioni desiderate (5), per trovare 5 soluzioni uniche e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
+
+main()
