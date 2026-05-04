@@ -11,4 +11,12 @@
 #aumentando i lati del poligono la vicinanza alla circonferenza aumenta e 
 #l'approssimazione di pigreco migliora
 
-
+class MetodoArchimede:
+    def __init__(self):
+        self.poligono_esterno
+        self.poligono_interno
+        self.circonferenza
+        self.pi_greco
+        
+        pass
+    pass
