@@ -11,15 +11,26 @@
 #aumentando i lati del poligono la vicinanza alla circonferenza aumenta e 
 #l'approssimazione di pigreco migliora
 import math
+import turtle
 
 class MetodoArchimede:
     def __init__(self):
-        self.raggio=1.0
-        
-    def calcolo_pi(self, itera):
-        n=6
-        perimetro_circoscritto=(n*2*self.raggio)/math.sqrt(3)
-        perimetro_insritto=n*self.raggio
+        self.raggio = 1.0
+        self.schermo = turtle.Screen()
+        self.schermo.setup(800, 800)
+        self.penna = turtle.Turtle()
+        self.penna.hideturtle()
+        self.penna.speed("fastest")
+    
+    def disegna_iterazione(n, pi_min, pi_max):
+        self.disegna_
+        pass
+
+
+    def calcolo_pi(self, itera, grafica = False):
+        n = 6
+        perimetro_circoscritto = (n * 2 * self.raggio) / math.sqrt(3)
+        perimetro_insritto = n * self.raggio
 
         for i in range(itera):
             pi_min = perimetro_circoscritto / (2 * self.raggio)
@@ -29,9 +40,13 @@ class MetodoArchimede:
             print('Il valore di pi greco è compreso tra:')
             print(f"{pi_min} data dal poligono circoscritto con {n} lati \n{pi_max} data dal poligono inscritto con {n} lati")
             
+            if grafica:
+                    self.disegna_iterazione(n, pi_min, pi_max )
             perimetro_circoscritto = (2 * perimetro_circoscritto * perimetro_insritto) / (perimetro_circoscritto + perimetro_insritto)
             perimetro_insritto = math.sqrt(perimetro_circoscritto * perimetro_insritto)
             n *= 2
+        if grafica:
+            turtle.done()
 
 arch = MetodoArchimede()
 print('quante volte vuoi iterare l\'algoritmo?')
