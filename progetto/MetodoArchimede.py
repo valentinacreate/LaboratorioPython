@@ -23,7 +23,9 @@ class MetodoArchimede:
         self.penna.speed("fastest")
     
     def disegna_iterazione(n, pi_min, pi_max):
-        self.disegna_
+        self.disegna_cerchio()
+        self.disegna_poligono_inscritto(n, pi_max)
+        self.disegna_poligono_circoscritto(n, pi_min)
         pass
 
 
@@ -34,14 +36,13 @@ class MetodoArchimede:
 
         for i in range(itera):
             pi_min = perimetro_circoscritto / (2 * self.raggio)
-            pi_max = perimetro_circoscritto / (2 * self.raggio)
-
+            pi_max = perimetro_inscritto / (2 * self.raggio)
             print(f"\n{i+1}^ interazione")
             print('Il valore di pi greco è compreso tra:')
             print(f"{pi_min} data dal poligono circoscritto con {n} lati \n{pi_max} data dal poligono inscritto con {n} lati")
             
             if grafica:
-                    self.disegna_iterazione(n, pi_min, pi_max )
+                self.disegna_iterazione(n, pi_min, pi_max )
             perimetro_circoscritto = (2 * perimetro_circoscritto * perimetro_insritto) / (perimetro_circoscritto + perimetro_insritto)
             perimetro_insritto = math.sqrt(perimetro_circoscritto * perimetro_insritto)
             n *= 2
