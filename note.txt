@@ -265,3 +265,56 @@ Per convenzione si usa self e cls
 
 28 aprile --------------------------------------------------------------------------------------------------------------
 http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione09/Lezione_9.html
+
+7 maggio ------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione10/Lezione_10.html
+concetto chiave di numpy: provides a multidimensional array object, various derived objects (such as masked arrays and matrices), and an assortment of routines for fast operations on arrays
+non confondere lista con array
+tutta la libreria vive attorno agli array
+se chiedo il tipo questo è un narray che esiste solo su numpy
+esmpio metodo delle regine
+array = lista di liste
+RIVEDI______________________________________
+in numpy  passo ........ e stesso oggetto ma arrtibuti diversi a seconda di come lo definsco, ma ha metodi che mi doce se sto lavorando con arrey o con matrice
+l'array di numpy ha attributi in più che lo definscono matrice
+____________________________________________________
+attenzione a:   v =np.ones(5)
+                m=np.zeros((5,5))
+la sintassi, e ccosa passo per argomento, se passo intero crea vettore, se passo shape (tupla) crea la matrice, utile per creare matrice vuota e data struction
+anche per eye bisogna stare attenti agli argomenti che gli passo
+se voglio solo 1 sulla diagonale oasso un interose voglio matrice di tutti 5 e solo 7 sulla diagonale faccio:
+#creo elementi iniziali
+    body =np.ones((50,50))
+    diag=np.eye(50)
+
+posso fare operazioni arrey per arrey e arrey per scalare, quindi ora:
+risultato = body*5 + diag*2
+print(risultato)
+
+caratteristica numpy fare conti senza usare ciclo for
+metodo where: utile perché data condizione booleana ritrna indici che soddisfano la condizione
+
+ATTENZIONE slicing su matrice lo posso fare su più dimensioni, ma richiede di selezionare la riga, 
+            creare l'arrey e assegnarli un nome per poi fare lo slicing sul nuovo arrrey
+1:2 indica dall'elemento 1 al 2 escluso
+oppure c'è scorciatoia per selezionare un solo elemento
+indico riga , colonna       elemento = matrice[ 0:1 , 0:1]
+mentre per colonne         colonna_0 = matrice[ : , 0:1]
+
+punto debole python: loop, ancora peggio il doppio loop annidato
+
+print(vet>5)
+retituisce risultato booleano degli elementi che soddisfano la condizione, per otteneere gli elementi:
+maschera= vet>5
+print(vet[maschera])
+
+DOMANDA D'ESAME=chiede sempre la struttura dell'immafine del grafo che si ottiene con matplotlib
+_ convenzione per dire che a variabile non mi interessa
+
+per modificare x e y:
+graph = fig.gca()  # Get Current Axes
+
+graph.plot([1,2,3],[20,30,40])
+se uso più grafici quando lavoro su uno dei grafici devo utilizzare la lista : graph_list[0].plot([1,2,3])
+
+con più grafici get_axis crea una lista mentre axis una matrice
