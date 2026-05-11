@@ -24,11 +24,11 @@ class MetodoArchimede:
         self.penna.hideturtle()
         self.penna.speed("fast")
     
-    def disegna_iterazione(self, n, pi_min, pi_max):
+    def disegna_iterazione(self, n):
         self.penna.clear()
         self.disegna_cerchio()
-        self.disegna_poligono_inscritto(n, pi_max)
-        self.disegna_poligono_circoscritto(n, pi_min)
+        self.disegna_poligono_inscritto(n)
+        self.disegna_poligono_circoscritto(n)
 
     def disegna_cerchio(self):
         self.penna.penup()
@@ -36,7 +36,7 @@ class MetodoArchimede:
         self.penna.pendown()
         self.penna.circle(self.raggio)
 
-    def disegna_poligono_inscritto(self, n, pi_max=None):
+    def disegna_poligono_inscritto(self, n):
         angolo = 360 / n
         self.penna.penup()
         x = self.raggio * math.cos(math.radians(0))
@@ -48,7 +48,7 @@ class MetodoArchimede:
             y = self.raggio * math.sin(math.radians(i * angolo))
             self.penna.goto(x, y)
 
-    def disegna_poligono_circoscritto(self, n, pi_min=None):
+    def disegna_poligono_circoscritto(self, n):
         raggio_circoscritto = self.raggio / math.cos(math.pi / n)
         angolo = 360 / n
         self.penna.penup()
@@ -74,7 +74,7 @@ class MetodoArchimede:
             print(f"{pi_min} data dal poligono circoscritto con {n} lati \n{pi_max} data dal poligono inscritto con {n} lati")
             
             if grafica:
-                self.disegna_iterazione(n, pi_min, pi_max)
+                self.disegna_iterazione(n)
             
             perimetro_circoscritto = (2 * perimetro_circoscritto * perimetro_inscritto) / (perimetro_circoscritto + perimetro_inscritto)
             perimetro_inscritto = math.sqrt(perimetro_circoscritto * perimetro_inscritto)
