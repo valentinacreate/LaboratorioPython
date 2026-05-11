@@ -13,55 +13,13 @@
 #https://trinket.io/library/trinkets/create?lang=pygame per la simulazione
 
 import math
-import turtle
+import webbrowser
 
 class MetodoArchimede:
     def __init__(self):
-        self.raggio = 200.0
-        self.schermo = turtle.Screen()
-        self.schermo.setup(900, 600)
-        self.penna = turtle.Turtle()
-        self.penna.hideturtle()
-        self.penna.speed("fast")
-    
-    def disegna_iterazione(self, n):
-        self.penna.clear()
-        self.disegna_cerchio()
-        self.disegna_poligono_inscritto(n)
-        self.disegna_poligono_circoscritto(n)
+        self.raggio = 1.0
 
-    def disegna_cerchio(self):
-        self.penna.penup()
-        self.penna.goto(0, -self.raggio)
-        self.penna.pendown()
-        self.penna.circle(self.raggio)
-
-    def disegna_poligono_inscritto(self, n):
-        angolo = 360 / n
-        self.penna.penup()
-        x = self.raggio * math.cos(math.radians(0))
-        y = self.raggio * math.sin(math.radians(0))
-        self.penna.goto(x, y)
-        self.penna.pendown()
-        for i in range(1, n + 1):
-            x = self.raggio * math.cos(math.radians(i * angolo))
-            y = self.raggio * math.sin(math.radians(i * angolo))
-            self.penna.goto(x, y)
-
-    def disegna_poligono_circoscritto(self, n):
-        raggio_circoscritto = self.raggio / math.cos(math.pi / n)
-        angolo = 360 / n
-        self.penna.penup()
-        x = raggio_circoscritto * math.cos(math.radians(0))
-        y = raggio_circoscritto * math.sin(math.radians(0))
-        self.penna.goto(x, y)
-        self.penna.pendown()
-        for i in range(1, n + 1):
-            x = raggio_circoscritto * math.cos(math.radians(i * angolo))
-            y = raggio_circoscritto * math.sin(math.radians(i * angolo))
-            self.penna.goto(x, y)
-
-    def calcolo_pi(self, itera, grafica = False):
+    def calcolo_pi(self, itera):
         n = 6
         perimetro_circoscritto = (n * 2 * self.raggio) / math.sqrt(3)
         perimetro_inscritto = n * self.raggio
@@ -73,16 +31,17 @@ class MetodoArchimede:
             print('Il valore di pi greco è compreso tra:')
             print(f"{pi_min} data dal poligono circoscritto con {n} lati \n{pi_max} data dal poligono inscritto con {n} lati")
             
-            if grafica:
-                self.disegna_iterazione(n)
-            
             perimetro_circoscritto = (2 * perimetro_circoscritto * perimetro_inscritto) / (perimetro_circoscritto + perimetro_inscritto)
             perimetro_inscritto = math.sqrt(perimetro_circoscritto * perimetro_inscritto)
             n *= 2
-        if grafica:
-            turtle.done()
 
 arch = MetodoArchimede()
-print('quante volte vuoi iterare l\'algoritmo?')
-numero_iterazione=int(input())
-arch.calcolo_pi(numero_iterazione, grafica=True)
+print("Vuoi vedere l\'algoritmo graficamente? [SI/NO]")
+risposta = input().upper()
+if risposta == "SI":
+    url = "https://trinket.io/pygame/b56b064bdf1c"
+    webbrowser.open(url)
+else:
+    print('quante volte vuoi iterare l\'algoritmo?')
+    numero_iterazione=int(input())
+    arch.calcolo_pi(numero_iterazione)
