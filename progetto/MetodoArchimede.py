@@ -1,5 +1,5 @@
 
-# esercizio6.py
+# MetodoArchimede.py
 # Creato da Valentina Furlanis IN0501333
 
 # Data: 4 Maggio 2026
