@@ -9,17 +9,20 @@
 #il calcolo avviene mediante l'utiizzo di due poligoni con una circonferenza
 #inscritta ad un poligono e circostritta dall'altro
 #aumentando i lati del poligono la vicinanza alla circonferenza aumenta e 
-#l'approssimazione di pigreco migliora
-#https://trinket.io/library/trinkets/create?lang=pygame per la simulazione
+#l'approssimazione di pigreco migliora per la simulazione
 
 import math
 import webbrowser
 
 class MetodoArchimede:
+
     def __init__(self):
+        ''''''
         self.raggio = 1.0
 
     def calcolo_pi(self, itera):
+        '''calcola il valore approssimato di pi greco partende da poligoni dinlato 6 e 
+        raddoppiandoli a ogni iterazione'''
         n = 6
         perimetro_circoscritto = (n * 2 * self.raggio) / math.sqrt(3)
         perimetro_inscritto = n * self.raggio
@@ -39,6 +42,8 @@ arch = MetodoArchimede()
 print("Vuoi vedere l\'algoritmo graficamente? [SI/NO]")
 risposta = input().upper()
 if risposta == "SI":
+    '''apre una pagina trinked dov'è presente una versione del codice con un\'implementazione grafica 
+    delle iterazioni e mostra visivamente l\'avvicinarsi dei poligoni alla circonferenza'''
     url = "https://trinket.io/pygame/b56b064bdf1c"
     webbrowser.open(url)
 else:
