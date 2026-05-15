@@ -318,3 +318,11 @@ graph.plot([1,2,3],[20,30,40])
 se uso più grafici quando lavoro su uno dei grafici devo utilizzare la lista : graph_list[0].plot([1,2,3])
 
 con più grafici get_axis crea una lista mentre axis una matrice
+
+12 maggio -----------------------------------------------------------------------------
+dal termina,e cin l'interprete 
+>>>valori = 2,3
+>>>a, b = valori
+sto osservando due azioni: 
+assegno tutpla a valori, faccio una tupla paccking
+spacchetto una tubpla nei singoli valori, faccio una tupla unpaccking
