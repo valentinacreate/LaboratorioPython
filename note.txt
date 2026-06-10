@@ -22,7 +22,7 @@ essa èformata da dei rientri dopoche viene definito un blocco, più rientri=pi�
 ATTENZIONE se si utilizzano i rientri in modo errato ne risulta un erroredi tipo runtime
 nel while devo definire io la condizione di uscita
 lafunzione for con loop su numeri interi è così tanto usato che esistono dverse scorciatoie esempio: range (num) essa p
-arte da0 arriva a num-1 e fa step di 1 unità 
+arte da 0 arriva a num-1 e fa step di 1 unità 
 condizione if è una boolean expression, strutturata in modo tale che se condizione true esegue le istruzioni
 immediatamente successive, altrimenti se FALSE esegue l'else
 
@@ -320,9 +320,113 @@ se uso più grafici quando lavoro su uno dei grafici devo utilizzare la lista : 
 con più grafici get_axis crea una lista mentre axis una matrice
 
 12 maggio -----------------------------------------------------------------------------
-dal termina,e cin l'interprete 
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione11/Lezione_11.html
+dal termina, e con l'interprete 
 >>>valori = 2,3
 >>>a, b = valori
 sto osservando due azioni: 
 assegno tutpla a valori, faccio una tupla paccking
 spacchetto una tubpla nei singoli valori, faccio una tupla unpaccking
+
+DOMANDA D'ESAME: quanti dati restituisce una funzione? 1, se sembra restituirne più di 1 allora si tratta di una tupla
+
+* operatore di unpaccking che spacchetta e impacchetta pacchetti iterabili
+
+esempio *b,
+una variabile(b), una tubla(,)
+quindi due valori a destra e una variabile a sinistra, metodo più veloce per fare una pacchetto di valori è mediante una lista
+
+a=1,2,3 -----> tupla
+a, =1,2,3 ------> tupla che contiene a ottengo value erroe, troppi valori
+
+quindi se io faccio 
+(a,*b)=1,2,3
+ottengo a=1 e b=[2,3]
+
+POSSO METTERE UN SOLO OPERATORE * per comando
+
+se ho più variabili rispetto ai valori l'operatore * rimane vuoto
+passandi i valori tramite chiave (func(b=1, a=2)) non co ta più l'ordine con cui passo gli elementi alla funzione
+posso creare funzione
+def func (*args, **kwargs):
+che accetta il pacckingdi qualunque elemento passato per posizione e il paccking di qualunque elemento passato come chiave valore
+@wrapper syntax modo ottimizzato per chiamare funz che fa delle azioni su un'altra funzione
+
+il decoratore riassume tutta la descrizione di edstensione
+quindi tutto cio che è scritto di seguito:
+# funzione 'estensione': accetta come argomento la "funzione" da estendere
+def estensione(funzione) :
+    # contenitore
+    def wrapper_della_funzione():
+        # operazioni che "estendono la funzionalità"
+        print("...aggiungo delle operazioni alla funzione...")
+
+        # ritorna le funzione con le sue operazioni
+        return funzione()
+
+    # ritorno l'oggetto funzione contenitore
+    return wrapper_della_funzione
+
+è riassunto in:
+@estensione
+def funzione_base() :
+    print("Io sono la funzione base!")
+
+DOMANDA D'ESAME: quali compreation esistono? 3
+list compreation
+dict compreation
+set compreation
+
+la tuple compeation non esiste perche è un generatore, cioè iteratore pigro, non occupa memeoriae  genera valori lì sul momento quando viene invocato
+differenza da lista: la lista occupa memeoria il generatore no
+---------------------------------------------------------------------------
+StopIteration                             Traceback (most recent call last)
+Cell In[39], line 1
+----> 1 next(g)
+
+StopIteration: 
+
+error di runtime della famiglia StopIteration
+
+gli errori di runtime sono anche dei metodi di funzionamento interno di python, in questo caso per fermare il loop
+lambda ha accesso a tutte le variabile a cui il codice ha accesso in quel momento
+dopo i 2 punti posso inserire qualunque funzione che può stare dentro un return 
+
+19 maggio -----------------------------------------------------------------------------
+http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione12/Lezione_12.html
+errori che avvengono durante l'esecuzuone del programma
+eccezione avviene quando qualcosa va storto, vengono restituiti come un oggetto,  ma in questo caso gli 
+oggetti sono passati al livello superiore, se nessuno se ne occupa essi sono propagati ulteriormente finchè o qualcuno non li 
+gestisce oppure arrivano al programma principale che si ferma
+
+non sempre con un'eccezione qualcosa è andato storto, in questo caso dobbiamo gestirle
+2 tipi di exeption:
+exeption: problemi non fatali, gestibili
+l'altro: problemi più problematici
+
+se metto la classe Exeption per gestire un errore ed una sua estensione, 
+l'estensione non verrà mai eseguita se è messa dopo la generica perchè c'è una classe più generale prima che gestisce l'errore
+quindi l'ordine corretto in cui gestire gli errori è. dalla specifica alla generica  MAI L'INCORNTRARIO
+
+1 blocco Try che può generare o no un'eccezione
++blocchi exept
+1 blocco finally, che posso mettere o no, che viene sempre eseguito
+
+DOAMNDA D'ESEME: cos'è il blocco try, quanti blocchi exeption posso mettere, quanti blocchi finally posso inserire?
+
+blocco else eseguito se nulla va storto in try
+ordine corretto:
+try
+exept
+else
+finally(opzionale)
+
+LBYL vs. EAFP
+con l'approcio LBYL
+prima chiedo permesso
+poi faccio operazione
+
+problema: testo da milioni di lettere, chiedo milioni di volte di fare qyìuesta operazione, e soltanto per 22 volte non eseguo else
+cioè fino a quando non ho inserito tutte le lettere dell'alfabeto
+
+RICORDA NAMESPACES

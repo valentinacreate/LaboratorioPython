@@ -17,7 +17,6 @@ import webbrowser
 class MetodoArchimede:
 
     def __init__(self):
-        ''''''
         self.raggio = 1.0
 
     def calcolo_pi(self, itera):

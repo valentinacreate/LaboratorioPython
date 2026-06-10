@@ -24,6 +24,7 @@
 import Rubrica                                                                  #importazione della classe Rubrica dal file Rubrica.py
 
 def main():
+    '''Funzione principale del programma'''
     rubrica = Rubrica.Rubrica()                                                 #creazione di un'istanza della classe Rubrica
     
     while True:                                                                                             #ciclo infinito che continua a chiedere all'utente quale azione svolgere finché non viene digitata la stringa "EXIT"
