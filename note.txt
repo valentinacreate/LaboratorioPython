@@ -271,13 +271,23 @@ http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione10/Lezione_1
 concetto chiave di numpy: provides a multidimensional array object, various derived objects (such as masked arrays and matrices), and an assortment of routines for fast operations on arrays
 non confondere lista con array
 tutta la libreria vive attorno agli array
-se chiedo il tipo questo è un narray che esiste solo su numpy
-esmpio metodo delle regine
-array = lista di liste
-RIVEDI______________________________________
-in numpy  passo ........ e stesso oggetto ma arrtibuti diversi a seconda di come lo definsco, ma ha metodi che mi doce se sto lavorando con arrey o con matrice
+array= casting da un qualunque iterabile all'oggetto di nuovo tipo
+vettore=np.array([1,2,3,4])
+non è una lista ma un numpy array
+quindi se chiedo il tipo, è un n array che esiste solo su numpy, quindi ottengo  <class 'numpy.ndarray'>
+
+esempio metodo delle regine
+        array = lista di liste
+    quindi creo un'array: a = [[1,2],[3,5]]
+    in numpy  passo array a direttamente al metodo np.array 
+        matrice = np.array(a)
+e il nuovo oggetto matrice sarà dello stesso tipo ma il fatto che esista questo oggetto aray fa si che abbia accesso a tutta
+una serie di metodi e attributi che mi permettono di sapere se sto lavorando con array o con matrice (es. il numero della dimensione la forma)
+    print(a.ndim) ------>1
+    print(matrice.ndim) ------>2
+
 l'array di numpy ha attributi in più che lo definscono matrice
-____________________________________________________
+
 attenzione a:   v =np.ones(5)
                 m=np.zeros((5,5))
 la sintassi, e ccosa passo per argomento, se passo intero crea vettore, se passo shape (tupla) crea la matrice, utile per creare matrice vuota e data struction
