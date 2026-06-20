@@ -13,34 +13,35 @@
 #-gestire la chiusura del gioco in modo personalizzato.
 
 def generatore_tabellina(numero):
-    for i in range(11):
-         yield i*numero
+    '''Generatore che, dato un numero, genera la tabellina corrispondente al numero selezionato (0xnumero = 0; 1xnumero = numero; 2xnumero = 2*numero; ecc…)'''               
+    for i in range(11):                     #ciclo for che genera la tabellina del numero selezionato, da 0 a 10
+         yield i*numero                     #utilizzo il yield per generare i valori della tabellina uno alla volta, senza doverli memorizzare tutti in una lista
 
-chiusura = False
+chiusura = False                            #variabile booleana che indica se il gioco deve continuare o meno
 while chiusura == False:
-    alfabeto="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=~`[]{};':\",.<>?/\\|èéàòìù£€$°§ç"
-    print("Inserisci un numero per generare la sua tabellina:")
-    numero = input()
-    while numero in alfabeto:                                                              #controllo che la lettera inserita sia una lettera dell'alfabeto (maiuscola o minuscola)
-            print('Errore: devi inserire un numero. Riprova:')
-            numero = input()
-    tabellina = generatore_tabellina(float(numero))
+    alfabeto="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=~`[]{};':\",.<>?/\\|èéàòìù£€$°§ç"       #stringa contenente tutti i caratteri alfanumerici e speciali, per controllare se l'input dell'utente è un numero o meno
+    print("Inserisci un numero per generare la sua tabellina:")                             #stampa il messaggio per chiedere all'utente di inserire un numero
+    numero = input()                                                                        #legge l'input dell'utente
+    while numero in alfabeto:                                                               #controllo che l'input non sia un carattere alfanumerico
+            print('Errore: devi inserire un numero. Riprova:')                              #se l'input non è un numero, stampa un messaggio di errore
+            numero = input()                                                                #legge nuovamente l'input dell'utente
+    tabellina = generatore_tabellina(float(numero))                                         #creo un generatore che genera la tabellina del numero selezionato dall'utente, convertito in float per gestire anche numeri decimali
     for i in range(11):
-        print(f"Indovina il valore della tabellina!\nQuanto fa {i} x {numero}?")
-        risposta = input()
-        while risposta in alfabeto:                                                          #controllo che la lettera inserita sia una lettera dell'alfabeto (maiuscola o minuscola)
-            print('Errore: devi inserire un numero. Riprova:')
-            risposta = input()
-        while float(risposta) != next(tabellina):
-            print('Sbagliato! Riprova:')
-            risposta = input()
-            while risposta in alfabeto:                                                          #controllo che la lettera inserita sia una lettera dell'alfabeto (maiuscola o minuscola)
-                print('Errore: devi inserire un numero. Riprova:')
-                risposta = input()
-        print('Bravo! Hai indovinato!')
+        print(f"Indovina il valore della tabellina!\nQuanto fa {i} x {numero}?")            #stampa il messaggio per chiedere all'utente di indovinare il valore della tabellina, indicando il numero selezionato e l'indice corrente della tabellina
+        risposta = input()                                                                  #legge l'input dell'utente
+        while risposta in alfabeto:                                                         #controllo che l'utente abbia inserito un numero 
+            print('Errore: devi inserire un numero. Riprova:')                              #se l'input non è un numero, stampa un messaggio di errore
+            risposta = input()                                                              #legge nuovamente l'input dell'utente
+        while float(risposta) != next(tabellina):                                           #controllo che l'input dell'utente sia uguale al valore corrente della tabellina generata dal generatore
+            print('Sbagliato! Riprova:')                                                    #stampa il messaggio di errore se l'input dell'utente non è uguale al valore corrente della tabellina
+            risposta = input()                                                              #legge nuovamente l'input dell'utente
+            while risposta in alfabeto:                                                     #controllo che l'input non sia un carattere alfanumerico
+                print('Errore: devi inserire un numero. Riprova:')                          #se l'input non è un numero, stampa un messaggio di errore
+                risposta = input()                                                          #legge nuovamente l'input dell'utente
+        print('Bravo! Hai indovinato!')                                                     #stampa il messaggio di congratulazioni se l'input dell'utente è uguale al valore corrente della tabellina
 
-    print("Vuoi continuare? (si/no)")
-    risposta = input()
-    if risposta.lower() == "no":
-        chiusura = True
-        print("E' stato un piacere giocare con te! A presto! (^_^)")
+    print("Vuoi continuare? (si/no)")                                                       #stampa il messaggio per chiedere all'utente se vuole continuare a giocare
+    risposta = input()                                                                      #legge l'input dell'utente
+    if risposta.lower() == "no":                                                            #se l'input dell'utente è "no"
+        chiusura = True                                                                     #imposta la variabile booleana chiusura a True per terminare il gioco
+        print("E' stato un piacere giocare con te! A presto! (^_^)")                        #stampa il messaggio di chiusura del gioco
