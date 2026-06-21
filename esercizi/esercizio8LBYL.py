@@ -17,7 +17,8 @@
 import random                                                              
 import json
 import os
-stati_impiccato = [
+
+stati_impiccato = [                                                         
 
     """
       +---+
@@ -87,7 +88,7 @@ stati_impiccato = [
 chiusura = False                                                                                #inizializzazione della variabile per la chiusura del programma
 print("Benvenuto al gioco dell'impiccato!")                                                     #stampa il messaggio di benvenuto
 while chiusura == False:                                                                        #ciclo while per la chiusura del programma
-    errori=0                                                                                   #numero di errori commessi dall'utente
+    errori=0                                                                                    #numero di errori commessi dall'utente
     file_parole = 'Parole_impiccato.json'                                                       #controllo preventivo del file JSON
     if not os.path.exists(file_parole):                                                         #controllo se il file JSON esiste
         print("Errore: il file Parole_impiccato.json non esiste.")                              #stampa il messaggio di errore se il file JSON non esiste
@@ -109,15 +110,15 @@ while chiusura == False:                                                        
     parola_indovinata = parola_da_indovinare[0] + "_" * (len(parola_da_indovinare)-2) + parola_da_indovinare[-1]  #inizializzazione della variabile per la parola indovinata con underscore al posto delle lettere
     print(parola_indovinata)                                                                    #stampa la parola da indovinare con le lettere indovinate dall'utente
     lettere_usate = []                                                                          #memorizzazione delle lettere già provate
-    while errori < 6:                                                                      #ciclo while per stampare il numero di lettere della parola da indovinare
-        print(f"Sei al {errori+1}° tentativo.")                                                      #stampa il numero di tentativi effettuati
+    while errori < 6:                                                                           #ciclo while per stampare il numero di lettere della parola da indovinare
+        print(f"Sei al {errori+1}° tentativo.")                                                 #stampa il numero di tentativi effettuati
         print(f"Lettere già provate: {', '.join(lettere_usate)}")                               #stampa le lettere già provate dall'utente
         print("Inserire una lettera o indovinare la parola:")                                   #stampa il messaggio per l'input dell'utente
         prova_utente = input().strip().lower()                                                  #lettura dell'input dell'utente, rimozione degli spazi bianchi e conversione in minuscolo
         alfabeto = "abcdefghijklmnopqrstuvwxyz"                                                 #inizializzazione della variabile per l'alfabeto
-        while prova_utente == "":                                   #controllo se l'input dell'utente è vuoto o non è una lettera valida
-            print("Input non valido. Inserire una lettera.")                                        #stampa il messaggio di errore se l'input dell'utente non è valido
-            prova_utente = input().strip().lower()                                                  #lettura dell'input dell'utente
+        while prova_utente == "":                                                               #controllo se l'input dell'utente è vuoto o non è una lettera valida
+            print("Input non valido. Inserire una lettera.")                                    #stampa il messaggio di errore se l'input dell'utente non è valido
+            prova_utente = input().strip().lower()                                              #lettura dell'input dell'utente
         
         if len(prova_utente) == 1 and prova_utente in alfabeto:                                 #controllo se l'input dell'utente è 1 lettera e che sia valida
             while prova_utente in lettere_usate:                                                #controllo se la lettera inserita dall'utente è già stata provata
