@@ -17,12 +17,69 @@
 import random                                                              
 import json
 import os
+stati_impiccato = [
 
+    """
+      +---+
+      |   |
+      |   O
+      |
+      |
+      |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      |   O
+      |   |
+      |
+      |
+      |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      |   O
+      |  /|
+      |
+      |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      |   O
+      |  /|\
+      |
+      |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      |   O
+      |  /|\
+      |  /
+      |
+    =========
+    """,
+        """
+      +---+
+      |   |
+      |   O
+      |  /|\
+      |  / \
+      |
+    =========
+    """,    
+]
 chiusura = False                                                                                #inizializzazione della variabile per la chiusura del programma
 print("Benvenuto al gioco dell'impiccato!")                                                     #stampa il messaggio di benvenuto
 while chiusura == False:                                                                        #ciclo while per la chiusura del programma
     tentativi_disponibili = 6                                                                   #numero di tentativi disponibili per l'utente
-
+    errori=-1                                                                                   #numero di errori commessi dall'utente
     file_parole = 'Parole_impiccato.json'                                                       #controllo preventivo del file JSON
     if not os.path.exists(file_parole):                                                         #controllo se il file JSON esiste
         print("Errore: il file Parole_impiccato.json non esiste.")                              #stampa il messaggio di errore se il file JSON non esiste
@@ -71,6 +128,8 @@ while chiusura == False:                                                        
                     print(parola_indovinata)                                                    #stampa la parola da indovinare con le lettere indovinate dall'utente
                 else:
                     print(f"La parola '{prova_utente}' non è corretta.\n {parola_indovinata}")  #stampa il messaggio se la lettera inserita dall'utente non è presente nella parola da indovinare e mostra la parola da indovinare con le lettere indovinate dall'utente
+                    errori += 1                                                                 #incremento del numero di errori commessi dall'utente
+                    print(stati_impiccato[errori])                                              #stampa lo stato dell'impiccato in base al numero di errori commessi dall'utente
             else:
                 print("Inserire una lettera valida.")                                           #stampa il messaggio se l'input dell'utente non è una lettera valida
         
@@ -83,7 +142,9 @@ while chiusura == False:                                                        
                 parola_indovinata = parola_da_indovinare                                        #sostituzione della parola indovinata dall'utente con la parola da indovinare
             else:
                 print("Parola errata.")                                                         #stampa il messaggio se l'input dell'utente è una parola completa ma non è uguale alla parola da indovinare        
-        
+                errori += 1                                                                     #incremento del numero di errori commessi dall'utente
+                print(stati_impiccato[errori])                                                  #stampa lo stato dell'impiccato in base al numero di errori commessi dall'utente                       
+
         if parola_indovinata == parola_da_indovinare:                                           #controllo se la parola indovinata dall'utente è uguale alla parola da indovinare
             print(f"Complimenti! Hai indovinato la parola '{parola_da_indovinare}'!")           #stampa il messaggio di vittoria 
             break                                                                               #interruzione del ciclo for se la parola indovinata dall'utente è uguale alla parola da indovinare
