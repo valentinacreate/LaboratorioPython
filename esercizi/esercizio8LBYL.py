@@ -51,7 +51,7 @@ stati_impiccato = [
       +---+
       |   |
       |   O
-      |  /|\
+      |  /|\\
       |
       |
     =========
@@ -60,8 +60,8 @@ stati_impiccato = [
       +---+
       |   |
       |   O
-      |  /|\
-      |  /
+      |  /|\\
+      |  / 
       |
     =========
     """,
@@ -69,8 +69,8 @@ stati_impiccato = [
       +---+
       |   |
       |   O
-      |  /|\
-      |  / \
+      |  /|\\
+      |  / \\
       |
     =========
     """,    
@@ -78,7 +78,6 @@ stati_impiccato = [
 chiusura = False                                                                                #inizializzazione della variabile per la chiusura del programma
 print("Benvenuto al gioco dell'impiccato!")                                                     #stampa il messaggio di benvenuto
 while chiusura == False:                                                                        #ciclo while per la chiusura del programma
-    tentativi_disponibili = 6                                                                   #numero di tentativi disponibili per l'utente
     errori=-1                                                                                   #numero di errori commessi dall'utente
     file_parole = 'Parole_impiccato.json'                                                       #controllo preventivo del file JSON
     if not os.path.exists(file_parole):                                                         #controllo se il file JSON esiste
@@ -101,8 +100,8 @@ while chiusura == False:                                                        
     parola_indovinata = parola_da_indovinare[0] + "_" * (len(parola_da_indovinare)-2) + parola_da_indovinare[-1]  #inizializzazione della variabile per la parola indovinata con underscore al posto delle lettere
     print(parola_indovinata)                                                                    #stampa la parola da indovinare con le lettere indovinate dall'utente
     lettere_usate = []                                                                          #memorizzazione delle lettere già provate
-    for i in range(tentativi_disponibili):                                                      #ciclo for per stampare il numero di lettere della parola da indovinare
-        print(f"Sei al {i+1}° tentativo.")                                                      #stampa il numero di tentativi effettuati        
+    while errori < 6:                                                                      #ciclo while per stampare il numero di lettere della parola da indovinare
+        print(f"Sei al {errori+2}° tentativo.")                                                      #stampa il numero di tentativi effettuati
         print(f"Lettere già provate: {', '.join(lettere_usate)}")                               #stampa le lettere già provate dall'utente
         print("Inserire una lettera o indovinare la parola:")                                   #stampa il messaggio per l'input dell'utente
         prova_utente = input().strip().lower()                                                  #lettura dell'input dell'utente, rimozione degli spazi bianchi e conversione in minuscolo
@@ -148,7 +147,7 @@ while chiusura == False:                                                        
         if parola_indovinata == parola_da_indovinare:                                           #controllo se la parola indovinata dall'utente è uguale alla parola da indovinare
             print(f"Complimenti! Hai indovinato la parola '{parola_da_indovinare}'!")           #stampa il messaggio di vittoria 
             break                                                                               #interruzione del ciclo for se la parola indovinata dall'utente è uguale alla parola da indovinare
-        if i == tentativi_disponibili-1 and parola_indovinata != parola_da_indovinare:          #controllo se il numero di tentativi effettuati è uguale al numero di tentativi disponibili e se la parola indovinata dall'utente è diversa dalla parola da indovinare
+        if errori == 6 and parola_indovinata != parola_da_indovinare:          #controllo se il numero di tentativi effettuati è uguale al numero di tentativi disponibili e se la parola indovinata dall'utente è diversa dalla parola da indovinare
             print(f"Mi dispiace! Hai esaurito i tentativi. La parola da indovinare era '{parola_da_indovinare}'.")  #stampa il messaggio di sconfitta
     
     print("Vuoi giocare di nuovo? (s/n)")                                                       #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo
