@@ -12,7 +12,7 @@
 #- La rappresentazione grafica del gioco è libera, così come il numero dei “tentativi” disponibili.
 
 #- 1- Scrivete il programma con un approccio totalmente LBYL
-#   2- RI-scrivete il programma con un approccio totalmente EAFP
+#- 2- RI-scrivete il programma con un approccio totalmente EAFP
 
 import random                                                              
 import json
