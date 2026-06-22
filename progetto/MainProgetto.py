@@ -9,6 +9,8 @@
 
 from MetodoArchimede import MetodoArchimede
 from QuickSort import QuickSort
+from MergeSort import MergeSort
+
 import time
 print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura=False
@@ -33,6 +35,18 @@ while chiusura==False:
         print(array)
         tempo_di_esecuzione_quick_sort = tempo_di_fine_quicksort - tempo_di_inizio_quicksort
         print(f"Quicksort ha impiegato: {tempo_di_esecuzione_quick_sort} secondi")
+
+        tempo_di_inizio_mergesort=time.time()
+        MergeSort.merge_sort(array, 0, len(array) - 1)
+        tempo_di_fine_mergesort=time.time()
+        print(array)
+        tempo_di_esecuzione_merge_sort = tempo_di_fine_mergesort - tempo_di_inizio_mergesort
+        print(f"Mergesort ha impiegato: {tempo_di_esecuzione_merge_sort} secondi")
+        if tempo_di_esecuzione_merge_sort > tempo_di_esecuzione_quick_sort:
+            print(f"QuickSort ha vinto con una differenza nel tempo di esecuzione di {tempo_di_esecuzione_quick_sort - tempo_di_esecuzione_merge_sort} secondi")
+        else:
+            print(f"MergeSort ha vinto con una differenza nel tempo di esecuzione di {tempo_di_esecuzione_merge_sort - tempo_di_esecuzione_quick_sort} secondi")
+
     else:
         print(f"l'opzione {scelta} non è in elenco")
     risposta = "s"                                                                              #inizializzazione della variabile per l'input dell'utente per giocare di nuovo
