@@ -10,11 +10,11 @@
 from MetodoArchimede import MetodoArchimede
 from QuickSort import QuickSort
 import time
-print("Benvenuto nel progetto giochiamo con gli algoritmi!")
+print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura=False
 while chiusura==False:
     try:
-        print("Scegli quale algoritmo vuoi eseguire: \n1) Metodo di Archimede \n2) Quick Sort VS BubbleSort")
+        print("Scegli quale algoritmo vuoi eseguire: \n1) Metodo di Archimede \n2) Quick Sort VS MergeSort")
         scelta = int(input())
     except ValueError:
         print(f"Input non ammesso, sceglere uno degli indici elencati")
@@ -24,13 +24,13 @@ while chiusura==False:
         print("Hai scelto il Metodo di Archimede")
         MetodoArchimede.main()
     elif scelta == 2:
-        print("Hai scelto Quick Sort VS BubbleSort, che la sfida cominci!")
+        print("Hai scelto Quick Sort VS MergeSort, che la sfida cominci!")
         print("Inserisci gli elementi dell'array separati da spazi:")
         array = list(map(int, input().split()))
         tempo_di_inizio_quicksort=time.time()
         QuickSort.quick_sort(array, 0, len(array) - 1)
-        print(array)
         tempo_di_fine_quicksort=time.time()
+        print(array)
         tempo_di_esecuzione_quick_sort = tempo_di_fine_quicksort - tempo_di_inizio_quicksort
         print(f"Quicksort ha impiegato: {tempo_di_esecuzione_quick_sort} secondi")
     else:

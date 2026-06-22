@@ -32,5 +32,6 @@ class QuickSort:
             q = QuickSort.partition(array, p, r)
             QuickSort.quick_sort(array, p, q-1)
             QuickSort.quick_sort(array, q+1, r)
+
         
 
