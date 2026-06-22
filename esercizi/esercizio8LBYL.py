@@ -45,7 +45,6 @@ stati_impiccato = [
       |   |
       |
       |
-      |
     =========
     """,
     """
@@ -95,14 +94,14 @@ while chiusura == False:                                                        
         chiusura = True                                                                         #impostazione della variabile per la chiusura del programma a True
         break                                                                                   #interruzione del ciclo while se il file JSON non esiste
 
+    if os.path.getsize(file_parole) == 0:                                                       #controllo se il file JSON è vuoto
+        print("Errore: il file Parole_impiccato.json è vuoto.")                                #stampa il messaggio di errore se il file JSON è vuoto
+        chiusura = True                                                                         #impostazione della variabile per la chiusura del programma a True
+        break                                                                                   #interruzione del ciclo while se il file JSON è vuoto
+
     with open(file_parole, 'r') as in_file:                                                     #apertura del file in modalità lettura
         parole = json.load(in_file)                                                             #caricamento del contenuto del file JSON nel dizionario rubrica
-
-    if not isinstance(parole, list) or len(parole) == 0:                                        #controllo se il contenuto del file JSON è una lista di parole valida
-        print("Errore: il file JSON non contiene una lista di parole valida.")                  #stampa il messaggio di errore se il contenuto del file JSON non è una lista di parole valida
-        chiusura = True                                                                         #impostazione della variabile per la chiusura del programma a True
-        break                                                                                   #interruzione del ciclo while se il contenuto del file JSON non è una lista di parole valida
-
+        
     parola_da_indovinare = random.choice(parole)                                                #selezione casuale della parola dalla lista
     print(f"La parola da indovinare ha {len(parola_da_indovinare)} lettere.")                   #stampa il numero di lettere della parola da indovinare
     print("Hai a disposizione 6 tentativi per indovinare la parola.")                           #stampa il numero di tentativi disponibili
@@ -153,6 +152,8 @@ while chiusura == False:                                                        
                 print("Parola errata.")                                                         #stampa il messaggio se l'input dell'utente è una parola completa ma non è uguale alla parola da indovinare        
                 errori += 1                                                                     #incremento del numero di errori commessi dall'utente
                 print(stati_impiccato[errori])                                                  #stampa lo stato dell'impiccato in base al numero di errori commessi dall'utente                       
+        else:
+            print("Input non valido. Inserire una lettera o una parola completa.")             #stampa il messaggio se la lunghezza dell'input non è valida
         if parola_indovinata == parola_da_indovinare:                                           #controllo se la parola indovinata dall'utente è uguale alla parola da indovinare
             print(f"Complimenti! Hai indovinato la parola '{parola_da_indovinare}'!")           #stampa il messaggio di vittoria 
             break 
