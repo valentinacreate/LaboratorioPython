@@ -10,8 +10,8 @@
 from MetodoArchimede import MetodoArchimede
 from QuickSort import QuickSort
 from MergeSort import MergeSort
-
 import time
+
 print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura=False
 while chiusura==False:
