@@ -14,7 +14,7 @@ class MergeSort:
 
     def merge_sort(array, inizio, fine):
         if fine > inizio:
-            mediana=int( (inizio+fine) / 2)
+            mediana = int( (inizio+fine) / 2)
             MergeSort.merge_sort(array, inizio, mediana)
             MergeSort.merge_sort(array, mediana + 1, fine)
 

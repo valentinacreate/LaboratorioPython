@@ -42,7 +42,7 @@ class MetodoArchimede:
         arch = MetodoArchimede()
         while True:
             try:
-                print("Vuoi vedere l\'algoritmo graficamente? [SI/NO]")
+                print("\nVuoi vedere l\'algoritmo graficamente? [SI/NO]")
                 risposta = input().upper()
                 risposte_possibili.index(risposta)
             except ValueError:
@@ -56,7 +56,7 @@ class MetodoArchimede:
                 webbrowser.open(url)
             else:
                 try:
-                    print('quante volte vuoi iterare l\'algoritmo?')
+                    print('\nQuante volte vuoi iterare l\'algoritmo?')
                     numero_iterazione=int(input())
                     arch.calcolo_pi(numero_iterazione)
                 except ValueError:
