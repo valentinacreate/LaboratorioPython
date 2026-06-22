@@ -36,16 +36,30 @@ class MetodoArchimede:
             perimetro_circoscritto = (2 * perimetro_circoscritto * perimetro_inscritto) / (perimetro_circoscritto + perimetro_inscritto)
             perimetro_inscritto = math.sqrt(perimetro_circoscritto * perimetro_inscritto)
             n *= 2
+    
+    def main():
+        risposte_possibili = ["SI", "NO"]
+        arch = MetodoArchimede()
+        while True:
+            try:
+                print("Vuoi vedere l\'algoritmo graficamente? [SI/NO]")
+                risposta = input().upper()
+                risposte_possibili.index(risposta)
+            except ValueError:
+                print("Errore nell'input. Riprova.")
+                continue
 
-arch = MetodoArchimede()
-print("Vuoi vedere l\'algoritmo graficamente? [SI/NO]")
-risposta = input().upper()
-if risposta == "SI":
-    '''apre una pagina trinked dov'è presente una versione del codice con un\'implementazione grafica 
-    delle iterazioni e mostra visivamente l\'avvicinarsi dei poligoni alla circonferenza'''
-    url = "https://trinket.io/pygame/b56b064bdf1c"
-    webbrowser.open(url)
-else:
-    print('quante volte vuoi iterare l\'algoritmo?')
-    numero_iterazione=int(input())
-    arch.calcolo_pi(numero_iterazione)
+            if risposta == "SI":
+                '''apre una pagina trinked dov'è presente una versione del codice con un\'implementazione grafica 
+                delle iterazioni e mostra visivamente l\'avvicinarsi dei poligoni alla circonferenza'''
+                url = "https://trinket.io/pygame/b56b064bdf1c"
+                webbrowser.open(url)
+            else:
+                try:
+                    print('quante volte vuoi iterare l\'algoritmo?')
+                    numero_iterazione=int(input())
+                    arch.calcolo_pi(numero_iterazione)
+                except ValueError:
+                    print("Errore nell'input. Riprova.")
+                    continue
+            break

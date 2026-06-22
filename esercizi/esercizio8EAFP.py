@@ -180,4 +180,4 @@ while chiusura == False:                                                        
         risposta.index(risposta_utente)                                                         #lettura dell'input dell'utente
     except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
         print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
-        break
+        chiusura=True
