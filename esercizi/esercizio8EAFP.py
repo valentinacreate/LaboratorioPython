@@ -173,11 +173,11 @@ while chiusura == False:                                                        
     if errori == 6:                                                                             #controllo se il numero di tentativi effettuati è uguale al numero di tentativi disponibili
         print(f"Mi dispiace! Hai esaurito i tentativi. La parola da indovinare era '{parola_da_indovinare}'.")  #stampa il messaggio di sconfitta
 
-    risposta = "s"                                                                                   #inizializzazione della variabile per l'input dell'utente per giocare di nuovo
+    risposta = "s"                                                                              #inizializzazione della variabile per l'input dell'utente per giocare di nuovo
     try:
-        print("Vuoi giocare di nuovo? (premi s per giocare nuovamente, un qualsiasi altro tasto per uscire)")                                                       #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo
-        risposta_utente = input().lower()                                                            #lettura dell'input dell'utente e conversione in minuscolo
-        risposta.index(risposta_utente)                                                           #lettura dell'input dell'utente
-    except ValueError:
+        print("Vuoi giocare di nuovo? (premi s per giocare nuovamente, un qualsiasi altro tasto per uscire)")     #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo
+        risposta_utente = input().lower()                                                       #lettura dell'input dell'utente e conversione in minuscolo
+        risposta.index(risposta_utente)                                                         #lettura dell'input dell'utente
+    except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
         print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
         break
