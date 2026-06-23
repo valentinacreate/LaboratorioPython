@@ -48,13 +48,13 @@ class MetodoArchimede:
             except ValueError:
                 print("Errore nell'input. Riprova.")
                 continue
-            except (KeyboardInterrupt):
+            except KeyboardInterrupt:
                 print("\nErrore, chiusura gioco")
                 break
             if risposta == "SI":
                 '''apre una pagina trinked dov'è presente una versione del codice con un\'implementazione grafica 
                 delle iterazioni e mostra visivamente l\'avvicinarsi dei poligoni alla circonferenza'''
-                url = "https://trinket.io/pygame/b56b064bdf1c"
+                url = "https://trinket.io/pygame/e5b6da50661c"
                 webbrowser.open(url)
             else:
                 try:
@@ -64,7 +64,7 @@ class MetodoArchimede:
                 except ValueError:
                     print("Errore nell'input. Riprova.")
                     continue
-                except (KeyboardInterrupt):
+                except KeyboardInterrupt:
                     print("\nErrore, chiusura gioco")
                     break
             break

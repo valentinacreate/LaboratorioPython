@@ -99,7 +99,7 @@ while chiusura == False:                                                        
     except json.JSONDecodeError:                                                                #gestione dell'eccezione se il file JSON non è valido
         print("Errore: il file JSON non contiene una lista di parole valida.")                  #stampa il messaggio di errore se il contenuto del file JSON non è una lista di parole valida
         break                                                                                   #interruzione del ciclo while se il contenuto del file JSON non è una lista di parole valida
-    except (KeyboardInterrupt):
+    except KeyboardInterrupt:
         print("\nErrore, chiusura gioco")
         break
 
@@ -120,7 +120,7 @@ while chiusura == False:                                                        
         except EOFError:                                                                        #gestione dell'eccezione se l'input dell'utente viene interrotto
             print("Input terminato. Impossibile continuare il gioco.")                          #stampa il messaggio se l'input viene interrotto davvero
             break                                                                               #interruzione del ciclo se l'input non è più disponibile
-        except (KeyboardInterrupt):
+        except KeyboardInterrupt:
             print("\nErrore, chiusura gioco")
             break
         if prova_utente == "":                                                                  #controllo se l'utente ha inserito solo spazi o nulla
@@ -135,14 +135,14 @@ while chiusura == False:                                                        
             except ValueError:
                 print("Ci deve essere un errore di input, inserire lettere valide.")            #stampa il messaggio di errore se l'input dell'utente non è una lettera valida
                 continue                                                                        #richiesta di un nuovo input senza contare come tentativo
-            except (KeyboardInterrupt):
+            except KeyboardInterrupt:
                 print("\nErrore, chiusura gioco")
                 break
             try:
                 lettere_usate.index(prova_utente)                                               #controllo se la lettera è già stata provata
             except ValueError:                                                                  
                 pass                                                                            #se la lettera non è stata provata, quindi genera errore durante l'esecuzione di index, continua con il gioco
-            except (KeyboardInterrupt):
+            except KeyboardInterrupt:
                 print("\nErrore, chiusura gioco")
                 break
             else:
@@ -169,7 +169,7 @@ while chiusura == False:                                                        
             except ValueError:
                 print("Ci deve essere un errore di input, inserire lettere valide.")            #stampa il messaggio di errore se l'input dell'utente non è valido
                 continue                                                                        #richiesta di un nuovo input senza contare come tentativo
-            except (KeyboardInterrupt):
+            except KeyboardInterrupt:
                 print("\nErrore, chiusura gioco")
                 break
             if prova_utente == parola_da_indovinare.lower():                                    #controllo se l'input dell'utente è uguale alla parola da indovinare
@@ -193,6 +193,6 @@ while chiusura == False:                                                        
     except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
         print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
         chiusura=True
-    except (KeyboardInterrupt):
+    except KeyboardInterrupt:
         print("\nErrore, chiusura gioco")
         break

@@ -17,12 +17,14 @@ print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura=False
 while chiusura==False:
     try:
+        print("\n ATTENZIONE: per ogni errore di digitazione si ritorna alla schermata di selezione")
+        print("             per ogni interruzione da stastiera il gioco verrà chiuso")
         print("\nScegli quale algoritmo vuoi eseguire: \n1) Metodo di Archimede \n2) Quick Sort VS MergeSort \n3) Gioco della Vita di Conway")
         scelta = int(input())
     except ValueError:
         print(f"Input non ammesso, sceglere uno degli indici elencati")
         continue
-    except (KeyboardInterrupt):
+    except KeyboardInterrupt:
         print("\nErrore, chiusura gioco")
         break
 
@@ -36,8 +38,15 @@ while chiusura==False:
         print("Entrambi sono algoritmi di ordinamento di un array che utizzano il metodo Divide et Impera con complessita O(nlogn)")
         print("QuickSort utilizza un pivot random e vengono confrontati tutti gli elementi dell'array con il pivot,\nsi generano così due sottoarray, uno con elementi minori del pivot l'altro con quelli maggiori, \niterando l'algoritmo in modo ricorsivo sui sottoarray ottengo l'array completo ordinato.")
         print("MergeSort suddivide l'arrray in sottoarray base per poi ricomporlo confrontando ogni singolo elemento\ndell'array di sinistra con quelli di destra, ottenendo così l'array completo")
-        print("\nInserisci gli elementi dell'array separati da spazi:")
-        array1 = list(map(int, input().split()))
+        try:
+            print("\nInserisci gli elementi dell'array separati da spazi:")
+            array1 = list(map(int, input().split()))
+        except ValueError:
+            print("\nIl dato inserito non è corretto, usare un valore intero")
+            continue
+        except KeyboardInterrupt:
+            print("\nErrore, chiusura gioco")
+            break
         array2 = array1
         tempo_di_inizio_quicksort=time.time()
         QuickSort.quick_sort(array1, 0, len(array1) - 1)
@@ -65,10 +74,14 @@ while chiusura==False:
         print("La 'vicinanza' si calcola considerando le otto celle adiacenti orizzontalmente, verticalmente e diagonalmente.")
         try:
             print("\ninserire la dimensione della matrice NxN, scegliere un intero")
-            dimesione=int(input())
+            dimensione=int(input())
         except ValueError:
             print("\nIl dato inserito non è corretto, usare un valore intero")
             continue
+        except KeyboardInterrupt:
+            print("\nErrore, chiusura gioco")
+            break
+        ConWay(dimensione, dimensione)
     else:
         print(f"\nL'opzione {scelta} non è in elenco")
     
@@ -80,6 +93,6 @@ while chiusura==False:
     except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
         print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
         chiusura=True
-    except (KeyboardInterrupt):
+    except KeyboardInterrupt:
         print("\nErrore, chiusura gioco")
         break

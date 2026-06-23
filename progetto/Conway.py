@@ -16,14 +16,13 @@
 #La "vicinanza" si calcola considerando le otto celle adiacenti orizzontalmente, verticalmente e diagonalmente
 
 class ConWay:
-    def __init__(self, righe, colonne, valore_iniziale=0):
+    def __init__(self, righe, colonne):
         '''Inizializza una matrice di dimensione righe x colonne'''
+        valore_iniziale=0
         self.righe = righe
         self.colonne = colonne
         self.matrice = [[valore_iniziale for _ in range(colonne)] for _ in range(righe)]
     
 
 
-    def conway(self, righe, colonne):
-        self.__init__(self, righe, colonne)
-
+    
