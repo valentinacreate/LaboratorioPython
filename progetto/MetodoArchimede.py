@@ -54,7 +54,7 @@ class MetodoArchimede:
             if risposta == "SI":
                 '''apre una pagina trinked dov'è presente una versione del codice con un\'implementazione grafica 
                 delle iterazioni e mostra visivamente l\'avvicinarsi dei poligoni alla circonferenza'''
-                url = "https://trinket.io/pygame/e5b6da50661c"
+                url = "https://trinket.io/pygame/da669125ae48"
                 webbrowser.open(url)
             else:
                 try:
