@@ -25,8 +25,8 @@ def conta_righe_non_vuote(testo):
     righe=[i for i in testo.split('\n')]                        #creo una lista di tutte le righe del testo
     righe_non_vuote=0                                           #contatore per contare le righe non vuote
     for i in righe:                                             #scorro tutte le righe del testo
-        if len(i)>0:                                            #se la lunghezza della riga è maggiore di 0, allora la riga non è vuota 
-            righe_non_vuote+=1                                  #incremento il contatore delle righe non vuote   
+        if len(i)>0:                                            #se la lunghezza della riga è maggiore di 0, allora la riga non è vuota, quindi incremento il contatore delle righe non vuote 
+            righe_non_vuote+=1                                   
     tupla=(righe, righe_non_vuote)                              #creo una tupla con la lista di tutte le righe del testo e il numero di righe non vuote
 
     return tupla                                                #restituisco la tupla
@@ -36,8 +36,8 @@ def parole(testo):
     parole=[i for i in testo.split()]                           #creo una lista di tutte le parole del testo
     num_parole=0                                                #contatore per contare le parole del testo
     for i in parole:                                            #scorro tutte le parole del testo   
-        if len(i)>0:                                            #se la lunghezza della parola è maggiore di 0, allora la parola non è vuota
-            num_parole+=1                                       #incremento il contatore delle parole del testo
+        if len(i)>0:                                            #se la lunghezza della parola è maggiore di 0, allora la parola non è vuota, quindi incremento il contatore delle parole del testo
+            num_parole+=1                                       
     tupla=(parole, num_parole)                                  #creo una tupla con la lista di tutte le parole del testo e il numero di parole del testo 
 
     return tupla                                                #restituisco la tupla
@@ -48,8 +48,8 @@ def caratteri(testo):
     alfabeto='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'       #creo una stringa con tutti i caratteri alfanumerici (maiuscole, minuscole e numeri)
     num_caratteri=0                                                                 #contatore per contare i caratteri alfanumerici del testo  
     for i in caratteri:                                                             #scorro tutti i caratteri del testo
-        if i in alfabeto:                                                           #se il carattere è presente nella stringa dei caratteri alfanumerici, allora è un carattere alfanumerico
-            num_caratteri+=1                                                        #incremento il contatore dei caratteri alfanumerici del testo
+        if i in alfabeto:                                                           #se il carattere è presente nella stringa dei caratteri alfanumerici, allora è un carattere alfanumerico, quindi incremento il contatore dei caratteri alfanumerici del testo
+            num_caratteri+=1                                                        
     tupla=(caratteri, num_caratteri)                                                #creo una tupla con la lista di tutti i caratteri del testo e il numero di caratteri alfanumerici del testo
 
     return tupla                                                                    #restituisco la tupla   
@@ -60,8 +60,8 @@ def conta_lettera(caratteri):
     print('Inserisci una lettera da cercare: ')                                                 #chiedo all'utente di inserire una lettera da cercare nel testo
     lettera = input()
     while lettera not in alfabeto:                                                              #controllo che la lettera inserita sia una lettera dell'alfabeto (maiuscola o minuscola)
-        print('Errore: devi inserire una lettera')
-        lettera = input('Inserisci nuovamente la lettera: ')                                    #se non appartiene ad alfabeto, chiedo nuovamente all'utente di inserire una lettera da cercare nel testo
+        print('Errore: devi inserire una lettera')                                              #se non appartiene ad alfabeto, chiedo nuovamente all'utente di inserire una lettera da cercare nel testo
+        lettera = input('Inserisci nuovamente la lettera: ')                                    
     conteggio = caratteri.count(lettera.lower()) + caratteri.count(lettera.upper())             #conto quante volte la lettera compare nel testo, considerando sia la minuscola che quella maiuscola
     
     print('La lettera', lettera, 'compare', conteggio, 'volte nel testo.\n')                    #stampo il risultato
@@ -72,8 +72,8 @@ def sostituisci_parole(parole_testo):
     parole_da_sostituire=['day', 'water', 'about', 'Day', 'Water', 'About', 'day,', 'water,', 'about,', 'Day,', 'Water,', 'About,', ]       
     testo_sostituito=[]                             #creo una lista vuota per contenere il testo con le parole sostituite
     for i in parole_testo:                          #scorro tutte le parole del testo
-        if i in parole_da_sostituire:               #se la parola è presente nella lista delle parole da sostituire eseguo la funzione if
-            testo_sostituito.append('PYTHON')       #sostituisco la parola con PYTHON e appendo la parola sostituita alla lista del testo sostituito
+        if i in parole_da_sostituire:               #se la parola è presente nella lista delle parole da sostituire, allora sostituisco la parola con PYTHON e appendo la parola sostituita alla lista del testo sostituito
+            testo_sostituito.append('PYTHON')       
         else:           
             testo_sostituito.append(i)              #se la parola non è presente nella lista delle parole da sostituire, appendo la parola originale alla lista del testo sostituito
     
@@ -83,8 +83,8 @@ def maiuscolo_dispari(parole):
     '''Riscrive il testo in modo che tutte le parole in posizione dispari siano scritte in maiuscolo'''
     testo_modificato=[]                                         #creo una lista vuota per contenere il testo con le parole in maiuscolo in posizione dispari
     for i in range(len(parole)):                                #scorro tutte le parole del testo, utilizzando l'indice per identificare la posizione della parola
-        if i % 2 == 1:                                          #gli indici 1, 3, 5,... corrispondono a posizioni dispari
-            testo_modificato.append(parole[i].upper())          #se la parola è in posizione dispari, la converto in maiuscolo e appendo la parola modificata alla lista del testo modificato
+        if i % 2 == 1:                                          #gli indici 1, 3, 5,... corrispondono a posizioni dispari,se la parola è in posizione dispari, la converto in maiuscolo e appendo la parola modificata alla lista del testo modificato
+            testo_modificato.append(parole[i].upper())          
         else:
             testo_modificato.append(parole[i])                  #se la parola è in posizione pari, appendo la parola originale alla lista del testo modificato
     
@@ -110,11 +110,11 @@ def specchio(frasi):
             for j in range(len(caratteri)-1,-1,-1):     #scorro tutti i caratteri della frase, partendo dall'ultimo carattere (indice len(caratteri)-1) fino al primo carattere (indice 0)
                 frase_specchiata.append(caratteri[j])   #appendo il carattere corrente alla lista della frase specchiata, in questo modo i caratteri vengono appesi in ordine inverso rispetto all'ordine originale
             testo_specchiato.append(frase_specchiata)   #appendo la frase specchiata alla lista del testo specchiato
-        else:                                           #se la frase corrente non è il secondo verso di una strofa
-            testo_specchiato.append(frasi[i])           #appendo la frase originale alla lista del testo specchiato
+        else:                                           #se la frase corrente non è il secondo verso di una strofa, appendo la frase originale alla lista del testo specchiato
+            testo_specchiato.append(frasi[i])           
         
-    print('\nIl testo con il secondo verso di ogni strofa scritto a specchio è: ')
-    print(testo_specchiato)                             #stampo il testo modificato
+    print('\nIl testo con il secondo verso di ogni strofa scritto a specchio è: ')  #stampo il testo modificato
+    print(testo_specchiato)                             
 
 def parole_comuni(testo):
     '''Trova eventuali parole che compaiono in TUTTE le strofe'''
@@ -126,8 +126,8 @@ def parole_comuni(testo):
     strofa3=set(lista_strofe[2].lower().split())
     strofa4=set(lista_strofe[3].lower().split())
     parole_comuni= strofa1 & strofa2 & strofa3 & strofa4            #utilizzo l'operatore & per trovare le parole comuni tra le 4 strofe
-    if len(parole_comuni)==0:                                       #se non ci sono parole comuni
-        print('No ci sono parole comuni in tutte le strofe')        #segnalo all'utente che non ci sono parole comuni in tutte le strofe
+    if len(parole_comuni)==0:                                       #se non ci sono parole comuni, allora segnalo all'utente che non ci sono parole comuni in tutte le strofe
+        print('No ci sono parole comuni in tutte le strofe')        
     else:
         print('\nLe parole comuni in tutte le strofe sono: ', parole_comuni)    #se ci sono parole comuni, le stampo
 
@@ -137,17 +137,17 @@ def lista_univoca_parole(parole):
     parole_univoche=list(parole_univoche)                   #converto il set in una lista per poter ordinare le parole
     parole_univoche.sort(key=len)                           #ordino la lista delle parole univoche in base alla lunghezza delle parole, utilizzando la funzione sort() con il parametro key=len (len=lunghezza della parola)
     
-    print('\nLa lista univoca di tutte le parole che compaiono nel testo, ordinata per lunghezza è: ')
-    print(parole_univoche)                                  #stampo la lista univoca ordinata
+    print('\nLa lista univoca di tutte le parole che compaiono nel testo, ordinata per lunghezza è: ')          #stampo la lista univoca ordinata
+    print(parole_univoche)                                  
 
 def dizionario_caratteri(caratteri):
     '''Create un dizionario che mappi OGNI carattere (chiave) con la sua occorrenza nel testo (valore)'''
     dizionario={}                           #creo un dizionario vuoto per contenere i caratteri come chiavi e le loro occorrenze come valori
     for i in caratteri:                     #scorro tutti i caratteri del testo
-        if i in dizionario:                 #se il carattere è già presente come chiave nel dizionario
-            dizionario[i]+=1                #incremento il valore associato a quella chiave (carattere) di 1, in questo modo conto quante volte il carattere compare nel testo
-        else:
-            dizionario[i]=1                 #se il carattere non è presente come chiave nel dizionario, lo aggiungo al dizionario con valore 1, in questo modo conto la prima occorrenza del carattere nel testo
+        if i in dizionario:                 #se il carattere è già presente come chiave nel dizionario, allora incremento il valore associato a quella chiave (carattere) di 1, in questo modo conto quante volte il carattere compare nel testo
+            dizionario[i]+=1               
+        else:                               #se il carattere non è presente come chiave nel dizionario, lo aggiungo al dizionario con valore 1, in questo modo conto la prima occorrenza del carattere nel testo
+            dizionario[i]=1                 
     
     print(dizionario)                       #stampo il dizionario
 
@@ -157,19 +157,19 @@ def dizionario_caratteri_alfanumerici(caratteri):
     dizionario={}                                               #creo un dizionario vuoto per contenere i caratteri alfanumerici come chiavi e le loro occorrenze come valori
     caratteri=[i.lower() for i in caratteri]                    #converto tutti i caratteri in minuscolo per ignorare la differenza tra maiuscole e minuscole
     for i in caratteri:                                         #scorro tutti i caratteri del testo
-        if i in dizionario:                                     #se il carattere è già presente come chiave nel dizionario
-            dizionario[i]+=1                                    #incremento il valore associato a quella chiave (carattere) di 1, in questo modo conto quante volte il carattere alfanumerico compare nel testo
-        else:
-            dizionario[i]=1                                     #se il carattere non è presente come chiave nel dizionario, lo aggiungo al dizionario con valore 1, in questo modo conto la prima occorrenza del carattere alfanumerico nel testo
+        if i in dizionario:                                     #se il carattere è già presente come chiave nel dizionario, allora incremento il valore associato a quella chiave (carattere) di 1, in questo modo conto quante volte il carattere alfanumerico compare nel testo
+            dizionario[i]+=1                                    
+        else:#se il carattere non è presente come chiave nel dizionario, lo aggiungo al dizionario con valore 1, in questo modo conto la prima occorrenza del carattere alfanumerico nel testo
+            dizionario[i]=1                                     
     for i in list(dizionario.keys()):                           #scorro tutte le chiavi
-        if i not in 'abcdefghijklmnopqrstuvwxyz1234567890':     #se la chiave (carattere) non è un carattere alfanumerico
-            del dizionario[i]                                   #elimino la chiave (carattere) dal dizionario, cosí ottenendo un dizionario con solo i caratteri alfanumerici come chiavi e le loro occorrenze come valori
+        if i not in 'abcdefghijklmnopqrstuvwxyz1234567890':     #se la chiave (carattere) non è un carattere alfanumerico, allora elimino la chiave (carattere) dal dizionario, cosí ottenendo un dizionario con solo i caratteri alfanumerici come chiavi e le loro occorrenze come valori
+            del dizionario[i]                                   
     
     print(dizionario)                                           #stampo il dizionario
 
 
 def main():
-    ''''''
+    '''funzione main per eseguire esercizio1.py'''
     testo = '''
     Day after day, day after day,
     We stuck, nor breath nor motion;

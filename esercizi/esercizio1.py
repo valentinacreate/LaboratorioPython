@@ -24,8 +24,8 @@
 #   Alla fine stampa un riepilogo che mostri quale numero iniziale ha generato la sequenza più lunga.
 
 def inserisci_numero():
-    '''Inserimento numero'''
-    
+    '''Inserimento numero da parte dell'utente'''
+
     n=int(input('Scrivi un numero intero positivo: '))          #chiedo all'utente di inserire un numero intero positivo
     while(n<=0):                                                #controllo che il numero inserito sia positivo                                             
         print('Errore: il valore inserito è < o = a 0')         #stampo messaggio di errore
@@ -68,23 +68,25 @@ def ricerca(lista):
     k=0                                                                     #inizializzo una variabile contatore per contare quanti numeri della lista sono divisibili per 5
     print('I numeri dela sequenza che sono divisibili per 5 sono: ')        #stampo un messaggio per indicare che sto per stampare i numeri della lista che sono divisibili per 5
     for i in range(len(lista)):                                             #mediante un ciclo for scorro tutta la lista
-        if(lista[i]%5==0):                                                  #mentre scorro la lista, controllo se il numero è divisibile per 5,
-            print(lista[i])                                                 #se lo numero divisibile per 5, lo stampo
-            k=k+1                                                           #se il numero è divisibile per 5, incremento il contatore di 1
-    if(k==0):                                                               #se alla fine del ciclo for il contatore è ancora 0, significa che nella lista non ci sono numeri divisibili per 5
-        print('Nella lista non ci sono numeri divisibiliper 5')             #stampo un messaggio di avviso per indicare che nella lista non ci sono numeri divisibili per 5
+        if(lista[i]%5==0):                                                  #mentre scorro la lista, controllo se il numero è divisibile per 5, se lo è allora lo stampo e incremento il contatore di 1
+            print(lista[i])                                                  
+            k=k+1                                                            
+    if(k==0):                                                               #se alla fine del ciclo for il contatore è ancora 0, significa che nella lista non ci sono numeri divisibili per 5, quindi stampo un messaggio di avviso per indicare che nella lista non ci sono numeri divisibili per 5
+        print('Nella lista non ci sono numeri divisibiliper 5')             
         
 
-#inizio del main
+
 def main():
+    
     #inizializzo due variabili per tenere traccia del numero che ha generato la lista più lunga (n_max) e della lunghezza massima della lista (len_max)
     n_max=0
     len_max=0
-    print('Quanti numeri vuoi testare? ')                       #chiedo all'utente quanti numeri vuole testare
+    print('Quanti numeri vuoi testare?')                        #chiedo all'utente quanti numeri vuole testare
     n_test=int(input())                                         #leggo il numero di test che l'utente vuole fare
-    while(n_test<=0):                                           #controllo che il numero di test inserito sia positivo
-        print('Errore: il valore inserito è < o = a 0')         #stampo un messaggio di errore
-        n_test=int(input('Quanti numeri vuoi testare?   '))     #chiedo nuovamente all'utente di inserire un numero di test positivo
+    
+    while(n_test<=0):                                           #controllo che il numero di test inserito sia positivo, se non lo è stampo un messaggio di errore e chiedo nuovamente all'utente di inserire un numero di test positivo
+        print('Errore: il valore inserito è < o = a 0')         
+        n_test=int(input('Quanti numeri vuoi testare?   '))     
 
     for i in range(n_test):                                     #mediante un ciclo for eseguo le funzioni per ogni numero che l'utente vuole testare    
         n=inserisci_numero()                                    #chiedo all'utente di inserire un numero intero positivo e lo leggo 
@@ -99,6 +101,6 @@ def main():
         if(len(lista)>len_max):                                 #se la lunghezza della lista generata è maggiore della lunghezza massima finora registrata, aggiorno la lunghezza massima e il numero che ha generato la lista più lunga
             len_max=len(lista)
             n_max=n
-    print('il numero che ha generato lista di più lunga è: ', n_max)        #stampo il numero che ha generato la lista più lunga
+    print('il numero che ha generato la sequenza più lunga è: ', n_max)        #stampo il numero che ha generato la lista più lunga
 
 main()
