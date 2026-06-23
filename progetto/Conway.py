@@ -14,6 +14,7 @@
 #Morte: Una cella viva con meno di due vicini vivi muore per solitudine; con più di tre vicini vivi muore per sovrappopolazione.
 #Nascita: Una cella morta con esattamente tre vicini vivi diventa viva.
 #La "vicinanza" si calcola considerando le otto celle adiacenti orizzontalmente, verticalmente e diagonalmente
+
 import time
 import random
 
