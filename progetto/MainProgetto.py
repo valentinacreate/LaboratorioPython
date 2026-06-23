@@ -10,17 +10,21 @@
 from MetodoArchimede import MetodoArchimede
 from QuickSort import QuickSort
 from MergeSort import MergeSort
+from Conway import ConWay
 import time
 
 print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura=False
 while chiusura==False:
     try:
-        print("Scegli quale algoritmo vuoi eseguire: \n1) Metodo di Archimede \n2) Quick Sort VS MergeSort \n3) Conway")
+        print("\nScegli quale algoritmo vuoi eseguire: \n1) Metodo di Archimede \n2) Quick Sort VS MergeSort \n3) Gioco della Vita di Conway")
         scelta = int(input())
     except ValueError:
         print(f"Input non ammesso, sceglere uno degli indici elencati")
         continue
+    except (KeyboardInterrupt):
+        print("\nErrore, chiusura gioco")
+        break
 
     if scelta == 1:
         print("\nHai scelto il Metodo di Archimede")
@@ -52,7 +56,19 @@ while chiusura==False:
         else:
             print(f"\nMergeSort ha vinto con una differenza nel tempo di esecuzione di {tempo_di_esecuzione_merge_sort - tempo_di_esecuzione_quick_sort} secondi")
     elif scelta == 3:
-        print("\nHai scelto l'algoritmo Conway")
+        print("\nHai scelto Il gioco della vita di Conway")
+        print("Il Gioco della Vita di Conway è un automa cellulare ideato da John Conway.\nSi tratta di un modello semplice che simula l’evoluzione di celle su una griglia bidimensionale secondo regole specifiche, \nsenza intervento esterno dopo l’inizializzazione. Ogni cella può essere viva o morta (stato 1 o 0) \ne l’evoluzione avviene in turni (generazioni).")
+        print("Regole del Gioco:")
+        print("Sopravvivenza: Una cella viva con due o tre vicini vivi sopravvive alla generazione successiva.")
+        print("Morte: Una cella viva con meno di due vicini vivi muore per solitudine; con più di tre vicini vivi muore per sovrappopolazione.")
+        print("Nascita: Una cella morta con esattamente tre vicini vivi diventa viva.")
+        print("La 'vicinanza' si calcola considerando le otto celle adiacenti orizzontalmente, verticalmente e diagonalmente.")
+        try:
+            print("\ninserire la dimensione della matrice NxN, scegliere un intero")
+            dimesione=int(input())
+        except ValueError:
+            print("\nIl dato inserito non è corretto, usare un valore intero")
+            continue
     else:
         print(f"\nL'opzione {scelta} non è in elenco")
     
@@ -64,3 +80,6 @@ while chiusura==False:
     except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
         print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
         chiusura=True
+    except (KeyboardInterrupt):
+        print("\nErrore, chiusura gioco")
+        break

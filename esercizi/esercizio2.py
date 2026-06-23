@@ -167,8 +167,9 @@ def dizionario_caratteri_alfanumerici(caratteri):
     
     print(dizionario)                                           #stampo il dizionario
 
-#funzione main
+
 def main():
+    ''''''
     testo = '''
     Day after day, day after day,
     We stuck, nor breath nor motion;

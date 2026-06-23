@@ -1,5 +1,5 @@
 
-# QuickSort.py
+# MergeSort.py
 # Creato da Valentina Furlanis IN0501333
 
 # Data: 22 Giugno 2026
@@ -13,6 +13,7 @@
 class MergeSort:
 
     def merge_sort(array, inizio, fine):
+        '''Ordina ricorsivamente l'array usando MergeSort per poi ricombinare e orinare i 2 sottoarray usando il metodo merge'''
         if fine > inizio:
             mediana = int( (inizio+fine) / 2)
             MergeSort.merge_sort(array, inizio, mediana)
@@ -21,6 +22,7 @@ class MergeSort:
             MergeSort.merge(array, inizio, mediana, fine)
     
     def merge(array, inizio, mediana, fine):
+        '''Unisce due sottosequenze ordinate dell'array in un unico segmento ordinato confrontando elemento con elemento'''
         S = array[inizio:mediana + 1]
         R = array[mediana + 1:fine + 1]
         i = 0
