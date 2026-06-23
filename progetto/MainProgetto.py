@@ -72,16 +72,7 @@ while chiusura==False:
         print("Morte: Una cella viva con meno di due vicini vivi muore per solitudine; con più di tre vicini vivi muore per sovrappopolazione.")
         print("Nascita: Una cella morta con esattamente tre vicini vivi diventa viva.")
         print("La 'vicinanza' si calcola considerando le otto celle adiacenti orizzontalmente, verticalmente e diagonalmente.")
-        try:
-            print("\ninserire la dimensione della matrice NxN, scegliere un intero")
-            dimensione=int(input())
-        except ValueError:
-            print("\nIl dato inserito non è corretto, usare un valore intero")
-            continue
-        except KeyboardInterrupt:
-            print("\nErrore, chiusura gioco")
-            break
-        ConWay(dimensione, dimensione)
+        
     else:
         print(f"\nL'opzione {scelta} non è in elenco")
     
