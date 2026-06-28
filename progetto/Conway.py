@@ -53,7 +53,7 @@ class ConWay:
     def main():    
         while True:
             try:
-                print("\ninserire la dimensione della matrice NxN, scegliere un intero")
+                print("\ninserire la dimensione N della matrice NxN, scegliere un intero\n inserire un valore intero preferibilemnte di 20")
                 dimensione=int(input())
                 # Se l'input è valido, esci dal loop per proseguire con il gioco
                 break

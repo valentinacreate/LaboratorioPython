@@ -54,11 +54,11 @@ class MetodoArchimede:
             if risposta == "SI":
                 '''apre una pagina trinked dov'è presente una versione del codice con un\'implementazione grafica 
                 delle iterazioni e mostra visivamente l\'avvicinarsi dei poligoni alla circonferenza'''
-                url = "https://trinket.io/pygame/da669125ae48"
+                url = "https://trinket.io/pygame/0e0d0a5d314d"
                 webbrowser.open(url)
             else:
                 try:
-                    print('\nQuante volte vuoi iterare l\'algoritmo?')
+                    print('\nQuante volte vuoi iterare l\'algoritmo?\n Inserire un valore intero positivo')
                     numero_iterazione=int(input())
                     arch.calcolo_pi(numero_iterazione)
                 except ValueError:

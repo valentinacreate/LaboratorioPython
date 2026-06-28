@@ -30,15 +30,15 @@ while chiusura==False:
 
     if scelta == 1:
         print("\nHai scelto il Metodo di Archimede")
-        print("Il seguente programma esegue l'algoritmo per il calcolo del pigreco, \nil calcolo avviene mediante l'utilizzo di due poligoni e una circonferenza, \nquest'ultima è inscritta ad un poligono e circostritta all'altro,")
-        print("aumentando i lati del poligono la vicinanza tra i poligoni e circonferenza aumenta e l'approssimazione di pigreco migliora")
+        print("Il seguente programma esegue l'algoritmo per il calcolo del pi-greco. \nIl calcolo avviene mediante l'utilizzo di due poligoni e una circonferenza, \nquest'ultima è inscritta ad un poligono e circostritta all'altro.")
+        print("Si parte da un esagono successivamnete vengono raddoppiati i lati del poligono ad ogni iterazione.\nIn quesrto modo la vicinanza tra i poligoni e circonferenza aumenta e l'approssimazione di pigreco migliora")
         MetodoArchimede.main()
     elif scelta == 2:
         print("\nHai scelto QuickSort VS MergeSort, che la sfida cominci!")
-        print("in questo gioco verrano confrontate le velocità di ordinamento di un array di 2 algoritmi e verrà premiato l'algoritmo più veloce")
-        print("Entrambi sono algoritmi di ordinamento di un array che utizzano il metodo Divide et Impera con complessita O(nlogn)")
-        print("QuickSort utilizza un pivot random e vengono confrontati tutti gli elementi dell'array con il pivot,\nsi generano così due sottoarray, uno con elementi minori del pivot l'altro con quelli maggiori, \niterando l'algoritmo in modo ricorsivo sui sottoarray ottengo l'array completo ordinato.")
-        print("MergeSort suddivide l'arrray in sottoarray base per poi ricomporlo confrontando ogni singolo elemento\ndell'array di sinistra con quelli di destra, ottenendo così l'array completo")
+        print("In questo gioco verrano confrontate le velocità di ordinamento di un array di 2 algoritmi e verrà premiato l'algoritmo più veloce.")
+        print("Entrambi sono algoritmi di ordinamento di un array che utizzano il metodo Divide et Impera con complessita O(nlogn).")
+        print("- QuickSort utilizza un pivot random e confrontata tutti gli elementi dell'array con il pivot,\nsi generano così due sottoarray, uno con elementi minori del pivot l'altro con quelli maggiori. \nIterando l'algoritmo in modo ricorsivo sui sottoarray si ottiene l'array completo ordinato.")
+        print("- MergeSort suddivide l'arrray in sottoarray base per poi ricomporlo confrontando ogni singolo elemento\ndell'array di sinistra con quelli di destra, ottenendo così l'array completo.")
         try:
             print("\nInserisci gli elementi dell'array separati da spazi:")
             array1 = list(map(int, input().split()))
@@ -80,11 +80,11 @@ while chiusura==False:
     
     risposta = "s"                                                                              #inizializzazione della variabile per l'input dell'utente per giocare di nuovo
     try:
-        print("\nVuoiun provare un nuovo algoritmo? (premi s per giocare nuovamente, un qualsiasi altro tasto per uscire)")     #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo
+        print("\nVuoi provare un nuovo algoritmo? (premi s per giocare nuovamente, un qualsiasi altro tasto per uscire)")     #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo
         risposta_utente = input().lower()                                                       #lettura dell'input dell'utente e conversione in minuscolo
         risposta.index(risposta_utente)                                                         #lettura dell'input dell'utente
     except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
-        print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
+        print("\nGrazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
         chiusura=True
     except KeyboardInterrupt:
         print("\nErrore, chiusura gioco")
