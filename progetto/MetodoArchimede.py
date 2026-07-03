@@ -17,6 +17,7 @@ import webbrowser                                   #importazione della libreria
 class MetodoArchimede:
 
     def __init__(self):
+        '''inizializza il raggio della circonferenza a 1'''
         self.raggio = 1.0
 
     def calcolo_pi(self, itera):
