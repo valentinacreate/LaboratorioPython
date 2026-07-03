@@ -14,9 +14,9 @@
 #- 1- Scrivete il programma con un approccio totalmente LBYL
 #- 2- RI-scrivete il programma con un approccio totalmente EAFP
 
-import random                                                              
-import json
-import os
+import random                           #importazione libreria random per la scelta casuale della parola da indovinare                                                        
+import json                             #importazione della libreria json per leggere il file con le parole da indovinare 
+import os                               #importazione della libreria os per controllare se il file json esiste
 
 stati_impiccato = [                                                         
 

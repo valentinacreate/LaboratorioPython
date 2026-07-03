@@ -11,7 +11,8 @@
 #il pivot è scelto in modo casuale in modo da evitare il caso peggiore di complessità O(n^2) che si verifica quando 
 #l'array è già ordinato o quasi ordinato, in questo modo si garantisce una complessità media di O(n log n) con n numero di elementi nell'array.
 
-import random
+import random                           #importazione libreria random per la scelta casuale del pivot                                                      
+
 class QuickSort:
     
     def partition(array, p, r):
