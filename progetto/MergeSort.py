@@ -12,12 +12,12 @@
 
 class MergeSort:
 
-    def merge_sort(array, inizio, fine):
+    def mergesort(array, inizio, fine):
         '''Ordina ricorsivamente l'array usando MergeSort per poi ricombinare e orinare i 2 sottoarray usando il metodo merge'''
         if fine > inizio:                                                       #finché l'array ha più di un elemento, calcolo la mediana e divido l'array in 2 sottoarray, invocando ricorsivamente la funzione merge_sort() sui 2 sottoarray, per poi ricombinarli e ordinarli usando il metodo merge()
             mediana = int( (inizio+fine) / 2)
-            MergeSort.merge_sort(array, inizio, mediana)
-            MergeSort.merge_sort(array, mediana + 1, fine)
+            MergeSort.mergesort(array, inizio, mediana)
+            MergeSort.mergesort(array, mediana + 1, fine)
             MergeSort.merge(array, inizio, mediana, fine)
     
     def merge(array, inizio, mediana, fine):

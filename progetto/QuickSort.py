@@ -28,12 +28,12 @@ class QuickSort:
         array[ultimo_valore_minore + 1], array[r] = array[r], array[ultimo_valore_minore +1]        #scambia il pivot con l'elemento successivo all'ultimo valore minore
         return ultimo_valore_minore + 1                                                             #restituisce l'indice del pivot
     
-    def quick_sort(array, p, r):
+    def quicksort(array, p, r):
         '''ordina l'array in modo ricorsivo'''
         if p < r:                                                                                   #finché p è minore di r, eseguo la partizione e poi richiamo la funzione quick_sort() sui due sottoarray generati dalla partizione
             q = QuickSort.partition(array, p, r)
-            QuickSort.quick_sort(array, p, q-1)
-            QuickSort.quick_sort(array, q + 1, r)
+            QuickSort.quicksort(array, p, q-1)
+            QuickSort.quicksort(array, q + 1, r)
 
         
 
