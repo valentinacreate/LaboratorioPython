@@ -4,7 +4,7 @@
 
 # Data: 10 giugno 2026
 
-# Descrizione dell’esercizio8.py:
+# Descrizione del programmaesercizio8.py:
 #Scrivete un programma per “il gioco dell’impiccato” in cui:
 #- leggete una lista di parole da un file JSON
 #- scegliete una parola a caso con cui giocare dalla lista letta, tramite random
@@ -87,7 +87,7 @@ stati_impiccato = [
 chiusura = False                                                                                #inizializzazione della variabile per la chiusura del programma
 print("Benvenuto al gioco dell'impiccato!")                                                     #stampa il messaggio di benvenuto
 while chiusura == False:                                                                        #ciclo while per la chiusura del programma
-    errori=0                                                                                    #numero di errori commessi dall'utente
+    errori = 0                                                                                  #numero di errori commessi dall'utente
     file_parole = 'Parole_impiccato.json'                                                       #controllo preventivo del file JSON
     if not os.path.exists(file_parole):                                                         #controllo se il file JSON esiste
         print("Errore: il file Parole_impiccato.json non esiste.")                              #stampa il messaggio di errore se il file JSON non esiste

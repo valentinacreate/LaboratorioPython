@@ -4,7 +4,7 @@
 
 #Data:26 aprile 2026
 
-#Descrizione dell’esercizio4.py:
+#Descrizione del programma esercizio4.py:
 #Partendo dall’esercizio 3, 
 #       - Aggiungere una opzione al programma per generare un file di testo rubrica.txt 
 #         contenente tutti gli elmenti della rubrica, uno per linea, con tutte le informazioni separate da virgole.
@@ -40,8 +40,7 @@ rubrica = {
 
 #creazione file di testo
 file_testo = open('rubrica.txt', 'w')                           #apertura del file in modalità scrittura
-for nome, info in rubrica.items():                              #iterazione su ogni elemento del dizionario rubrica 
-    #scrittura di ogni elemento del dizionario nel file di testo, con le informazioni separate da virgole
+for nome, info in rubrica.items():                              #iterazione su ogni elemento del dizionario rubrica e scrittura di ogni elemento del dizionario nel file di testo, con le informazioni separate da virgole
     file_testo.write(f'{nome}, {info["giorno"]}, {info["mese"]},{info["anno"]}, {info["età"]}, {info["sesso"]}, {info["mail"]}\n') 
 file_testo.close()                                              #chiusura del file di testo
 

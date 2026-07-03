@@ -4,7 +4,7 @@
 
 # Data: 10 giugno 2026
 
-# Descrizione dell’esercizio7.py:
+# Descrizione del programmaesercizio7.py:
 #Il programma deve:
 #-contenere un generatore che, dato un numero (ad esempio 7), generi la tabellina corrispondente al numero selezionato (0x7 = 0; 1x7 = 7; 2x7 = 14; ecc…);
 #-contenere un loop che chieda in modo interrattivo all’utente di indovinare il valore corrente nella tabellina selezionata;
@@ -15,12 +15,12 @@
 def generatore_tabellina(numero):
     '''Generatore che, dato un numero, genera la tabellina corrispondente al numero selezionato (0xnumero = 0; 1xnumero = numero; 2xnumero = 2*numero; ecc…)'''               
     for i in range(11):                     #ciclo for che genera la tabellina del numero selezionato, da 0 a 10
-         yield i*numero                     #utilizzo il yield per generare i valori della tabellina uno alla volta, senza doverli memorizzare tutti in una lista
+         yield i * numero                   #utilizzo il yield per generare i valori della tabellina uno alla volta, senza doverli memorizzare tutti in una lista
 
 chiusura = False                            #variabile booleana che indica se il gioco deve continuare o meno
 while chiusura == False:
-    alfabeto="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=~`[]{};':\",.<>?/\\|èéàòìù£€$°§ç"       #stringa contenente tutti i caratteri alfanumerici e speciali, per controllare se l'input dell'utente è un numero o meno
-    print("Inserisci un numero per generare la tabellina:")                             #stampa il messaggio per chiedere all'utente di inserire un numero
+    alfabeto = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=~`[]{};':\",.<>?/\\|èéàòìù£€$°§ç"       #stringa contenente tutti i caratteri alfanumerici e speciali, per controllare se l'input dell'utente è un numero o meno
+    print("Inserisci un numero per generare la tabellina:")                                 #stampa il messaggio per chiedere all'utente di inserire un numero
     numero = input()                                                                        #legge l'input dell'utente
     while numero in alfabeto:                                                               #controllo che l'input non sia un carattere alfanumerico
             print('Errore: devi inserire un numero. Riprova:')                              #se l'input non è un numero, stampa un messaggio di errore

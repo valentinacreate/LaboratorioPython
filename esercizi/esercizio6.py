@@ -4,7 +4,7 @@
 
 # Data: 29 aprile 2026
 
-# Descrizione dell’esercizio6.py:
+# Descrizione del programma esercizio6.py:
 #   - Riscrivete l’esercizio 3 della rubrica sotto forma di “classe”:
 #       - in un file separato, create una classe rubrica la classe rubrica deve fare 5 azioni:
 #       - aprire una rubrica leggendola da un file (JSON oppure testo) - APRI
