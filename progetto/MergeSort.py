@@ -14,22 +14,21 @@ class MergeSort:
 
     def merge_sort(array, inizio, fine):
         '''Ordina ricorsivamente l'array usando MergeSort per poi ricombinare e orinare i 2 sottoarray usando il metodo merge'''
-        if fine > inizio:
+        if fine > inizio:                                                       #finché l'array ha più di un elemento, calcolo la mediana e divido l'array in 2 sottoarray, invocando ricorsivamente la funzione merge_sort() sui 2 sottoarray, per poi ricombinarli e ordinarli usando il metodo merge()
             mediana = int( (inizio+fine) / 2)
             MergeSort.merge_sort(array, inizio, mediana)
             MergeSort.merge_sort(array, mediana + 1, fine)
-
             MergeSort.merge(array, inizio, mediana, fine)
     
     def merge(array, inizio, mediana, fine):
         '''Unisce due sottosequenze ordinate dell'array in un unico segmento ordinato confrontando elemento con elemento'''
-        S = array[inizio:mediana + 1]
-        R = array[mediana + 1:fine + 1]
-        i = 0
-        j = 0
-        k = inizio
+        S = array[inizio:mediana + 1]                                           #sottosequenza sinistra dell'array
+        R = array[mediana + 1:fine + 1]                                         #sottosequenza destra dell'array
+        i = 0                                                                   #inizializzazione dell'indice per la sottosequenza sinistra
+        j = 0                                                                   #inizializzazione dell'indice per la sottosequenza destra
+        k = inizio                                                              #inizializzazione dell'indice per l'array risultante
 
-        while i < len(S) and j < len(R):
+        while i < len(S) and j < len(R):                                        #finché entrambi gli indici sono minori della lunghezza delle rispettive sottosequenze, confronto gli elementi delle due sottosequenze e li inserisco nell'array risultante in ordine crescente         
             if S[i] <= R[j]:
                 array[k] = S[i]
                 i = i + 1
@@ -38,12 +37,12 @@ class MergeSort:
                 j = j + 1
             k = k + 1
 
-        while i < len(S):
+        while i < len(S):                                                       #se la sottosequenza sinistra ha ancora elementi, li inserisco nell'array risultante
             array[k] = S[i]
             i = i + 1
             k = k + 1
 
-        while j < len(R):
+        while j < len(R):                                                       #se la sottosequenza destra ha ancora elementi, li inserisco nell'array risultante             
             array[k] = R[j]
             j = j + 1
             k = k + 1
