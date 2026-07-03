@@ -6,11 +6,11 @@
 
 # Descrizione del programmaesercizio7.py:
 #Il programma deve:
-#-contenere un generatore che, dato un numero (ad esempio 7), generi la tabellina corrispondente al numero selezionato (0x7 = 0; 1x7 = 7; 2x7 = 14; ecc…);
-#-contenere un loop che chieda in modo interrattivo all’utente di indovinare il valore corrente nella tabellina selezionata;
-#-gestire tutti i caratteri alfanumerici (non deve “rompersi” se l’utente sceglie una lettera);
-#-gestire caretteri speciali o numeri decimali;
-#-gestire la chiusura del gioco in modo personalizzato.
+#- contenere un generatore che, dato un numero (ad esempio 7), generi la tabellina corrispondente al numero selezionato (0x7 = 0; 1x7 = 7; 2x7 = 14; ecc…);
+#- contenere un loop che chieda in modo interrattivo all’utente di indovinare il valore corrente nella tabellina selezionata;
+#- gestire tutti i caratteri alfanumerici (non deve “rompersi” se l’utente sceglie una lettera);
+#- gestire caretteri speciali o numeri decimali;
+#- gestire la chiusura del gioco in modo personalizzato.
 
 def generatore_tabellina(numero):
     '''Generatore che, dato un numero, genera la tabellina corrispondente al numero selezionato (0xnumero = 0; 1xnumero = numero; 2xnumero = 2*numero; ecc…)'''               

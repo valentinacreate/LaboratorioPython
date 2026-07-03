@@ -5,17 +5,20 @@
 #Data: 15 maggio 2026
 
 #Descrizione del file:
-#il file server per utilizzare 
+#Il seguente programma permette di eseguire 3 algoritmi diversi, selezionabili dall'utente:
+#1) Metodo di Archimede: calcolo del pi-greco
+#2) QuickSort VS MergeSort
+#3) Gioco della Vita di Conway
 
-from MetodoArchimede import MetodoArchimede
-from QuickSort import QuickSort
-from MergeSort import MergeSort
-from Conway import ConWay
-import time
+from MetodoArchimede import MetodoArchimede                                 #importazione della classe MetodoArchimede dal file MetodoArchimede.py
+from QuickSort import QuickSort                                             #importazione della classe QuickSort dal file QuickSort.py
+from MergeSort import MergeSort                                             #importazione della classe MergeSort dal file MergeSort.py
+from Conway import ConWay                                                   #importazione della classe Conway dal file Conway.py
+import time                                                                 #importo la libreria time per misurare il tempo impiegato a trovare le soluzioni
 
 print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
-chiusura=False
-while chiusura==False:
+chiusura = False
+while chiusura == False:
     try:
         print("\n ATTENZIONE: per ogni errore di digitazione si ritorna alla schermata di selezione")
         print("             per ogni interruzione da stastiera il gioco verrà chiuso")
@@ -84,8 +87,8 @@ while chiusura==False:
         risposta_utente = input().lower()                                                       #lettura dell'input dell'utente e conversione in minuscolo
         risposta.index(risposta_utente)                                                         #lettura dell'input dell'utente
     except ValueError:                                                                          #gestione dell'eccezione se l'input dell'utente non è s, ciò significa che non vuole più giocare
-        print("\nGrazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 
-        chiusura=True
-    except KeyboardInterrupt:
-        print("\nErrore, chiusura gioco")
-        break
+        print("\nGrazie per aver giocato! Arrivederci!")                                        #stampa il messaggio di ringraziamento e arrivederci 
+        chiusura = True
+    except KeyboardInterrupt:                                                                   #gestione dell'eccezione se l'input dell'utente viene interrotto
+        print("\nErrore, chiusura gioco")                                               #stampa messaggio di errore
+        break                                                                           #interruzione del ciclo se l'input non è più disponibile
