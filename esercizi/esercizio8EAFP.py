@@ -124,7 +124,7 @@ while chiusura == False:                                                        
         except KeyboardInterrupt:                                                               #gestione dell'eccezione se l'input dell'utente viene interrotto, stampa messaggio di errore e interruzione del ciclo se l'input non è più disponibile
                 print("\nErrore, chiusura gioco")                                               
                 break                                                                           
-        if prova_utente == "":                                                                  #controllo se l'utente ha inserito solo spazi o nulla, ser sì stampa il messaggio di errore se l'input è vuoto e richiesta di un nuovo input senza contarlo come tentativo
+        if prova_utente == "":                                                                  #controllo se l'utente ha inserito solo spazi o nulla, se sì stampa il messaggio di errore se l'input è vuoto e richiesta di un nuovo input senza contarlo come tentativo
             print("Input vuoto. Inserire una lettera valida.")                                  
             continue                                                                            
 
@@ -153,11 +153,11 @@ while chiusura == False:                                                        
 
             lettere_usate.append(prova_utente)                                                  #aggiunta della lettera inserita dall'utente alla lista delle lettere già provate
             
-            if prova_utente in parola_da_indovinare:                                            #controllo se la lettera inserita dall'utente è presente nella parola da indovinare
-                print(f"La lettera '{prova_utente}' è presente nella parola da indovinare.")    #stampa il messaggio se la lettera è presente nella parola da indovinare
+            if prova_utente in parola_da_indovinare:                                            #controllo se la lettera inserita dall'utente è presente nella parola da indovinare, se sì stampa il messaggio se la lettera è presente nella parola da indovinare,
+                print(f"La lettera '{prova_utente}' è presente nella parola da indovinare.")    
                 for i in range(len(parola_indovinata)):                                         #ciclo for per stampare la parola da indovinare con le lettere indovinate dall'utente
-                    if parola_da_indovinare[i] == prova_utente:                                 #individuazione della posizione della lettera indovinata dall'utente nella parola da indovinare
-                        parola_indovinata = parola_indovinata[:i] + parola_da_indovinare[i] + parola_indovinata[i+1:]  #sostituzione dell'underscore con la lettera indovinata dall'utente
+                    if parola_da_indovinare[i] == prova_utente:                                 #individuazione della posizione della lettera indovinata dall'utente nella parola da indovinare e sostituzione dell'underscore con la lettera indovinata dall'utente e
+                        parola_indovinata = parola_indovinata[:i] + parola_da_indovinare[i] + parola_indovinata[i+1:]  
                 print(parola_indovinata)                                                        #stampa la parola da indovinare con le lettere indovinate dall'utente
             else:                                                                               #altrimenti stampa il messaggio se la lettera inserita dall'utente non è presente nella parola da indovinare, incremento del numero di errori commessi dall'utente e stampa lo stato dell'impiccato in base al numero di errori commessi dall'utente
                 print(f"La parola '{prova_utente}' non è corretta.\n {parola_indovinata}")      
