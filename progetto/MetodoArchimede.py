@@ -20,7 +20,7 @@ class MetodoArchimede:
         self.raggio = 1.0
 
     def calcolo_pi(self, itera):
-        '''calcola il valore approssimato di pi greco partende da poligoni dinlato 6 e 
+        '''calcola il valore approssimato di pi-greco partende da poligoni dinlato 6 e 
         raddoppiandoli a ogni iterazione'''
         n = 6
         perimetro_circoscritto = (n * 2 * self.raggio) / math.sqrt(3)

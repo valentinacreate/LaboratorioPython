@@ -19,12 +19,12 @@ import time                                                                 #imp
 print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura = False
 while chiusura == False:
-    try:
+    try:                                                                    #esecuzione del blocco di codice per la selezione dell'algoritmo da eseguire che potrebbe generare un'eccezione
         print("\n ATTENZIONE: per ogni errore di digitazione si ritorna alla schermata di selezione")
         print("             per ogni interruzione da stastiera il gioco verrà chiuso")
         print("\nScegli quale algoritmo vuoi eseguire: \n1) Metodo di Archimede \n2) QuickSort VS MergeSort \n3) Gioco della Vita di Conway")
         scelta = int(input())
-    except ValueError:
+    except ValueError:                                                      #gestione dell'eccezione se l'input dell'utente non è un numero intero
         print(f"Input non ammesso, sceglere uno degli indici elencati")
         continue
     except KeyboardInterrupt:
@@ -32,11 +32,13 @@ while chiusura == False:
         break
 
     if scelta == 1:
+        #descrizione del metodo di Archimede
         print("\nHai scelto il Metodo di Archimede")
         print("Il seguente programma esegue l'algoritmo per il calcolo del pi-greco. \nIl calcolo avviene mediante l'utilizzo di due poligoni e una circonferenza, \nquest'ultima è inscritta ad un poligono e circostritta all'altro.")
         print("Si parte da un esagono successivamnete vengono raddoppiati i lati del poligono ad ogni iterazione.\nIn quesrto modo la vicinanza tra i poligoni e circonferenza aumenta e l'approssimazione di pigreco migliora")
-        MetodoArchimede.main()
+        MetodoArchimede.main()                                                                              #invocazione del metodo main() della classe MetodoArchimede per eseguire il calcolo di pi-greco
     elif scelta == 2:
+        #descrizione del gioco QuickSort VS MergeSort
         print("\nHai scelto QuickSort VS MergeSort, che la sfida cominci!")
         print("In questo gioco verrano confrontate le velocità di ordinamento di un array di 2 algoritmi e verrà premiato l'algoritmo più veloce.")
         print("Entrambi sono algoritmi di ordinamento di un array che utizzano il metodo Divide et Impera con complessita O(nlogn).")
