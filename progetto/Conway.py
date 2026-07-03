@@ -15,8 +15,8 @@
 #Nascita: Una cella morta con esattamente tre vicini vivi diventa viva.
 #La "vicinanza" si calcola considerando le otto celle adiacenti orizzontalmente, verticalmente e diagonalmente
 
-import time                             #importo la libreria time per misurare il tempo impiegato a trovare le soluzioni
-import random                           #importo la libreria random per generare la matrice iniziale
+import time                             #importazione la libreria time per misurare il tempo impiegato a trovare le soluzioni
+import random                           #importazione la libreria random per generare la matrice iniziale
 
 class ConWay:
     def __init__(self, righe, colonne, valore_iniziale = 0):

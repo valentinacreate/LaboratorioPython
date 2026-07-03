@@ -14,7 +14,7 @@ from MetodoArchimede import MetodoArchimede                                 #imp
 from QuickSort import QuickSort                                             #importazione della classe QuickSort dal file QuickSort.py
 from MergeSort import MergeSort                                             #importazione della classe MergeSort dal file MergeSort.py
 from Conway import ConWay                                                   #importazione della classe Conway dal file Conway.py
-import time                                                                 #importo la libreria time per misurare il tempo impiegato a trovare le soluzioni
+import time                                                                 #importazione la libreria time per misurare il tempo impiegato a trovare le soluzioni
 
 print("Benvenuto nel progetto 'Giochiamo con gli algoritmi!' ")
 chiusura = False

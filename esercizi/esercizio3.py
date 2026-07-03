@@ -17,7 +17,7 @@
 #   - Utilizzando argparse visualizzate la stringa al punto 4 SOLO per il nome fornito come opzione al vostro programma (esempio: python esercizio_3.py –nome ‘Madoka Ayukawa’ –> esegue punto 4 solo per il nome indicato)
 #   - Utilizzando argparse introducede delle opzioni al vostro programma per eseguire i punti 1, 2, 3, 4, 5 dell’esercizio (esempio: python esercizio_3.py –lista_ordinata –> esegue il punto 2 dell’esercizio)
 
-import argparse                         #importo la libreria argparse per gestire gli argomenti da linea di comando
+import argparse                         #importazione la libreria argparse per gestire gli argomenti da linea di comando
 
 rubrica = {
     'Paolino Paperino': {'giorno': 9,

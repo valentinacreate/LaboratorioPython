@@ -15,8 +15,8 @@
 #   - Trovate 5 soluzioni “uniche” e le rispettive soluzioni simmetriche per rotazione per una scacchiera 8x8
 
 
-import random                                                   #importo la libreria random per generare permutazioni casuali
-import time                                                     #importo la libreria time per misurare il tempo impiegato a trovare le soluzioni
+import random                                                   #importazione la libreria random per generare permutazioni casuali
+import time                                                     #importazione la libreria time per misurare il tempo impiegato a trovare le soluzioni
 random_generator = random.Random()                              #creo un'istanza di random.Random() per generare numeri casuali
 
 def stessa_diagonale(x0, y0, x1, y1):                           

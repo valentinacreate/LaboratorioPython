@@ -11,7 +11,7 @@
 #aumentando i lati del poligono la vicinanza alla circonferenza aumenta e 
 #l'approssimazione di pigreco migliora per la simulazione
 
-import math                                         #importo la libreria math per utilizzare la funzione sqrt()
+import math                                         #importazione la libreria math per utilizzare la funzione sqrt()
 import webbrowser                                   #importazione della libreria webbrowser per aprire la pagina trinket con l'implementazione grafica del metodo di Archimede
 
 class MetodoArchimede:
