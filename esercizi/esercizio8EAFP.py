@@ -122,8 +122,8 @@ while chiusura == False:                                                        
             print("Input terminato. Impossibile continuare il gioco.")                          
             break                                                                               
         except KeyboardInterrupt:                                                               #gestione dell'eccezione se l'input dell'utente viene interrotto, stampa messaggio di errore e interruzione del ciclo se l'input non è più disponibile
-                print("\nErrore, chiusura gioco")                                               
-                break                                                                           
+            print("\nErrore, chiusura gioco")                                               
+            break                                                                           
         if prova_utente == "":                                                                  #controllo se l'utente ha inserito solo spazi o nulla, se sì stampa il messaggio di errore se l'input è vuoto e richiesta di un nuovo input senza contarlo come tentativo
             print("Input vuoto. Inserire una lettera valida.")                                  
             continue                                                                            

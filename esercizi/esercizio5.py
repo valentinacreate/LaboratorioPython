@@ -139,16 +139,13 @@ def rotazione_270_gradi(soluzione):
 
 def main():
     '''Funzione principale main'''
-    print('Indicare la dimensione della scacchiera (NxN):')                         #chiedo all'utente di inserire la dimensione della scacchiera
-    dimensionescacchiera = int(input())                                             #memorizzo la dimensione della scacchiera inserita dall'utente in una variabile di tipo intero
+    dimensionescacchiera = int(input('Indicare la dimensione della scacchiera (NxN):'))            #chiedo e memorizzo la dimensione della scacchiera 
 
     while dimensionescacchiera == 2 or dimensionescacchiera == 3:                   #se la dimensione della scacchiera è 2 o 3
         print('Non esistono soluzioni per una scacchiera di dimensione 2 o 3.')     #avviso l'utente che non esistono soluzioni per una scacchiera di dimensione 2 o 3
-        print('Inserire nuovamente la dimensione della scacchiera (NxN):')          #chiedo nuovamente all'utente di inserire la dimensione della scacchiera, finché non viene inserita una dimensione valida (diversa da 2 e 3)
-        dimensionescacchiera = int(input())                                         #memorizzo la dimensione della scacchiera inserita dall'utente in una variabile di tipo intero
+        dimensionescacchiera = int(input('Inserire nuovamente la dimensione della scacchiera (NxN):'))                         #chiedo e memorizzo la dimensione della scacchiera
 
-    print('inserire il numero di soluzioni desiderate:')                            #chiedo all'utente di inserire il numero di soluzioni desiderate
-    numerosoluzioni = int(input())                                                  #memorizzo il numero di soluzioni desiderate inserito dall'utente in una variabile di tipo intero
+    numerosoluzioni = int(input('inserire il numero di soluzioni desiderate:'))                                                #chiedo e memorizzo il numero di soluzioni desiderate 
 
     soluzioni_da_dati_utente(dimensionescacchiera, numerosoluzioni)                 #chiamo la funzione soluzioni_da_dati_utente, passando come argomenti i dati inseriti dall'utente
     dimensione_massima_per_tempo_limite()                                           #chiamo la funzione dimensione_massima_per_tempo_limite per trovare la dimensione massima della scacchiera per cui si riesce a trovare una soluzione in meno di 15 secondi

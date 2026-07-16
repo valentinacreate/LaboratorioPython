@@ -123,8 +123,7 @@ class Rubrica:                                                                  
             mese_num = 12
 
         while True:                                                                 #ciclo che continua a chiedere all'utente di inserire un anno di nascita finché non viene inserito un valore valido (un anno che non sia nel futuro rispetto all'anno odierno)  
-            print('\nInserire l\'anno di nascita:')                                 #stampa un messaggio che chiede all'utente di inserire l'anno di nascita del nuovo contatto
-            anno = int(input())                                                     #legge l'input dell'utente per l'anno di nascita e lo converte in un intero 
+            anno = int(input('\nInserire l\'anno di nascita:'))                     #stampa un messaggio che chiede all'utente di inserire l'anno di nascita del nuovo contatto e legge l'input dell'utente per l'anno di nascita e lo converte in un intero 
             if anno <= anno_oggi:                                                   #verifica se l'anno inserito è minore o uguale all'anno odierno per assicurarsi che l'anno di nascita non sia nel futuro
                 break                                                               #esce dal ciclo while se un anno valido è stato inserito
             else:                                                                   
