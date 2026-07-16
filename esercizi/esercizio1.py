@@ -81,12 +81,12 @@ def main():
     #inizializzo due variabili per tenere traccia del numero che ha generato la lista più lunga (n_max) e della lunghezza massima della lista (len_max)
     n_max = 0
     len_max = 0
-    print('Quanti numeri vuoi testare?')                        #chiedo all'utente quanti numeri vuole testare
-    n_test = int(input())                                       #leggo il numero di test che l'utente vuole fare
+    n_test = int(input('Quanti numeri vuoi testare?'))                        #chiedo all'utente quanti numeri vuole testare
+    
     
     while(n_test <= 0):                                         #controllo che il numero di test inserito sia positivo, se non lo è stampo un messaggio di errore e chiedo nuovamente all'utente di inserire un numero di test positivo
         print('Errore: il valore inserito è < o = a 0')         
-        n_test = int(input('Quanti numeri vuoi testare?   '))     
+        n_test = int(input('Quanti numeri vuoi testare?'))     
 
     for i in range(n_test):                                     #mediante un ciclo for eseguo le funzioni per ogni numero che l'utente vuole testare    
         n = inserisci_numero()                                  #chiedo all'utente di inserire un numero intero positivo

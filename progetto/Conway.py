@@ -56,7 +56,7 @@ class ConWay:
         '''Funzione principale per eseguire il Gioco della Vita di Conway'''    
         while True:                                                                             #ciclo per verificare che l'input dell'utente sia corretto
             try:                                                                                #eseguo il blocco di codice e se l'input dell'utente non è corretto allora viene sollevata un'eccezione
-                print("\ninserire la dimensione N della matrice NxN, scegliere un intero\n inserire un valore intero preferibilemnte di 20")
+                print("\ninserire la dimensione N della matrice NxN, scegliere un intero\n inserire un valore intero preferibilmente di 20")
                 dimensione=int(input())
                 # Se l'input è valido, esci dal loop per proseguire con il gioco
                 break

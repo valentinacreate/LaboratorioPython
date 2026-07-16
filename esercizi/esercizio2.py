@@ -53,15 +53,14 @@ def caratteri(testo):
 
 def conta_lettera(caratteri):
     '''Conta quante volte una lettera scelta dell'utente compare nel testo'''
-    alfabeto = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'                           #creo una stringa con tutti i caratteri alfanumerici (maiuscole e minuscole)
-    print('Inserisci una lettera da cercare: ')                                                 #chiedo all'utente di inserire una lettera da cercare nel testo
-    lettera = input()
+    alfabeto = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'                           #creo una stringa con tutti i caratteri alfanumerici (maiuscole e minuscole)                            
+    lettera = input('Inserisci una lettera da cercare: ')                                       #chiedo all'utente di inserire una lettera da cercare nel testo
     while lettera not in alfabeto:                                                              #controllo che la lettera inserita sia una lettera dell'alfabeto (maiuscola o minuscola)
         print('Errore: devi inserire una lettera')                                              #se non appartiene ad alfabeto, chiedo nuovamente all'utente di inserire una lettera da cercare nel testo
         lettera = input('Inserisci nuovamente la lettera: ')                                    
     conteggio = caratteri.count(lettera.lower()) + caratteri.count(lettera.upper())             #conto quante volte la lettera compare nel testo, considerando sia la minuscola che quella maiuscola
     
-    print('La lettera', lettera, 'compare', conteggio, 'volte nel testo.\n')                    #stampo il risultato
+    print('\nLa lettera', lettera, 'compare', conteggio, 'volte nel testo.\n')                    #stampo il risultato
 
 def sostituisci_parole(parole_testo):
     '''Sostituisce tutte le parole day, water e about con la parola PYTHON in tutti i versi'''
@@ -74,7 +73,7 @@ def sostituisci_parole(parole_testo):
         else:           
             testo_sostituito.append(i)              #se la parola non è presente nella lista delle parole da sostituire, appendo la parola originale alla lista del testo sostituito
     
-    return testo_sostituito                         #restituisco il testo modificato
+    print('\nIl testo con le parole sostituite è: \n' + ' '.join(testo_sostituito) + '\n')                       #stampo il testo modificato
 
 def maiuscolo_dispari(parole):
     '''Riscrive il testo in modo che tutte le parole in posizione dispari siano scritte in maiuscolo'''
@@ -85,8 +84,8 @@ def maiuscolo_dispari(parole):
         else:
             testo_modificato.append(parole[i])                  #se la parola è in posizione pari, appendo la parola originale alla lista del testo modificato
     
-    print('Il testo con le parole in maiuscolo in posizione dispari è: ')
-    print(testo_modificato)                                     #stampo il testo modificato
+    print('\nIl testo con le parole in maiuscolo in posizione dispari è: \n' + ' '.join(testo_modificato) + '\n')           #stampo il testo modificato
+                                         
 
 def inverti_frasi(frasi):
     '''Riscrive il testo invertendo l’ordine delle frasi dal basso all’alto'''
@@ -94,8 +93,7 @@ def inverti_frasi(frasi):
     for i in range(len(frasi)-1,-1,-1):                 #scorro tutte le frasi del testo, partendo dall'ultima frase (indice len(frasi)-1) fino alla prima frase (indice 0)
         testo_invertito.append(frasi[i])                #appendo la frase corrente alla lista del testo invertito, in questo modo le frasi vengono appese in ordine inverso rispetto all'ordine originale
     
-    print('\nIl testo con le frasi invertite è: ')
-    print(testo_invertito)                              #stampo il testo con le frasi invertite
+    print('\nIl testo con le frasi invertite è: \n' + ' '.join(testo_invertito) + '\n')              #stampo il testo con le frasi invertite                           
 
 def specchio(frasi):
     '''Riscrive il testo in modo che il secondo verso di ogni strofa sia scritto a specchio (cioè al contrario carattere per carattere)'''
@@ -110,8 +108,7 @@ def specchio(frasi):
         else:                                           #se la frase corrente non è il secondo verso di una strofa, appendo la frase originale alla lista del testo specchiato
             testo_specchiato.append(frasi[i])           
         
-    print('\nIl testo con il secondo verso di ogni strofa scritto a specchio è: ')  #stampo il testo modificato
-    print(testo_specchiato)                             
+    print('\nIl testo con il secondo verso di ogni strofa scritto a specchio è: \n',testo_specchiato,'\n')  #stampo il testo modificato                             
 
 def parole_comuni(testo):
     '''Trova eventuali parole che compaiono in TUTTE le strofe'''
@@ -124,7 +121,7 @@ def parole_comuni(testo):
     strofa4 = set(lista_strofe[3].lower().split())
     parole_comuni = strofa1 & strofa2 & strofa3 & strofa4             #utilizzo l'operatore & per trovare le parole comuni tra le 4 strofe
     if len(parole_comuni) == 0:                                       #se non ci sono parole comuni, allora segnalo all'utente che non ci sono parole comuni in tutte le strofe
-        print('No ci sono parole comuni in tutte le strofe')        
+        print('\nNo ci sono parole comuni in tutte le strofe \n')        
     else:
         print('\nLe parole comuni in tutte le strofe sono: ', parole_comuni)    #se ci sono parole comuni, le stampo
 
@@ -134,8 +131,7 @@ def lista_univoca_parole(parole):
     parole_univoche = list(parole_univoche)                   #converto il set in una lista per poter ordinare le parole
     parole_univoche.sort(key = len)                           #ordino la lista delle parole univoche in base alla lunghezza delle parole, utilizzando la funzione sort() con il parametro key=len (len=lunghezza della parola)
     
-    print('\nLa lista univoca di tutte le parole che compaiono nel testo, ordinata per lunghezza è: ')          #stampo la lista univoca ordinata
-    print(parole_univoche)                                  
+    print('\nLa lista univoca di tutte le parole che compaiono nel testo, ordinata per lunghezza è: \n' + ' '.join(parole_univoche) + '\n')          #stampo la lista univoca ordinata                                
 
 def dizionario_caratteri(caratteri):
     '''Create un dizionario che mappi OGNI carattere (chiave) con la sua occorrenza nel testo (valore)'''
@@ -146,7 +142,11 @@ def dizionario_caratteri(caratteri):
         else:                               #se il carattere non è presente come chiave nel dizionario, lo aggiungo al dizionario con valore 1, in questo modo conto la prima occorrenza del carattere nel testo
             dizionario[i] = 1                 
     
-    print(dizionario)                       #stampo il dizionario
+    for i in list(dizionario.keys()):       #stampo il dizionario
+        if i == '\n':
+            print('\\n: ', dizionario[i])
+        else:
+            print(i, ':', dizionario[i])                                           
 
 def dizionario_caratteri_alfanumerici(caratteri):
     '''Crea un dizionario che mappi i soli caratteri alfanumerici (chiave) con la sua occorrenza nel testo (valore), 
@@ -161,9 +161,8 @@ def dizionario_caratteri_alfanumerici(caratteri):
     for i in list(dizionario.keys()):                           #scorro tutte le chiavi
         if i not in 'abcdefghijklmnopqrstuvwxyz1234567890':     #se la chiave (carattere) non è un carattere alfanumerico, allora elimino la chiave (carattere) dal dizionario, cosí ottenendo un dizionario con solo i caratteri alfanumerici come chiavi e le loro occorrenze come valori
             del dizionario[i]                                   
-    
-    print(dizionario)                                           #stampo il dizionario
-
+    for i in list(dizionario.keys()):
+        print(i, ':', dizionario[i])                                           #stampo il dizionario
 
 def main():
     '''funzione main per eseguire esercizio2.py'''
@@ -197,7 +196,7 @@ def main():
     (caratteri_testo, num_caratteri) = caratteri(testo)
     print('I caratteri alfanumerici sono: ', num_caratteri)
     conta_lettera(caratteri_testo)
-    print('Il testo con le parole sostituite è: ', sostituisci_parole(parole_testo))
+    sostituisci_parole(parole_testo)
     maiuscolo_dispari(parole_testo)
     inverti_frasi(righe)
     specchio(righe)
@@ -205,7 +204,7 @@ def main():
     lista_univoca_parole(parole_testo)
     dizionario_caratteri(caratteri_testo)
     dizionario_caratteri_alfanumerici(caratteri_testo)
-
+    
 main()
 
 
