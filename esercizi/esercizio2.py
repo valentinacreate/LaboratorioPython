@@ -72,7 +72,7 @@ def sostituisci_parole(parole_testo):
             testo_sostituito.append('PYTHON')       
         else:           
             testo_sostituito.append(i)              #se la parola non è presente nella lista delle parole da sostituire, appendo la parola originale alla lista del testo sostituito
-    
+
     print('\nIl testo con le parole sostituite è: \n' + ' '.join(testo_sostituito) + '\n')                       #stampo il testo modificato
 
 def maiuscolo_dispari(parole):
@@ -91,7 +91,7 @@ def inverti_frasi(frasi):
     '''Riscrive il testo invertendo l’ordine delle frasi dal basso all’alto'''
     testo_invertito = []                                #creo una lista vuota per contenere il testo con le frasi invertite
     for i in range(len(frasi)-1,-1,-1):                 #scorro tutte le frasi del testo, partendo dall'ultima frase (indice len(frasi)-1) fino alla prima frase (indice 0)
-        testo_invertito.append(frasi[i])                #appendo la frase corrente alla lista del testo invertito, in questo modo le frasi vengono appese in ordine inverso rispetto all'ordine originale
+        testo_invertito.append(frasi[i] + '\n')                #appendo la frase corrente alla lista del testo invertito, in questo modo le frasi vengono appese in ordine inverso rispetto all'ordine originale
     
     print('\nIl testo con le frasi invertite è: \n' + ' '.join(testo_invertito) + '\n')              #stampo il testo con le frasi invertite                           
 
@@ -141,7 +141,7 @@ def dizionario_caratteri(caratteri):
             dizionario[i] += 1               
         else:                               #se il carattere non è presente come chiave nel dizionario, lo aggiungo al dizionario con valore 1, in questo modo conto la prima occorrenza del carattere nel testo
             dizionario[i] = 1                 
-    
+    print('\nDizionario dei caratteri:\n') 
     for i in list(dizionario.keys()):       #stampo il dizionario
         if i == '\n':
             print('\\n: ', dizionario[i])
@@ -160,7 +160,8 @@ def dizionario_caratteri_alfanumerici(caratteri):
             dizionario[i] = 1                                     
     for i in list(dizionario.keys()):                           #scorro tutte le chiavi
         if i not in 'abcdefghijklmnopqrstuvwxyz1234567890':     #se la chiave (carattere) non è un carattere alfanumerico, allora elimino la chiave (carattere) dal dizionario, cosí ottenendo un dizionario con solo i caratteri alfanumerici come chiavi e le loro occorrenze come valori
-            del dizionario[i]                                   
+            del dizionario[i]  
+    print('\nDizionario dei caratteri alfanumerici:\n')                                 
     for i in list(dizionario.keys()):
         print(i, ':', dizionario[i])                                           #stampo il dizionario
 
