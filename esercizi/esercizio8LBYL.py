@@ -160,12 +160,9 @@ while chiusura == False:                                                        
                                                                                                 #interruzione del ciclo for se la parola indovinata dall'utente è uguale alla parola da indovinare
     if errori == 6:                                                                             #controllo se il numero di tentativi effettuati è uguale al numero di tentativi disponibili
         print(f"Mi dispiace! Hai esaurito i tentativi. La parola da indovinare era '{parola_da_indovinare}'.")  #stampa il messaggio di sconfitta
-
-    print("Vuoi giocare di nuovo? (s/n)")                                                       #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo
-    risposta_utente = input()                                                                   #lettura dell'input dell'utente
+    risposta_utente = input("Vuoi giocare di nuovo? (s/n) ")                                     #stampa il messaggio per chiedere all'utente se vuole giocare di nuovo e lettura dell'input dell'utente
     while risposta_utente.lower() not in ["s", "n"]:                                            #controllo se l'input dell'utente è diverso da "s" o "n"
-        print("Input non valido. Inserire 's' per giocare di nuovo o 'n' per uscire.")          #stampa il messaggio di errore se l'input dell'utente non è valido
-        risposta_utente = input()                                                               #lettura dell'input dell'utente
+        risposta_utente = input("Input non valido. Inserire 's' per giocare di nuovo o 'n' per uscire. ")                                  #stampa il messaggio di errore se l'input dell'utente non è valido e lettura dell'input dell'utente
     if risposta_utente.lower() == "n":                                                          #controllo se l'utente non vuole giocare di nuovo
         chiusura = True                                                                         #impostazione della variabile per la chiusura del programma a True
         print("Grazie per aver giocato! Arrivederci!")                                          #stampa il messaggio di ringraziamento e arrivederci 

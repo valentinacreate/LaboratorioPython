@@ -58,8 +58,7 @@ class MetodoArchimede:
                 webbrowser.open(url)
             else:                                                                           #altrimenti chiede all'utente quante iterazioni vuole eseguire e invoca il metodo calcolo_pi()
                 try:                                                                        #esecuzione del blocco di codice per inserire il numero di iterazioni che potrebbe generare un'eccezione
-                    print('\nQuante volte vuoi iterare l\'algoritmo?\n Inserire un valore intero positivo')
-                    numero_iterazione=int(input())
+                    numero_iterazione=int(input('\nQuante volte vuoi iterare l\'algoritmo?\n Inserire un valore intero positivo '))
                     arch.calcolo_pi(numero_iterazione)
                 except ValueError:                                                          #gestione dell'eccezione se l'input non è un numero intero positivo: stampa un messaggio di errore e chiede all'utente di riprovare
                     print("Errore nell'input. Riprova.")

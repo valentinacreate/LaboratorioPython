@@ -56,8 +56,7 @@ class ConWay:
         '''Funzione principale per eseguire il Gioco della Vita di Conway'''    
         while True:                                                                             #ciclo per verificare che l'input dell'utente sia corretto
             try:                                                                                #eseguo il blocco di codice e se l'input dell'utente non è corretto allora viene sollevata un'eccezione
-                print("\ninserire la dimensione N della matrice NxN, scegliere un intero\n inserire un valore intero preferibilmente di 20")
-                dimensione=int(input())
+                dimensione=int(input("\ninserire la dimensione N della matrice NxN, scegliere un intero\n inserire un valore intero preferibilmente di 20 "))
                 # Se l'input è valido, esci dal loop per proseguire con il gioco
                 break
             except ValueError:                                                                   #se l'input dell'utente non è un intero allora viene sollevata un'eccezione e viene stampato un messaggio di errore, chiedendo all'utente di inserire un nuovo valore
@@ -70,8 +69,7 @@ class ConWay:
         gioco = ConWay(dimensione, dimensione)                                                   #inizializzazione della matrice di dimensione NxN con tutte le celle morte
         #Inizializzazione casuale per rendere la simulazione più dinamica
         random.seed()                                                                            #Viene usato un seed basato sul tempo di sistema per variare i pattern
-        print("scegli la probabilità che una cella sia viva all'inizio (valore tra 0.1 e 0.8)")  #chiedo all'utente di inserire un valore per la densità delle celle vive iniziali
-        densita = float(input())                                                    
+        densita = float(input("scegli la probabilità che una cella sia viva all'inizio (valore tra 0.1 e 0.8) "))           #chiedo all'utente di inserire un valore per la densità delle celle vive iniziali                                         
         while densita < 0.0 or densita > 1.0:                                                    #se il valore inserito dall'utente non è compreso tra 0.1 e 0.8 allora viene stampato un messaggio di errore, chiedendo all'utente di inserire un nuovo valore
             print("valore per la densità non appropriato, inserire un nuovo valore")
             densita = float(input())
