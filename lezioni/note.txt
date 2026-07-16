@@ -1,6 +1,6 @@
 24 febbraio ------------------------------------------------
 http://daniele.tavagnacco.pages.ict.inaf.it/corso_lab_python/Lezione01/Lezione_1.html
-per avviare l'interprete dal terminalescrivo corso_lab_pythonèer capire se l'interprete è stato avviato
+per avviare l'interprete dal terminale scrivo python e per capire se l'interprete è stato avviato
 al posto del $ devono apparire >>>
  domada d'esame tipica: quanti errori esistono in python?
  risposta 3: Syntax errors, semantic errors, runtime errors + descrizione
