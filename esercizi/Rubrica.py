@@ -18,6 +18,7 @@ mese_oggi = datetime.datetime.now().month                                       
 anno_oggi = datetime.datetime.now().year                                        #ottenimento dell'anno odierno utilizzando il metodo now() del modulo datetime e accedendo all'attributo year
 
 class Rubrica:                                                                  #definizione della classe Rubrica che contiene i metodi per gestire la rubrica dei contatti
+    '''Una classe che rappresenta e permette di operare con una Rubrica'''
     def __init__(self):  
         '''Inizializzazione della classe Rubrica con un dizionario vuoto per memorizzare le informazioni dei contatti'''                                                   
         self.info = {}                                                                  #inizializzazione del dizionario info come attributo della classe Rubrica

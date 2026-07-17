@@ -15,7 +15,7 @@ import math                                         #importazione la libreria ma
 import webbrowser                                   #importazione della libreria webbrowser per aprire la pagina trinket con l'implementazione grafica del metodo di Archimede
 
 class MetodoArchimede:
-
+    '''Una classe che permette di applicare l'algoritmo di Archimede per il calcolo di pi-greco'''
     def __init__(self):
         '''inizializza il raggio della circonferenza a 1'''
         self.raggio = 1.0

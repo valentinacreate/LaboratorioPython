@@ -14,7 +14,8 @@
 import random                           #importazione libreria random per la scelta casuale del pivot                                                      
 
 class QuickSort:
-    
+    '''Una classe che permette di applicare l'algoritmo QuickSort su un array'''
+
     def partition(array, p, r):
         '''partiziona l'array in base al pivot scelto in modo casuale e restituisce l'indice delpivot'''
         indice_pivot = random.randint(p, r)                                                         #scelta casuale dell'indice del pivot tra p e r

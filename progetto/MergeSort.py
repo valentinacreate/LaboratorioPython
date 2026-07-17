@@ -11,7 +11,7 @@
 #l'algoritmo ha complessità O(nlogn)
 
 class MergeSort:
-
+    '''Una classe che permette di applicare l'algoritmo MergeSort su un array'''
     def mergesort(array, inizio, fine):
         '''Ordina ricorsivamente l'array usando MergeSort per poi ricombinare e orinare i 2 sottoarray usando il metodo merge'''
         if fine > inizio:                                                       #finché l'array ha più di un elemento, calcolo la mediana e divido l'array in 2 sottoarray, invocando ricorsivamente la funzione merge_sort() sui 2 sottoarray, per poi ricombinarli e ordinarli usando il metodo merge()

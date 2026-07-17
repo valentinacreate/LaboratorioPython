@@ -19,6 +19,7 @@ import time                             #importazione la libreria time per misur
 import random                           #importazione la libreria random per generare la matrice iniziale
 
 class ConWay:
+    '''Una classe che permette di applicare l'algoritmo Conway'''
     def __init__(self, righe, colonne, valore_iniziale = 0):
         '''Inizializza una matrice di dimensione righe x colonne'''
         self.righe = righe                                                                      #inizializzazione della variabile righe
