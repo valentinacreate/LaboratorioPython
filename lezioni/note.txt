@@ -347,7 +347,7 @@ una variabile(b), una tubla(,)
 quindi due valori a destra e una variabile a sinistra, metodo più veloce per fare una pacchetto di valori è mediante una lista
 
 a=1,2,3 -----> tupla
-a, =1,2,3 ------> tupla che contiene a ottengo value erroe, troppi valori
+a, = 1,2,3 ------> tupla che contiene a ottengo value erroe, troppi valori
 
 quindi se io faccio 
 (a,*b)=1,2,3
