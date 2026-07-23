@@ -24,7 +24,7 @@
 #   - Alla fine stampa un riepilogo che mostra quale numero iniziale ha generato la sequenza più lunga.
 
 def inserisci_numero():
-    '''Inserimento numero da parte dell'utente e controllo che il numero sia intero positivo'''
+    '''Inserimento numero da parte dell'utente e controllo che il numero sia positivo'''
 
     n = int(input('Scrivi un numero intero positivo: '))          #chiedo all'utente di inserire un numero intero positivo
     while(n <= 0):                                                #controllo che il numero inserito sia positivo                                             
